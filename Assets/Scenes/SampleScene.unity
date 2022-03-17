@@ -340,15 +340,15 @@ MonoBehaviour:
   - Key: game_02_start_c
     Clip: {fileID: 8300000, guid: f62577dd583a1624d852fe1e0f6b1d9a, type: 3}
   - Key: game_03_reel_stop
-    Clip: {fileID: 8300000, guid: 28ff5c1f466c0114a832a6deaf6d0e03, type: 3}
+    Clip: {fileID: 8300000, guid: cd88bbe6239b85741b3f9087c12aa2cb, type: 3}
   - Key: game_sorou_koyaku_bell
-    Clip: {fileID: 8300000, guid: 031a4a3c58c41ed4ab33df06022f4d4d, type: 3}
+    Clip: {fileID: 8300000, guid: 02da1b5120934554abe682eedb917527, type: 3}
   - Key: game_sorou_koyaku_chery
-    Clip: {fileID: 8300000, guid: 9e4e1236eddcabc44bf0924e86bb4719, type: 3}
+    Clip: {fileID: 8300000, guid: 9d5af07edb83c0c4798af9e89503ee28, type: 3}
   - Key: game_sorou_koyaku_rep
-    Clip: {fileID: 8300000, guid: 90cf66685f5a581408babee7004ff9ac, type: 3}
+    Clip: {fileID: 8300000, guid: aa0a765298b4f874e9943b0d549cc9a1, type: 3}
   - Key: game_sorou_koyaku_suika
-    Clip: {fileID: 8300000, guid: 9d21c089f6e529f40b88b80f67746e73, type: 3}
+    Clip: {fileID: 8300000, guid: 4d1d307ffc5e72b4aa90653703e7b045, type: 3}
   - Key: game_sorou_bonus
     Clip: {fileID: 8300000, guid: 5f271fd9e8341ba4dbf597a224ae3b02, type: 3}
   - Key: bonus_big_a

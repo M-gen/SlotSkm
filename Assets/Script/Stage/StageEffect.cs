@@ -581,6 +581,7 @@ public class StageEffect : MonoBehaviour
                     maku.IsLogoShow(false);
                     cutin.SetAnimation("");
                     battle.SetAnimation("");
+                    PlayAudio("group_bgm", new string[] { "BGM" });
                 }
             });
             dir.Dirs.Add(new DirectionOne()
@@ -636,6 +637,7 @@ public class StageEffect : MonoBehaviour
                     maku.IsLogoShow(false);
                     cutin.SetAnimation("");
                     battle.SetAnimation("");
+                    PlayAudio("group_bgm", new string[] { "BGM" });
                 }
             });
             dir.Dirs.Add(new DirectionOne()
@@ -691,6 +693,7 @@ public class StageEffect : MonoBehaviour
                     maku.IsLogoShow(false);
                     cutin.SetAnimation("");
                     battle.SetAnimation("");
+                    PlayAudio("group_bgm", new string[] { "BGM" });
                 }
             });
             dir.Dirs.Add(new DirectionOne()
@@ -803,6 +806,7 @@ public class StageEffect : MonoBehaviour
                     maku.IsLogoShow(false);
                     cutin.SetAnimation("");
                     battle.SetAnimation("");
+                    PlayAudio("group_bgm", new string[] { "BGM" });
                 }
             });
             dir.Dirs.Add(new DirectionOne()
@@ -859,6 +863,7 @@ public class StageEffect : MonoBehaviour
                     maku.IsLogoShow(false);
                     cutin.SetAnimation("");
                     battle.SetAnimation("");
+                    PlayAudio("group_bgm", new string[] { "BGM" });
                 }
             });
             dir.Dirs.Add(new DirectionOne()
@@ -915,6 +920,7 @@ public class StageEffect : MonoBehaviour
                     maku.IsLogoShow(false);
                     cutin.SetAnimation("");
                     battle.SetAnimation("");
+                    PlayAudio("group_bgm", new string[] { "BGM" });
                 }
             });
             dir.Dirs.Add(new DirectionOne()
@@ -971,6 +977,7 @@ public class StageEffect : MonoBehaviour
                     maku.IsLogoShow(false);
                     cutin.SetAnimation("");
                     battle.SetAnimation("");
+                    PlayAudio("group_bgm", new string[] { "BGM" });
                 }
             });
             dir.Dirs.Add(new DirectionOne()
@@ -1027,6 +1034,7 @@ public class StageEffect : MonoBehaviour
                     maku.IsLogoShow(false);
                     cutin.SetAnimation("");
                     battle.SetAnimation("");
+                    PlayAudio("group_bgm", new string[] { "BGM" });
                 }
             });
             dir.Dirs.Add(new DirectionOne()
@@ -1085,6 +1093,7 @@ public class StageEffect : MonoBehaviour
                     cutin.SetAnimation("");
                     battle.SetAnimation("");
                     PlayAudio("group_shugou_chance", new string[] { "SE" });
+                    PlayAudio("group_bgm", new string[] { "BGM" });
                 }
             });
 
@@ -1126,6 +1135,7 @@ public class StageEffect : MonoBehaviour
                     cutin.SetAnimation("");
                     battle.SetAnimation("");
                     PlayAudio("group_shugou_chance", new string[] { "SE" });
+                    PlayAudio("group_bgm", new string[] { "BGM" });
                 }
             });
 
@@ -1169,6 +1179,7 @@ public class StageEffect : MonoBehaviour
                     cutin.SetAnimation("");
                     battle.SetAnimation("");
                     PlayAudio("group_shugou_chance", new string[] { "SE" });
+                    PlayAudio("group_bgm", new string[] { "BGM" });
                 }
             });
 
@@ -1212,6 +1223,7 @@ public class StageEffect : MonoBehaviour
                     cutin.SetAnimation("");
                     battle.SetAnimation("");
                     PlayAudio("group_shugou_chance", new string[] { "SE" });
+                    PlayAudio("group_bgm", new string[] { "BGM" });
                 }
             });
 
@@ -1255,6 +1267,7 @@ public class StageEffect : MonoBehaviour
                     cutin.SetAnimation("");
                     battle.SetAnimation("");
                     PlayAudio("group_shugou_chance", new string[] { "SE" });
+                    PlayAudio("group_bgm", new string[] { "BGM" });
                 }
             });
 
@@ -1296,6 +1309,7 @@ public class StageEffect : MonoBehaviour
                     cutin.SetAnimation("");
                     battle.SetAnimation("");
                     PlayAudio("group_shugou_chance", new string[] { "SE" });
+                    PlayAudio("group_bgm", new string[] { "BGM" });
                 }
             });
 
@@ -1339,6 +1353,7 @@ public class StageEffect : MonoBehaviour
                     cutin.SetAnimation("");
                     battle.SetAnimation("");
                     PlayAudio("group_shugou_chance", new string[] { "SE" });
+                    PlayAudio("group_bgm", new string[] { "BGM" });
                 }
             });
 
@@ -1382,6 +1397,7 @@ public class StageEffect : MonoBehaviour
                     cutin.SetAnimation("");
                     battle.SetAnimation("");
                     PlayAudio("group_shugou_chance", new string[] { "SE" });
+                    PlayAudio("group_bgm", new string[] { "BGM" });
                 }
             });
 
@@ -1426,6 +1442,7 @@ public class StageEffect : MonoBehaviour
                     cutin.SetAnimation("");
                     battle.SetAnimation("");
                     PlayAudio("group_shugou_chance", new string[] { "SE" });
+                    PlayAudio("group_bgm", new string[] { "BGM" });
                 }
             });
 
@@ -1467,6 +1484,7 @@ public class StageEffect : MonoBehaviour
                     cutin.SetAnimation("");
                     battle.SetAnimation("");
                     PlayAudio("group_shugou_chance", new string[] { "SE" });
+                    PlayAudio("group_bgm", new string[] { "BGM" });
                 }
             });
 
@@ -1510,6 +1528,7 @@ public class StageEffect : MonoBehaviour
                     cutin.SetAnimation("");
                     battle.SetAnimation("");
                     PlayAudio("group_shugou_chance", new string[] { "SE" });
+                    PlayAudio("group_bgm", new string[] { "BGM" });
                 }
             });
 
@@ -1553,6 +1572,7 @@ public class StageEffect : MonoBehaviour
                     cutin.SetAnimation("");
                     battle.SetAnimation("");
                     PlayAudio("group_shugou_chance", new string[] { "SE" });
+                    PlayAudio("group_bgm", new string[] { "BGM" });
                 }
             });
 
@@ -1596,6 +1616,7 @@ public class StageEffect : MonoBehaviour
                     cutin.SetAnimation("");
                     battle.SetAnimation("");
                     PlayAudio("group_shugou_chance", new string[] { "SE" });
+                    PlayAudio("group_bgm", new string[] { "BGM" });
                 }
             });
 
@@ -1637,6 +1658,7 @@ public class StageEffect : MonoBehaviour
                     cutin.SetAnimation("");
                     battle.SetAnimation("");
                     PlayAudio("group_shugou_chance", new string[] { "SE" });
+                    PlayAudio("group_bgm", new string[] { "BGM" });
                 }
             });
 
@@ -1680,6 +1702,7 @@ public class StageEffect : MonoBehaviour
                     cutin.SetAnimation("");
                     battle.SetAnimation("");
                     PlayAudio("group_shugou_chance", new string[] { "SE" });
+                    PlayAudio("group_bgm", new string[] { "BGM" });
                 }
             });
 
@@ -1723,6 +1746,7 @@ public class StageEffect : MonoBehaviour
                     cutin.SetAnimation("");
                     battle.SetAnimation("");
                     PlayAudio("group_shugou_chance", new string[] { "SE" });
+                    PlayAudio("group_bgm", new string[] { "BGM" });
                 }
             });
 
@@ -1767,6 +1791,7 @@ public class StageEffect : MonoBehaviour
                     cutin.SetAnimation("");
                     battle.SetAnimation("");
                     PlayAudio("group_shugou_chance", new string[] { "SE" });
+                    PlayAudio("group_bgm", new string[] { "BGM" });
                 }
             });
 
@@ -1808,6 +1833,7 @@ public class StageEffect : MonoBehaviour
                     cutin.SetAnimation("");
                     battle.SetAnimation("");
                     PlayAudio("group_shugou_chance", new string[] { "SE" });
+                    PlayAudio("group_bgm", new string[] { "BGM" });
                 }
             });
 
@@ -1851,6 +1877,7 @@ public class StageEffect : MonoBehaviour
                     cutin.SetAnimation("");
                     battle.SetAnimation("");
                     PlayAudio("group_shugou_chance", new string[] { "SE" });
+                    PlayAudio("group_bgm", new string[] { "BGM" });
                 }
             });
 
@@ -1894,6 +1921,7 @@ public class StageEffect : MonoBehaviour
                     cutin.SetAnimation("");
                     battle.SetAnimation("");
                     PlayAudio("group_shugou_chance", new string[] { "SE" });
+                    PlayAudio("group_bgm", new string[] { "BGM" });
                 }
             });
 

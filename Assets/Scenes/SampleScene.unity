@@ -243,7 +243,7 @@ MonoBehaviour:
     LotValue: 12
   - Bonus: Reg
     Role: 
-    LotValue: 34
+    LotValue: 10
   - Bonus: Big-r7
     Role: chery
     LotValue: 32
@@ -301,7 +301,7 @@ MonoBehaviour:
     LotValue: 5700
   - Bonus: 
     Role: 
-    LotValue: 11000
+    LotValue: 1100
   bonusLots:
   - Bonus: 
     Role: chery
@@ -350,7 +350,7 @@ MonoBehaviour:
   - Key: game_sorou_koyaku_suika
     Clip: {fileID: 8300000, guid: 4d1d307ffc5e72b4aa90653703e7b045, type: 3}
   - Key: game_sorou_bonus
-    Clip: {fileID: 8300000, guid: 5f271fd9e8341ba4dbf597a224ae3b02, type: 3}
+    Clip: {fileID: 8300000, guid: cda29f6ca8cc91643bdc0046cc74eff4, type: 3}
   - Key: bonus_big_a
     Clip: {fileID: 8300000, guid: 3c043e15f8d003b41b6617b4208c4ca8, type: 3}
   - Key: bonus_big_b

@@ -10,6 +10,15 @@ public class AudioManager : MonoBehaviour
         public AudioSource AudioSource;
         public bool IsLoop;
         public string[] tags;
+
+        public bool IsTag( string tag )
+        {
+            foreach( var v in tags )
+            {
+                if (tag == v) return true;
+            }
+            return false;
+        }
     }
 
     List<AudioItem> audioItems = new List<AudioItem>();
@@ -87,16 +96,28 @@ public class AudioManager : MonoBehaviour
         {
             if (v == "BGM")
             {
-                var isOK = false;
+                var isOK = false;       // BGMÇ™ë∂ç›ÇµÇƒÇ¢ÇÈ
+                var isContinue = false; // ç°Ç†ÇÈBGMÇ™àÍívÇµÇƒÇ¢ÇÈÇÃÇ≈åpë±Ç≥ÇπÇΩÇ¢
                 foreach (var i in audioItems)
                 {
-                    if ( i.AudioSource.clip==clip)
-                    {
+                    if (i.IsTag("BGM")) {
                         isOK = true;
+                        if (i.AudioSource.clip == clip)
+                        {
+                            isContinue = true;
+                        }
                     }
                 }
 
-                if(!isOK) DeleteAudios("BGM");
+                Debug.Log($"_PlayAudiCore {isOK} {isContinue} {clip.name}");
+                if (isOK)
+                {
+                    if (isContinue)
+                    {
+                        return;
+                    }
+                    DeleteAudios("BGM");
+                }
                 break;
             }
         }

@@ -34,6 +34,7 @@ public class StageLot
         if (gameStage != SlotCoreScript.GameStage.Bonus && (stageEffect.status == "bonus_game"))
         {
             comboEffect.Clear();
+            comboEffect.Add("bonus_end");
             stageEffect.status = "";
         }
 
@@ -43,6 +44,7 @@ public class StageLot
             {
                 default:
                     {
+                        //comboEffect.Add("bonus_end");
                         //comboEffect.Add("normal_1");
                         //comboEffect.Add("battle_in_group_5");
                         //comboEffect.Add("battle_1");

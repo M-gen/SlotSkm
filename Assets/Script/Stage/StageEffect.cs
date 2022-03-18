@@ -66,7 +66,8 @@ public class StageEffect : MonoBehaviour
     public string status = "";
 
     StageLot stageLot;
-    // Start is called before the first frame update
+    public int BonusCoinOut = 0;
+
     void Start()
     {
         SetBackGround("default");
@@ -2448,6 +2449,36 @@ public class StageEffect : MonoBehaviour
                     maku.IsLogoShow(false);
                     cutin.SetAnimation("");
                     battle.SetAnimation("bonus_game");
+                }
+            });
+            directions.Add(dir);
+        }
+
+        {
+            var dir = new Direction() { Name = "bonus_end" };
+            dir.Dirs.Add(new DirectionOne()
+            {
+                directionStep = DirectionStep.LeberOn,
+                Action = () =>
+                {
+                    SetBackGround("");
+                    maku.SetAnimation("");
+                    maku.IsLogoShow(false);
+                    cutin.SetAnimation("");
+                    battle.SetAnimation("bonus_end");
+                    battle.SetBonusGetCoinCounter(BonusCoinOut);
+                    battle.IsShowBonusGetCoinCounter(true);
+
+                    PlayAudio("bonus_end_voice", new string[] { "SE" }, delay:1.5f);
+                    PlayAudio("bonus_end", new string[] { "BGM" });
+                }
+            });
+            dir.Dirs.Add(new DirectionOne()
+            {
+                directionStep = DirectionStep.Stop3,
+                Action = () =>
+                {
+                    DeleteAudios("BGM");
                 }
             });
             directions.Add(dir);

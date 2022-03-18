@@ -296,6 +296,7 @@ public class SlotCoreScript : MonoBehaviour
             var status = GetBonusStatus();
             if ( status.Coin <= BonusCoinOut)
             {
+                stageEffect.BonusCoinOut = BonusCoinOut;
                 // ボーナス中終了
                 BonusCoinOut = 0;
                 gameStage = GameStage.Normal;

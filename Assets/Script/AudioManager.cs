@@ -132,7 +132,7 @@ public class AudioManager : MonoBehaviour
         audioItems.Add(item);
 
         item.AudioSource.clip = clip;
-        item.AudioSource.volume = GetVolumeByTag(tags);
+        item.AudioSource.volume = GetVolumeByTag(tags) * volume;
         item.AudioSource.Play();
         if (IsLoop) item.AudioSource.loop = true;
     }

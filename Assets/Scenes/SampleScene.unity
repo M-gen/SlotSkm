@@ -3523,6 +3523,8 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: 2af4fc9c88076d347a3cc6e291fa8e8f, type: 3}
   - Key: bonus_end_voice
     Clip: {fileID: 8300000, guid: c14c8c405499523498581baf1239660f, type: 3}
+  - Key: bonus_fix_aim
+    Clip: {fileID: 8300000, guid: 5a54ae31f9971c54383ea357ec2b1101, type: 3}
   status: 
   BonusCoinOut: 0
 --- !u!1 &2089226049

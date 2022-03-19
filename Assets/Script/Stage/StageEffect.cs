@@ -71,11 +71,6 @@ public class StageEffect : MonoBehaviour
     void Start()
     {
         SetBackGround("default");
-        //maku.SetAnimation("");
-        //maku.IsLogoShow(false);
-        //cutin.SetAnimation("");
-        //charaSDSakamata.SetAnimation("walk");
-        //battle.SetAnimation("");
 
         stageLot = new StageLot(this);
         {
@@ -2551,7 +2546,7 @@ public class StageEffect : MonoBehaviour
     }
 
     // フラグを見て判断する
-    public void SetDirection( string role, string bonus, SlotCoreScript.GameStage gameStage)
+    public void SetDirection(string role, string bonus, SlotCoreScript.GameStage gameStage)
     {
         this.role = role;
         this.bonus = bonus;
@@ -2559,6 +2554,12 @@ public class StageEffect : MonoBehaviour
         startScreen.SetActive(false);
 
         stageLot.LotBase(role, bonus, gameStage);
+
+        // ボーナス確定後、ボーナスをそろえられるときの音声を出す処理
+        if ((bonus != "") && (role == "") && 
+            ( (status== "bonus_fix_big_b7") || (status == "bonus_fix_big_r7") || (status == "bonus_fix_reg")) ) { 
+            PlayAudio("bonus_fix_aim", new string[] { "SE" }, volume: 0.3f);
+        }
     }
 
     private void SetBackGround( string key )
@@ -2620,13 +2621,13 @@ public class StageEffect : MonoBehaviour
                 break;
         }
     }
-    public void PlayAudio(string key, string[] tags, bool isLoop = false, float delay = 0f)
+    public void PlayAudio(string key, string[] tags, bool isLoop = false, float delay = 0f, float volume = 1.0f)
     {
         foreach (var i in AudioClips)
         {
             if (key == i.Key)
             {
-                audioManager.PlayAudio(i.Clip, 1f, tags, isLoop, delay);
+                audioManager.PlayAudio(i.Clip, volume, tags, isLoop, delay);
             }
         }
     }

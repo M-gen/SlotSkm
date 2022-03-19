@@ -210,6 +210,7 @@ public class Battle : MonoBehaviour
     {
         bonusCoinCount = value;
         bonusCoinCountView = 0;
+        bonusCoinTimer = 0;
 
         gonusGetCoinCounter1.GetComponent<SpriteRenderer>().sprite = GetImageByKey($"bonus_end_numbers_00");
         gonusGetCoinCounter2.GetComponent<SpriteRenderer>().sprite = GetImageByKey($"bonus_end_numbers_00");

@@ -3524,6 +3524,7 @@ MonoBehaviour:
   - Key: bonus_end_voice
     Clip: {fileID: 8300000, guid: c14c8c405499523498581baf1239660f, type: 3}
   status: 
+  BonusCoinOut: 0
 --- !u!1 &2089226049
 GameObject:
   m_ObjectHideFlags: 0

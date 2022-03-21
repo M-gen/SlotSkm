@@ -40,6 +40,8 @@ public class LineScript : MonoBehaviour
 
         public float ReelTimer = 0f;
         public float ReelTimerMax = 0.0333f * 1; // 0.0333f 1ï™ä‘80âÒì]Ç™è„å¿
+        public float ReelTimerMaxBase = 0.0333f;
+        public float ReelTimerMaxOffset = 1.0f;
 
         public bool IsFix = false;
         public string[] FixZugara = new string[] { "", "", "" };
@@ -3038,5 +3040,22 @@ public class LineScript : MonoBehaviour
             }
         }
         return -1;
+    }
+
+    public void SetReelSpeed( float value )
+    {
+        //    public float ReelTimerMax = 0.0333f * 1; // 0.0333f 1ï™ä‘80âÒì]Ç™è„å¿
+        //public float ReelTimerMaxBase = 0.0333f;
+
+        var offsetBase = 5f;
+
+        ZugaraStatusPackReel1.ReelTimerMaxOffset = value;
+        ZugaraStatusPackReel1.ReelTimerMax = ZugaraStatusPackReel1.ReelTimerMaxBase * (1f + (1f - value) * offsetBase);
+
+        ZugaraStatusPackReel2.ReelTimerMaxOffset = value;
+        ZugaraStatusPackReel2.ReelTimerMax = ZugaraStatusPackReel2.ReelTimerMaxBase * (1f + (1f - value) * offsetBase);
+
+        ZugaraStatusPackReel3.ReelTimerMaxOffset = value;
+        ZugaraStatusPackReel3.ReelTimerMax = ZugaraStatusPackReel3.ReelTimerMaxBase * (1f + (1f - value) * offsetBase);
     }
 }

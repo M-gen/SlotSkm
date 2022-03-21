@@ -10,6 +10,7 @@ public class AudioManager : MonoBehaviour
         public AudioSource AudioSource;
         public bool IsLoop;
         public string[] tags;
+        public float VolumeSrc;
 
         public bool IsTag( string tag )
         {
@@ -129,6 +130,7 @@ public class AudioManager : MonoBehaviour
         item.AudioSource = o.AddComponent<AudioSource>();
         item.IsLoop = IsLoop;
         item.tags = tags;
+        item.VolumeSrc = volume;
         audioItems.Add(item);
 
         item.AudioSource.clip = clip;
@@ -178,5 +180,24 @@ public class AudioManager : MonoBehaviour
         }
 
         return 1;
+    }
+
+    public void SetVolume( float volume, string tag )
+    {
+        foreach (var i in soundVolumeByTags)
+        {
+            if ( i.tag == tag)
+            {
+                i.volume = volume;
+            }
+        }
+
+        foreach (var i in audioItems)
+        {
+            if ( i.IsTag(tag) )
+            {
+                i.AudioSource.volume = i.VolumeSrc * volume;
+            }
+        }
     }
 }

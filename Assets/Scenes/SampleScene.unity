@@ -387,12 +387,8 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: 4d1d307ffc5e72b4aa90653703e7b045, type: 3}
   - Key: game_sorou_bonus
     Clip: {fileID: 8300000, guid: cda29f6ca8cc91643bdc0046cc74eff4, type: 3}
-  - Key: bonus_big_a
-    Clip: {fileID: 8300000, guid: 3c043e15f8d003b41b6617b4208c4ca8, type: 3}
-  - Key: bonus_big_b
-    Clip: {fileID: 8300000, guid: 1cfc521af41bfdb4eacd49163789a099, type: 3}
-  - Key: bonus_reg
-    Clip: {fileID: 8300000, guid: 5d276afcc82d9d74098a7816b625c362, type: 3}
+  - Key: bonus_in_bgm
+    Clip: {fileID: 8300000, guid: 8f360b05885099d4f918a047589acea5, type: 3}
   CoinIn: 0
   CoinOut: 0
   GameCount: 0
@@ -771,6 +767,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c4606c2e29a99047a6d46e88c0ca87e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AudioManager: {fileID: 158957298}
+  OnClickSE: {fileID: 8300000, guid: 1747f56297f27f74291c8ac9318061ea, type: 3}
 --- !u!1 &284162187
 GameObject:
   m_ObjectHideFlags: 0
@@ -1208,6 +1206,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ImageHelpSheet: {fileID: 202066404}
+  AudioManager: {fileID: 158957298}
+  OnClickSE: {fileID: 8300000, guid: 20043ef4927ca0e4b902a6334563ae2c, type: 3}
 --- !u!1 &343552407
 GameObject:
   m_ObjectHideFlags: 0
@@ -1261,8 +1261,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e047115f64d17e488f30525ecafc64e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AudioManager: {fileID: 0}
-  LineScript: {fileID: 0}
+  AudioManager: {fileID: 158957298}
+  LineScript: {fileID: 366239641}
+  SliderBGM: {fileID: 785391605}
+  SliderSE: {fileID: 2065362541}
+  SliderReel: {fileID: 1084716585}
+  OnClickSE: {fileID: 8300000, guid: 1747f56297f27f74291c8ac9318061ea, type: 3}
 --- !u!1 &366239639
 GameObject:
   m_ObjectHideFlags: 0
@@ -2419,6 +2423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 507f97d8748924b40bf8d21cb99a68fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ConfigSheet: {fileID: 343552409}
   AudioManager: {fileID: 158957298}
   Slider: {fileID: 785391605}
 --- !u!1 &834803145
@@ -2715,6 +2720,12 @@ MonoBehaviour:
     Sprite: {fileID: 21300000, guid: a7501a596023fdb4a8a6b0f55434d5ce, type: 3}
   - Key: bonus_end_numbers_00
     Sprite: {fileID: 21300000, guid: 3f3d46741a2302846a9d72d177759dce, type: 3}
+  - Key: bonus_in_reg
+    Sprite: {fileID: 21300000, guid: 00a5f25da45d6ed4d802e1384b9eb1b3, type: 3}
+  - Key: bonus_in_b7
+    Sprite: {fileID: 21300000, guid: 4d4d66774a054384794a173470cfea95, type: 3}
+  - Key: bonus_in_r7
+    Sprite: {fileID: 21300000, guid: 148c5246348730d4993cdfcb631f0bef, type: 3}
   background: {fileID: 734845853}
   gonusGetCoinCounter1: {fileID: 2089226049}
   gonusGetCoinCounter2: {fileID: 734444376}
@@ -2820,6 +2831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b34a5d009c65b04aa12fbfa0d852602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ConfigSheet: {fileID: 343552409}
   LineScript: {fileID: 366239641}
   Slider: {fileID: 1084716585}
 --- !u!1 &870820962
@@ -5054,6 +5066,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df2639f633ef7dd45b541d79ab05c2a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ConfigSheet: {fileID: 343552409}
   AudioManager: {fileID: 158957298}
   Slider: {fileID: 2065362541}
 --- !u!1 &1989685225
@@ -5393,6 +5406,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ConfigSheet: {fileID: 343552407}
+  OnClickSE: {fileID: 8300000, guid: 20043ef4927ca0e4b902a6334563ae2c, type: 3}
+  AudioManager: {fileID: 158957298}
 --- !u!114 &2041767963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5710,6 +5725,18 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: c14c8c405499523498581baf1239660f, type: 3}
   - Key: bonus_fix_aim
     Clip: {fileID: 8300000, guid: 5a54ae31f9971c54383ea357ec2b1101, type: 3}
+  - Key: bonus_reg
+    Clip: {fileID: 8300000, guid: 5d276afcc82d9d74098a7816b625c362, type: 3}
+  - Key: bonus_b7
+    Clip: {fileID: 8300000, guid: 3c043e15f8d003b41b6617b4208c4ca8, type: 3}
+  - Key: bonus_r7
+    Clip: {fileID: 8300000, guid: 1cfc521af41bfdb4eacd49163789a099, type: 3}
+  - Key: bonus_in_reg
+    Clip: {fileID: 8300000, guid: 0bf55b044f7caa14d99e2093e39c02f3, type: 3}
+  - Key: bonus_in_b7
+    Clip: {fileID: 8300000, guid: 0f0a9fdae258eb141aeba4577e4e1954, type: 3}
+  - Key: bonus_in_r7
+    Clip: {fileID: 8300000, guid: 2a71eb01217bf8940bb27cb0acef58b3, type: 3}
   status: 
   BonusCoinOut: 0
 --- !u!1 &2089226049

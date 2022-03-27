@@ -148,7 +148,7 @@ public class SlotCoreScript : MonoBehaviour
                             //    //bonus = "Big-r7";
                             //    bonus = "Reg";
                             //}
-                            //bonus = "";
+                            //bonus = "Big-r7";
                             //role = "bell";
 
                             if (bonus != "")
@@ -210,7 +210,7 @@ public class SlotCoreScript : MonoBehaviour
     public void LeverOn( string role, string bonus )
     {
         stopCount = 0;
-        stageEffect.SetDirection(role, bonus, gameStage);
+        stageEffect.SetDirection(role, bonus, gameStage, bonusTypeName);
         stageEffect.LeberOn();
         StartCoroutine("_LeverOn");
     }
@@ -342,5 +342,10 @@ public class SlotCoreScript : MonoBehaviour
             }
         }
         return null;
+    }
+
+    public void OnBonusIn()
+    {
+        stageEffect.OnBonusIn();
     }
 }

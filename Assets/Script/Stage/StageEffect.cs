@@ -63,6 +63,7 @@ public class StageEffect : MonoBehaviour
 
     string role = "";
     string bonus = "";
+    string bonusType = "";
     public string status = "";
 
     StageLot stageLot;
@@ -2433,7 +2434,7 @@ public class StageEffect : MonoBehaviour
         }
 
         {
-            var dir = new Direction() { Name = "bonus_game" };
+            var dir = new Direction() { Name = "bonus_game_reg" };
             dir.Dirs.Add(new DirectionOne()
             {
                 directionStep = DirectionStep.LeberOn,
@@ -2444,6 +2445,43 @@ public class StageEffect : MonoBehaviour
                     maku.IsLogoShow(false);
                     cutin.SetAnimation("");
                     battle.SetAnimation("bonus_game");
+                    PlayAudio("bonus_reg", new string[] { "BGM" }, true);
+                }
+            });
+            directions.Add(dir);
+        }
+
+        {
+            var dir = new Direction() { Name = "bonus_game_b7" };
+            dir.Dirs.Add(new DirectionOne()
+            {
+                directionStep = DirectionStep.LeberOn,
+                Action = () =>
+                {
+                    SetBackGround("");
+                    maku.SetAnimation("");
+                    maku.IsLogoShow(false);
+                    cutin.SetAnimation("");
+                    battle.SetAnimation("bonus_game");
+                    PlayAudio("bonus_b7", new string[] { "BGM" }, true);
+                }
+            });
+            directions.Add(dir);
+        }
+
+        {
+            var dir = new Direction() { Name = "bonus_game_r7" };
+            dir.Dirs.Add(new DirectionOne()
+            {
+                directionStep = DirectionStep.LeberOn,
+                Action = () =>
+                {
+                    SetBackGround("");
+                    maku.SetAnimation("");
+                    maku.IsLogoShow(false);
+                    cutin.SetAnimation("");
+                    battle.SetAnimation("bonus_game");
+                    PlayAudio("bonus_r7", new string[] { "BGM" }, true);
                 }
             });
             directions.Add(dir);
@@ -2546,14 +2584,14 @@ public class StageEffect : MonoBehaviour
     }
 
     // フラグを見て判断する
-    public void SetDirection(string role, string bonus, SlotCoreScript.GameStage gameStage)
+    public void SetDirection(string role, string bonus, SlotCoreScript.GameStage gameStage, string bonusType)
     {
         this.role = role;
         this.bonus = bonus;
 
         startScreen.SetActive(false);
 
-        stageLot.LotBase(role, bonus, gameStage);
+        stageLot.LotBase(role, bonus, gameStage, bonusType);
 
         // ボーナス確定後、ボーナスをそろえられるときの音声を出す処理
         if ((bonus != "") && (role == "") && 
@@ -2639,6 +2677,32 @@ public class StageEffect : MonoBehaviour
     public int GetLotStringValue(int normal, int r7, int b7, int reg)
     {
         return stageLot.GetLotStringValue( normal, r7, b7, reg);
+    }
+
+    public void OnBonusIn()
+    {
+        SetBackGround("");
+        maku.SetAnimation("");
+        maku.IsLogoShow(false);
+        cutin.SetAnimation("");
+        charaSDSakamata.SetAnimation("");
+
+        switch (bonus)
+        {
+            case "Reg":
+                battle.SetAnimation("bonus_in_reg");
+                PlayAudio("bonus_in_reg", new string[] { "SE" }, delay: 1.5f, volume: 1.0f);
+                break;
+            case "Big-b7":
+                battle.SetAnimation("bonus_in_b7");
+                PlayAudio("bonus_in_b7", new string[] { "SE" }, delay: 1.5f, volume: 1.0f);
+                break;
+            case "Big-r7":
+                battle.SetAnimation("bonus_in_r7");
+                PlayAudio("bonus_in_r7", new string[] { "SE" }, delay: 1.5f, volume: 1.0f);
+                break;
+        }
+
     }
 
 }

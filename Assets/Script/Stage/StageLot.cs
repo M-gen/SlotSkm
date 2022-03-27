@@ -15,7 +15,7 @@ public class StageLot
         this.stageEffect = stageEffect;
     }
 
-    public void LotBase(string role, string bonus, SlotCoreScript.GameStage gameStage)
+    public void LotBase(string role, string bonus, SlotCoreScript.GameStage gameStage, string bonusType)
     {
         this.role = role;
         this.bonus = bonus;
@@ -26,12 +26,28 @@ public class StageLot
             comboEffect.Clear();
             comboEffect.Add("bonus_game");
             stageEffect.status = "bonus_game";
-            stageEffect.SetDirection("bonus_game");
+
+            Debug.Log($"LotBase {bonusType}");
+
+            switch (bonusType)
+            {
+                case "Reg":
+                    stageEffect.SetDirection("bonus_game_reg");
+                    break;
+                case "Big-b7":
+                    stageEffect.SetDirection("bonus_game_b7");
+                    break;
+                case "Big-r7":
+                    stageEffect.SetDirection("bonus_game_r7");
+                    break;
+            }
             return;
         }
 
         // ボーナス終了
-        if (gameStage != SlotCoreScript.GameStage.Bonus && (stageEffect.status == "bonus_game"))
+        //if (gameStage != SlotCoreScript.GameStage.Bonus && 
+        //    ((stageEffect.status == "bonus_game_reg") || (stageEffect.status == "bonus_game_b7") || (stageEffect.status == "bonus_game_r7")) )
+        if (gameStage != SlotCoreScript.GameStage.Bonus && stageEffect.status == "bonus_game" )
         {
             comboEffect.Clear();
             comboEffect.Add("bonus_end");
@@ -165,7 +181,18 @@ public class StageLot
                     break;
                 case "bonus_game":
                     {
-                        comboEffect.Add("bonus_game");
+                        switch (bonusType)
+                        {
+                            case "Reg":
+                                comboEffect.Add("bonus_game_reg");
+                                break;
+                            case "Big-b7":
+                                comboEffect.Add("bonus_game_b7");
+                                break;
+                            case "Big-r7":
+                                comboEffect.Add("bonus_game_r7");
+                                break;
+                        }
                     }
                     break;
             }

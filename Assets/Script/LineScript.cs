@@ -2490,31 +2490,37 @@ public class LineScript : MonoBehaviour
         {
             SlotCoreScript.gameStage = SlotCoreScript.GameStage.Bonus;
             SlotCoreScript.bonusTypeName = "Big-r7";
-            SlotCoreScript.PlayAudio("bonus_big_a", new string[] { "BGM" }, true);
+            SlotCoreScript.PlayAudio("bonus_in_bgm", new string[] { "BGM" });
             SlotCoreScript.PlayAudio("game_sorou_bonus", new string[] { "SE" });
             SlotCoreScript.UpdateText();
             LampL.SetAnimation("shiro");
             LampR.SetAnimation("shiro");
+
+            SlotCoreScript.OnBonusIn();
         }
         else if (CheckHitLine("b7", "b7", "b7"))
         {
             SlotCoreScript.gameStage = SlotCoreScript.GameStage.Bonus;
             SlotCoreScript.bonusTypeName = "Big-b7";
-            SlotCoreScript.PlayAudio("bonus_big_b", new string[] { "BGM" }, true);
+            SlotCoreScript.PlayAudio("bonus_in_bgm", new string[] { "BGM" });
             SlotCoreScript.PlayAudio("game_sorou_bonus", new string[] { "SE" });
             SlotCoreScript.UpdateText();
             LampL.SetAnimation("shiro");
             LampR.SetAnimation("shiro");
+
+            SlotCoreScript.OnBonusIn();
         }
         else if (CheckHitLine("r7", "r7", "bar"))
         {
             SlotCoreScript.gameStage = SlotCoreScript.GameStage.Bonus;
             SlotCoreScript.bonusTypeName = "Reg";
-            SlotCoreScript.PlayAudio("bonus_reg", new string[] { "BGM" }, true);
+            SlotCoreScript.PlayAudio("bonus_in_bgm", new string[] { "BGM" });
             SlotCoreScript.PlayAudio("game_sorou_bonus", new string[] { "SE" });
             SlotCoreScript.UpdateText();
             LampL.SetAnimation("shiro");
             LampR.SetAnimation("shiro");
+
+            SlotCoreScript.OnBonusIn();
         }
     }
 

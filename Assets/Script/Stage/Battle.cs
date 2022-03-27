@@ -108,6 +108,27 @@ public class Battle : MonoBehaviour
         }
 
         {
+            var animation = new AnimationImageDataSet() { Key = "bonus_in_reg", IsLoop = false };
+            animation.ImageDatas.Add(new AnimationImageData() { Key = "bonus_in_reg", Time = 1.0f });
+
+            animationImage.DataSets.Add(animation);
+        }
+
+        {
+            var animation = new AnimationImageDataSet() { Key = "bonus_in_b7", IsLoop = false };
+            animation.ImageDatas.Add(new AnimationImageData() { Key = "bonus_in_b7", Time = 1.0f });
+
+            animationImage.DataSets.Add(animation);
+        }
+
+        {
+            var animation = new AnimationImageDataSet() { Key = "bonus_in_r7", IsLoop = false };
+            animation.ImageDatas.Add(new AnimationImageData() { Key = "bonus_in_r7", Time = 1.0f });
+
+            animationImage.DataSets.Add(animation);
+        }
+
+        {
             var animation = new AnimationImageDataSet() { Key = "bonus_game", IsLoop = false };
             animation.ImageDatas.Add(new AnimationImageData() { Key = "bonus_game", Time = 1.0f });
 

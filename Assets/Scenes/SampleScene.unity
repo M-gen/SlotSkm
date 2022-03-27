@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 36681222}
   - component: {fileID: 36681223}
   m_Layer: 0
-  m_Name: reel_leber_ball
+  m_Name: Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -251,6 +251,8 @@ GameObject:
   m_Component:
   - component: {fileID: 153645918}
   - component: {fileID: 153645917}
+  - component: {fileID: 153645919}
+  - component: {fileID: 153645920}
   m_Layer: 0
   m_Name: Slot Core
   m_TagString: Untagged
@@ -412,8 +414,36 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &153645919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153645916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8580291eb4703c4fb5e71f8d2d0a645, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotLotDatas: {fileID: 0}
+  LineScript: {fileID: 366239641}
+  soundResource: {fileID: 1541000914}
+  bodyController: {fileID: 1965213918}
+--- !u!114 &153645920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153645916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eabdad70d4bfa8c48b4abda21c14ade6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &158957296
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,7 +473,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &158957298
 MonoBehaviour:
@@ -469,7 +499,7 @@ GameObject:
   - component: {fileID: 192575758}
   - component: {fileID: 192575759}
   m_Layer: 0
-  m_Name: reel_leber_base
+  m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -552,7 +582,7 @@ GameObject:
   - component: {fileID: 195919867}
   - component: {fileID: 195919868}
   m_Layer: 0
-  m_Name: lamp_r
+  m_Name: Lamp Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -861,7 +891,7 @@ GameObject:
   m_Component:
   - component: {fileID: 302356430}
   m_Layer: 0
-  m_Name: reel_bet_button
+  m_Name: Bet Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1278,7 +1308,7 @@ GameObject:
   - component: {fileID: 366239640}
   - component: {fileID: 366239641}
   m_Layer: 0
-  m_Name: Lines Manager
+  m_Name: Reel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1291,12 +1321,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 366239639}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_Father: {fileID: 1965213917}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &366239641
 MonoBehaviour:
@@ -1311,6 +1341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SlotCoreScript: {fileID: 153645917}
+  SlotCore: {fileID: 153645919}
   Zugaras:
   - Key: r7
     Sprite: {fileID: 21300000, guid: df473025749c13c448701bd4b316ed82, type: 3}
@@ -1329,8 +1360,8 @@ MonoBehaviour:
   - Key: rep
     Sprite: {fileID: 21300000, guid: 537643884b334fb45918659bcf25b031, type: 3}
   ZugaraPrefab: {fileID: 8618653492458656738, guid: 4a598ec6a82dac54e907930b72516c55, type: 3}
-  LampL: {fileID: 512686096}
-  LampR: {fileID: 195919868}
+  LampLeft: {fileID: 512686096}
+  LampRight: {fileID: 195919868}
   Reel1ZugaraSource:
   - rep
   - r7
@@ -1458,7 +1489,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &445151428
 GameObject:
@@ -1669,7 +1700,7 @@ RectTransform:
   - {fileID: 202066405}
   - {fileID: 343552408}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1688,7 +1719,7 @@ GameObject:
   - component: {fileID: 512686095}
   - component: {fileID: 512686096}
   m_Layer: 0
-  m_Name: lamp_l
+  m_Name: Lamp Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1879,7 +1910,7 @@ GameObject:
   - component: {fileID: 532845903}
   - component: {fileID: 532845904}
   m_Layer: 0
-  m_Name: reel_button_light_02
+  m_Name: Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1961,7 +1992,7 @@ GameObject:
   - component: {fileID: 675991243}
   - component: {fileID: 675991244}
   m_Layer: 0
-  m_Name: reel_back_03
+  m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2845,7 +2876,7 @@ GameObject:
   - component: {fileID: 870820963}
   - component: {fileID: 870820964}
   m_Layer: 0
-  m_Name: reel_button_light_01
+  m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3342,7 +3373,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1022481469}
   m_Layer: 0
-  m_Name: reel_back
+  m_Name: Reel Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4175,6 +4206,57 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1517536344}
   m_CullTransparentMesh: 1
+--- !u!1 &1541000913
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1541000915}
+  - component: {fileID: 1541000914}
+  m_Layer: 0
+  m_Name: Sound Resource
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1541000914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1541000913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1c54db83cc57884eaf4d978dbd9be8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioManager: {fileID: 158957298}
+  audioClips:
+  - Key: game_01_bet
+    Clip: {fileID: 8300000, guid: 54ce3a0039cdf0445b660b471f754b6d, type: 3}
+  - Key: game_02_lever
+    Clip: {fileID: 8300000, guid: e5a8e62133ae1044f86b08a19d84a96c, type: 3}
+  - Key: game_03_reel_stop
+    Clip: {fileID: 8300000, guid: cd88bbe6239b85741b3f9087c12aa2cb, type: 3}
+--- !u!4 &1541000915
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1541000913}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1873153426}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1601337903
 GameObject:
   m_ObjectHideFlags: 0
@@ -4186,7 +4268,7 @@ GameObject:
   - component: {fileID: 1601337904}
   - component: {fileID: 1601337905}
   m_Layer: 0
-  m_Name: reel_button_light_02
+  m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4531,7 +4613,7 @@ GameObject:
   - component: {fileID: 1862652874}
   - component: {fileID: 1862652873}
   m_Layer: 0
-  m_Name: background_sammple_02_07
+  m_Name: Back Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4769,7 +4851,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1868544927}
   m_Layer: 0
-  m_Name: reel_leber
+  m_Name: Lever
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4790,6 +4872,37 @@ Transform:
   - {fileID: 36681222}
   m_Father: {fileID: 1965213917}
   m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1873153425
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1873153426}
+  m_Layer: 0
+  m_Name: Resource
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1873153426
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873153425}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1541000915}
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1908933778
 GameObject:
@@ -4906,6 +5019,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1965213917}
+  - component: {fileID: 1965213918}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -4931,9 +5045,23 @@ Transform:
   - {fileID: 302356430}
   - {fileID: 512686094}
   - {fileID: 195919866}
+  - {fileID: 366239640}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1965213918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1965213916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18a7f8d45bb3f89439ea04e14a6b2955, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundResource: {fileID: 1541000914}
 --- !u!1 &1966515243
 GameObject:
   m_ObjectHideFlags: 0
@@ -4945,7 +5073,7 @@ GameObject:
   - component: {fileID: 1966515244}
   - component: {fileID: 1966515245}
   m_Layer: 0
-  m_Name: reel_back_01
+  m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5166,7 +5294,7 @@ GameObject:
   - component: {fileID: 2038446317}
   - component: {fileID: 2038446318}
   m_Layer: 0
-  m_Name: reel_back_02
+  m_Name: Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5658,7 +5786,7 @@ Transform:
   - {fileID: 2125692905}
   - {fileID: 1833653424}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2073401141
 MonoBehaviour:
@@ -5831,7 +5959,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2114289854}
   m_Layer: 0
-  m_Name: reel_button_light
+  m_Name: Reel Stop Button Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

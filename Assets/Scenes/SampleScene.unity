@@ -368,29 +368,7 @@ MonoBehaviour:
   buttonLightL3: {fileID: 1601337903}
   uiText: {fileID: 1517536344}
   Stage: {fileID: 2073401139}
-  AudioClips:
-  - Key: game_01_bet
-    Clip: {fileID: 8300000, guid: 54ce3a0039cdf0445b660b471f754b6d, type: 3}
-  - Key: game_02_start_a
-    Clip: {fileID: 8300000, guid: e5a8e62133ae1044f86b08a19d84a96c, type: 3}
-  - Key: game_02_start_b
-    Clip: {fileID: 8300000, guid: eada1a52159c84542acae5de088f82f2, type: 3}
-  - Key: game_02_start_c
-    Clip: {fileID: 8300000, guid: f62577dd583a1624d852fe1e0f6b1d9a, type: 3}
-  - Key: game_03_reel_stop
-    Clip: {fileID: 8300000, guid: cd88bbe6239b85741b3f9087c12aa2cb, type: 3}
-  - Key: game_sorou_koyaku_bell
-    Clip: {fileID: 8300000, guid: 02da1b5120934554abe682eedb917527, type: 3}
-  - Key: game_sorou_koyaku_chery
-    Clip: {fileID: 8300000, guid: 9d5af07edb83c0c4798af9e89503ee28, type: 3}
-  - Key: game_sorou_koyaku_rep
-    Clip: {fileID: 8300000, guid: aa0a765298b4f874e9943b0d549cc9a1, type: 3}
-  - Key: game_sorou_koyaku_suika
-    Clip: {fileID: 8300000, guid: 4d1d307ffc5e72b4aa90653703e7b045, type: 3}
-  - Key: game_sorou_bonus
-    Clip: {fileID: 8300000, guid: cda29f6ca8cc91643bdc0046cc74eff4, type: 3}
-  - Key: bonus_in_bgm
-    Clip: {fileID: 8300000, guid: 8f360b05885099d4f918a047589acea5, type: 3}
+  AudioClips: []
   CoinIn: 0
   CoinOut: 0
   GameCount: 0
@@ -429,7 +407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotLotDatas: {fileID: 0}
-  LineScript: {fileID: 366239641}
+  lineScript: {fileID: 366239641}
   soundResource: {fileID: 1541000914}
   bodyController: {fileID: 1965213918}
 --- !u!114 &153645920
@@ -711,7 +689,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 476854831}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1149,7 +1127,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 476854831}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1272,7 +1250,7 @@ RectTransform:
   - {fileID: 1982076619}
   - {fileID: 859085368}
   m_Father: {fileID: 476854831}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1341,7 +1319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SlotCoreScript: {fileID: 153645917}
-  SlotCore: {fileID: 153645919}
+  slotCore: {fileID: 153645919}
   Zugaras:
   - Key: r7
     Sprite: {fileID: 21300000, guid: df473025749c13c448701bd4b316ed82, type: 3}
@@ -1362,6 +1340,7 @@ MonoBehaviour:
   ZugaraPrefab: {fileID: 8618653492458656738, guid: 4a598ec6a82dac54e907930b72516c55, type: 3}
   LampLeft: {fileID: 512686096}
   LampRight: {fileID: 195919868}
+  soundResource: {fileID: 1541000914}
   Reel1ZugaraSource:
   - rep
   - r7
@@ -1693,6 +1672,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 1873062819}
   - {fileID: 1517536345}
   - {fileID: 1220813982}
   - {fileID: 339476115}
@@ -3721,7 +3701,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 476854831}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4148,7 +4128,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 476854831}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4243,6 +4223,14 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: e5a8e62133ae1044f86b08a19d84a96c, type: 3}
   - Key: game_03_reel_stop
     Clip: {fileID: 8300000, guid: cd88bbe6239b85741b3f9087c12aa2cb, type: 3}
+  - Key: game_hit_koyaku_rep
+    Clip: {fileID: 8300000, guid: aa0a765298b4f874e9943b0d549cc9a1, type: 3}
+  - Key: game_hit_koyaku_bell
+    Clip: {fileID: 8300000, guid: 02da1b5120934554abe682eedb917527, type: 3}
+  - Key: game_hit_koyaku_suika
+    Clip: {fileID: 8300000, guid: 4d1d307ffc5e72b4aa90653703e7b045, type: 3}
+  - Key: game_hit_koyaku_chery
+    Clip: {fileID: 8300000, guid: 9d5af07edb83c0c4798af9e89503ee28, type: 3}
 --- !u!4 &1541000915
 Transform:
   m_ObjectHideFlags: 0
@@ -4873,6 +4861,56 @@ Transform:
   m_Father: {fileID: 1965213917}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1873062818
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1873062819}
+  - component: {fileID: 1873062820}
+  m_Layer: 5
+  m_Name: UI Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1873062819
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873062818}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 476854831}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1873062820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873062818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d7b71a70b5574a489750d89674adbaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotCore: {fileID: 153645919}
+  gameStatusViewText: {fileID: 1517536346}
 --- !u!1 &1873153425
 GameObject:
   m_ObjectHideFlags: 0
@@ -5061,6 +5099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18a7f8d45bb3f89439ea04e14a6b2955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slotCore: {fileID: 153645919}
   soundResource: {fileID: 1541000914}
 --- !u!1 &1966515243
 GameObject:
@@ -5476,7 +5515,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 476854831}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

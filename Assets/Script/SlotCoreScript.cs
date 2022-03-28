@@ -102,11 +102,6 @@ public class SlotCoreScript : MonoBehaviour
 
     private void Start()
     {
-
-        //{
-        //    audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManager>();
-        //}
-
         foreach ( var i in baseLots)
         {
             baseLotsMax += i.LotValue;
@@ -268,17 +263,17 @@ public class SlotCoreScript : MonoBehaviour
 
     public void UpdateText()
     {
-        //var text = $"--COIN--\nIN : {CoinIn}\nOUT : {CoinOut}\n\n---\nGame : {GameCount}\nMode : {gameStage}";
-        var text = $"--COIN--\nIN : {CoinIn}\nOUT : {CoinOut}\n\n---\nGame : {GameCount}";
-        if(gameStage== GameStage.Bonus)
-        {
-            text += "\nMode : Bonus";
-        }
-        else
-        {
-            text += "\nMode : Normal";
-        }
-        uiText.GetComponent<UnityEngine.UI.Text>().text = text;
+        ////var text = $"--COIN--\nIN : {CoinIn}\nOUT : {CoinOut}\n\n---\nGame : {GameCount}\nMode : {gameStage}";
+        //var text = $"--COIN--\nIN : {CoinIn}\nOUT : {CoinOut}\n\n---\nGame : {GameCount}";
+        //if(gameStage== GameStage.Bonus)
+        //{
+        //    text += "\nMode : Bonus";
+        //}
+        //else
+        //{
+        //    text += "\nMode : Normal";
+        //}
+        //uiText.GetComponent<UnityEngine.UI.Text>().text = text;
     }
 
     public void SetCoinIn( int value )

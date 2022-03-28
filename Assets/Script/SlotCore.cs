@@ -29,7 +29,10 @@ public class SlotCore : MonoBehaviour
     SlotLotDatas slotLotDatas;
 
     [SerializeField]
-    LineScript LineScript;
+    LineScript lineScript;
+
+    [SerializeField]
+    UIController uiController;
 
     [SerializeField]
     SoundResource soundResource;
@@ -232,14 +235,14 @@ public class SlotCore : MonoBehaviour
     {
         oneGame.status = SlotCoreOneGame.Status.LeverOnWait;
         bodyController.DoBet();
-        //soundResource.PlayAudio("game_01_bet", new string[] { "SE" });
+
+        longGame.AddInCoin(3);
+        uiController.UpdateGameStatusViewText();
     }
 
     private void _DoLeverOn()
     {
         oneGame.status = SlotCoreOneGame.Status.ReelStartWait;
-        bodyController.DoLeverOn();
-        //soundResource.PlayAudio("game_02_lever", new string[] { "SE" });
     }
     private void _DoReelStart()
     {
@@ -251,7 +254,16 @@ public class SlotCore : MonoBehaviour
         oneGame.isDownReelStopButtonCenter = false;
         oneGame.isDownReelStopButtonRight  = false;
 
-        LineScript.StartRollAll();
+        oneGame.flagRole = "";
+        oneGame.hit = "";
+        oneGame.downButtonType = ButtonType.None;
+
+        longGame.gameCount++;
+
+        lineScript.StartRollAll();
+        uiController.UpdateGameStatusViewText();
+
+        bodyController.DoReelStart();
     }
 
     private void _DoButtonStep1( ButtonType buttonType )
@@ -259,7 +271,8 @@ public class SlotCore : MonoBehaviour
         oneGame.oneButtonWaitTimer = 0;
         oneGame.status = SlotCoreOneGame.Status.ButtonStep2Wait;
 
-        LineScript.StopRollOne(buttonType);
+        bodyController.DoReelStopButton(buttonType);
+        lineScript.StopRollOne(buttonType);
     }
 
     private void _DoButtonStep2( ButtonType buttonType )
@@ -267,7 +280,8 @@ public class SlotCore : MonoBehaviour
         oneGame.oneButtonWaitTimer = 0;
         oneGame.status = SlotCoreOneGame.Status.ButtonStep3Wait;
 
-        LineScript.StopRollOne(buttonType);
+        bodyController.DoReelStopButton(buttonType);
+        lineScript.StopRollOne(buttonType);
     }
 
     private void _DoButtonStep3( ButtonType buttonType )
@@ -275,10 +289,39 @@ public class SlotCore : MonoBehaviour
         oneGame.oneButtonWaitTimer = 0;
         oneGame.status = SlotCoreOneGame.Status.ButtonStep3ReleaseWait;
 
-        LineScript.StopRollOne(buttonType);
+        bodyController.DoReelStopButton(buttonType);
+        lineScript.StopRollOne(buttonType);
     }
     private void _DoButtonStep3Release()
     {
+        lineScript.FixOneGame();
+        bodyController.FixOneGame();
+
+        switch( oneGame.hit )
+        {
+            case "rep":
+                longGame.flagReplay = true;
+                break;
+            case "bell":
+                longGame.AddOutCoin(10);
+                uiController.UpdateGameStatusViewText();
+                break;
+            case "suika":
+                longGame.AddOutCoin(6);
+                uiController.UpdateGameStatusViewText();
+                break;
+            case "chery":
+                longGame.AddOutCoin(3);
+                uiController.UpdateGameStatusViewText();
+                break;
+            case "Big-r7":
+                break;
+            case "Big-b7":
+                break;
+            case "Reg":
+                break;
+        }
+
         if (longGame.flagReplay)
         {
             oneGame.status = SlotCoreOneGame.Status.LeverOnWait;

@@ -29,4 +29,19 @@ public class SlotCoreLongGame
     public int inCoin = 0;
     public int outCoin = 0;
     public int bonusOutCoin = 0;        // ボーナス中の獲得コイン
+    public int gameCount = 0;
+
+    public void AddInCoin(int value)
+    {
+        inCoin += value;
+    }
+    public void AddOutCoin(int value)
+    {
+        outCoin += value;
+
+        if (status == Status.BonusGame)
+        {
+            bonusOutCoin += value;
+        }
+    }
 }

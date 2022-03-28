@@ -14,7 +14,7 @@ public class LineScript : MonoBehaviour
     SlotCoreScript SlotCoreScript;
 
     [SerializeField]
-    SlotCore SlotCore;
+    SlotCore slotCore;
 
     [SerializeField]
     List<Zugara> Zugaras = new List<Zugara>();
@@ -27,6 +27,9 @@ public class LineScript : MonoBehaviour
 
     [SerializeField]
     Lamp LampRight;
+
+    [SerializeField]
+    SoundResource soundResource;
 
     ReelZugaraStatusPack ZugaraStatusPackReelLeft = new ReelZugaraStatusPack();
     ReelZugaraStatusPack ZugaraStatusPackReelCenter = new ReelZugaraStatusPack();
@@ -81,12 +84,12 @@ public class LineScript : MonoBehaviour
         SlotCoreScript.DoBaseLot(ref bonus, ref role);
         Debug.Log($"DoBaseLot {bonus}, {role}");
 
-        slotStep = SlotStep.NowGame;
-        SlotCoreScript.LeverOn(role, bonus);
-        SlotCoreScript.PlayAudio("game_02_start_a", new string[] { "SE" });
+        //slotStep = SlotStep.NowGame;
+        //SlotCoreScript.LeverOn(role, bonus);
+        //SlotCoreScript.PlayAudio("game_02_start_a", new string[] { "SE" });
 
-        SlotCoreScript.GameCount++;
-        SlotCoreScript.UpdateText();
+        //SlotCoreScript.GameCount++;
+        //SlotCoreScript.UpdateText();
 
         LampLeft.SetAnimation("def");
         LampRight.SetAnimation("def");
@@ -123,12 +126,12 @@ public class LineScript : MonoBehaviour
                     case "Big-r7":
                         Debug.Log($"Big-r7");
                         key = "r7";
-                        if (SlotCore.oneGame.buttonCount == 0)
+                        if (slotCore.oneGame.buttonCount == 0)
                         {
                             srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelLeft);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (SlotCore.oneGame.buttonCount == 1)
+                        else if (slotCore.oneGame.buttonCount == 1)
                         {
                             if (ZugaraStatusPackReelCenter.IsFix)
                             {
@@ -185,7 +188,7 @@ public class LineScript : MonoBehaviour
                                 }
                             }
                         }
-                        else if (SlotCore.oneGame.buttonCount == 2)
+                        else if (slotCore.oneGame.buttonCount == 2)
                         {
                             if ((ZugaraStatusPackReelCenter.FixZugara[0] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == key))
                             {
@@ -231,12 +234,12 @@ public class LineScript : MonoBehaviour
                         break;
                     case "Big-b7":
                         key = "b7";
-                        if (SlotCore.oneGame.buttonCount == 0)
+                        if (slotCore.oneGame.buttonCount == 0)
                         {
                             srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelLeft);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (SlotCore.oneGame.buttonCount == 1)
+                        else if (slotCore.oneGame.buttonCount == 1)
                         {
                             if (ZugaraStatusPackReelCenter.IsFix)
                             {
@@ -293,7 +296,7 @@ public class LineScript : MonoBehaviour
                                 }
                             }
                         }
-                        else if (SlotCore.oneGame.buttonCount == 2)
+                        else if (slotCore.oneGame.buttonCount == 2)
                         {
                             if ((ZugaraStatusPackReelCenter.FixZugara[0] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == key))
                             {
@@ -339,12 +342,12 @@ public class LineScript : MonoBehaviour
                         break;
                     case "Reg":
                         key = "r7";
-                        if (SlotCore.oneGame.buttonCount == 0)
+                        if (slotCore.oneGame.buttonCount == 0)
                         {
                             srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelLeft);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (SlotCore.oneGame.buttonCount == 1)
+                        else if (slotCore.oneGame.buttonCount == 1)
                         {
                             if (ZugaraStatusPackReelCenter.IsFix)
                             {
@@ -401,7 +404,7 @@ public class LineScript : MonoBehaviour
                                 }
                             }
                         }
-                        else if (SlotCore.oneGame.buttonCount == 2)
+                        else if (slotCore.oneGame.buttonCount == 2)
                         {
                             if ((ZugaraStatusPackReelCenter.FixZugara[0] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == "bar"))
                             {
@@ -449,12 +452,12 @@ public class LineScript : MonoBehaviour
                 break;
             case "rep":
                 key = "rep";
-                if (SlotCore.oneGame.buttonCount == 0)
+                if (slotCore.oneGame.buttonCount == 0)
                 {
                     srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelLeft);
                     if (srideIndex == -1) srideIndex = 0;
                 }
-                else if (SlotCore.oneGame.buttonCount == 1)
+                else if (slotCore.oneGame.buttonCount == 1)
                 {
                     if (ZugaraStatusPackReelCenter.IsFix)
                     {
@@ -511,7 +514,7 @@ public class LineScript : MonoBehaviour
                         }
                     }
                 }
-                else if (SlotCore.oneGame.buttonCount == 2)
+                else if (slotCore.oneGame.buttonCount == 2)
                 {
                     if ((ZugaraStatusPackReelCenter.FixZugara[0] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == key))
                     {
@@ -557,12 +560,12 @@ public class LineScript : MonoBehaviour
                 break;
             case "bell":
                 key = "bell";
-                if (SlotCore.oneGame.buttonCount == 0)
+                if (slotCore.oneGame.buttonCount == 0)
                 {
                     srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelLeft);
                     if (srideIndex == -1) srideIndex = 0;
                 }
-                else if (SlotCore.oneGame.buttonCount == 1)
+                else if (slotCore.oneGame.buttonCount == 1)
                 {
                     if (ZugaraStatusPackReelCenter.IsFix)
                     {
@@ -620,7 +623,7 @@ public class LineScript : MonoBehaviour
 
                     }
                 }
-                else if (SlotCore.oneGame.buttonCount == 2)
+                else if (slotCore.oneGame.buttonCount == 2)
                 {
                     if ((ZugaraStatusPackReelCenter.FixZugara[0] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == key))
                     {
@@ -667,12 +670,12 @@ public class LineScript : MonoBehaviour
                 break;
             case "suika":
                 key = "suika";
-                if (SlotCore.oneGame.buttonCount == 0)
+                if (slotCore.oneGame.buttonCount == 0)
                 {
                     srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelLeft);
                     if (srideIndex == -1) srideIndex = 0;
                 }
-                else if (SlotCore.oneGame.buttonCount == 1)
+                else if (slotCore.oneGame.buttonCount == 1)
                 {
                     if (ZugaraStatusPackReelCenter.IsFix)
                     {
@@ -730,7 +733,7 @@ public class LineScript : MonoBehaviour
 
                     }
                 }
-                else if (SlotCore.oneGame.buttonCount == 2)
+                else if (slotCore.oneGame.buttonCount == 2)
                 {
                     if ((ZugaraStatusPackReelCenter.FixZugara[0] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == key))
                     {
@@ -784,7 +787,6 @@ public class LineScript : MonoBehaviour
         }
 
         ZugaraStatusPackReelLeft.Fix(srideIndex);
-        SlotCoreScript.OnButtonL1();
     }
 
     private void StopRollOneCenter()
@@ -800,12 +802,12 @@ public class LineScript : MonoBehaviour
                 {
                     case "Big-r7":
                         key = "r7";
-                        if (SlotCore.oneGame.buttonCount == 0)
+                        if (slotCore.oneGame.buttonCount == 0)
                         {
                             srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelCenter);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (SlotCore.oneGame.buttonCount == 1)
+                        else if (slotCore.oneGame.buttonCount == 1)
                         {
                             if (ZugaraStatusPackReelLeft.IsFix)
                             {
@@ -864,7 +866,7 @@ public class LineScript : MonoBehaviour
                                 }
                             }
                         }
-                        else if (SlotCore.oneGame.buttonCount == 2)
+                        else if (slotCore.oneGame.buttonCount == 2)
                         {
                             if ((ZugaraStatusPackReelLeft.FixZugara[0] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == key))
                             {
@@ -911,12 +913,12 @@ public class LineScript : MonoBehaviour
                         break;
                     case "Big-b7":
                         key = "b7";
-                        if (SlotCore.oneGame.buttonCount == 0)
+                        if (slotCore.oneGame.buttonCount == 0)
                         {
                             srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelCenter);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (SlotCore.oneGame.buttonCount == 1)
+                        else if (slotCore.oneGame.buttonCount == 1)
                         {
                             if (ZugaraStatusPackReelLeft.IsFix)
                             {
@@ -975,7 +977,7 @@ public class LineScript : MonoBehaviour
                                 }
                             }
                         }
-                        else if (SlotCore.oneGame.buttonCount == 2)
+                        else if (slotCore.oneGame.buttonCount == 2)
                         {
                             if ((ZugaraStatusPackReelLeft.FixZugara[0] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == key))
                             {
@@ -1022,12 +1024,12 @@ public class LineScript : MonoBehaviour
                         break;
                     case "Reg":
                         key = "r7";
-                        if (SlotCore.oneGame.buttonCount == 0)
+                        if (slotCore.oneGame.buttonCount == 0)
                         {
                             srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelCenter);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (SlotCore.oneGame.buttonCount == 1)
+                        else if (slotCore.oneGame.buttonCount == 1)
                         {
                             if (ZugaraStatusPackReelLeft.IsFix)
                             {
@@ -1086,7 +1088,7 @@ public class LineScript : MonoBehaviour
                                 }
                             }
                         }
-                        else if (SlotCore.oneGame.buttonCount == 2)
+                        else if (slotCore.oneGame.buttonCount == 2)
                         {
                             if ((ZugaraStatusPackReelLeft.FixZugara[0] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == "bar"))
                             {
@@ -1135,12 +1137,12 @@ public class LineScript : MonoBehaviour
                 break;
             case "rep":
                 key = "rep";
-                if (SlotCore.oneGame.buttonCount == 0)
+                if (slotCore.oneGame.buttonCount == 0)
                 {
                     srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelCenter);
                     if (srideIndex == -1) srideIndex = 0;
                 }
-                else if (SlotCore.oneGame.buttonCount == 1)
+                else if (slotCore.oneGame.buttonCount == 1)
                 {
                     if (ZugaraStatusPackReelLeft.IsFix)
                     {
@@ -1199,7 +1201,7 @@ public class LineScript : MonoBehaviour
                         }
                     }
                 }
-                else if (SlotCore.oneGame.buttonCount == 2)
+                else if (slotCore.oneGame.buttonCount == 2)
                 {
                     if ((ZugaraStatusPackReelLeft.FixZugara[0] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == key))
                     {
@@ -1246,12 +1248,12 @@ public class LineScript : MonoBehaviour
                 break;
             case "bell":
                 key = "bell";
-                if (SlotCore.oneGame.buttonCount == 0)
+                if (slotCore.oneGame.buttonCount == 0)
                 {
                     srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelCenter);
                     if (srideIndex == -1) srideIndex = 0;
                 }
-                else if (SlotCore.oneGame.buttonCount == 1)
+                else if (slotCore.oneGame.buttonCount == 1)
                 {
                     if (ZugaraStatusPackReelLeft.IsFix)
                     {
@@ -1310,7 +1312,7 @@ public class LineScript : MonoBehaviour
                         }
                     }
                 }
-                else if (SlotCore.oneGame.buttonCount == 2)
+                else if (slotCore.oneGame.buttonCount == 2)
                 {
                     if ((ZugaraStatusPackReelLeft.FixZugara[0] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == key))
                     {
@@ -1357,12 +1359,12 @@ public class LineScript : MonoBehaviour
                 break;
             case "suika":
                 key = "suika";
-                if (SlotCore.oneGame.buttonCount == 0)
+                if (slotCore.oneGame.buttonCount == 0)
                 {
                     srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelCenter);
                     if (srideIndex == -1) srideIndex = 0;
                 }
-                else if (SlotCore.oneGame.buttonCount == 1)
+                else if (slotCore.oneGame.buttonCount == 1)
                 {
                     if (ZugaraStatusPackReelLeft.IsFix)
                     {
@@ -1421,7 +1423,7 @@ public class LineScript : MonoBehaviour
                         }
                     }
                 }
-                else if (SlotCore.oneGame.buttonCount == 2)
+                else if (slotCore.oneGame.buttonCount == 2)
                 {
                     if ((ZugaraStatusPackReelLeft.FixZugara[0] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == key))
                     {
@@ -1475,7 +1477,6 @@ public class LineScript : MonoBehaviour
         }
 
         ZugaraStatusPackReelCenter.Fix(srideIndex);
-        SlotCoreScript.OnButtonL2();
     }
 
     private void StopRollOneRight()
@@ -1491,12 +1492,12 @@ public class LineScript : MonoBehaviour
                 {
                     case "Big-r7":
                         key = "r7";
-                        if (SlotCore.oneGame.buttonCount == 0)
+                        if (slotCore.oneGame.buttonCount == 0)
                         {
                             srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelRight);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (SlotCore.oneGame.buttonCount == 1)
+                        else if (slotCore.oneGame.buttonCount == 1)
                         {
                             if (ZugaraStatusPackReelCenter.IsFix)
                             {
@@ -1554,7 +1555,7 @@ public class LineScript : MonoBehaviour
 
                             }
                         }
-                        else if (SlotCore.oneGame.buttonCount == 2)
+                        else if (slotCore.oneGame.buttonCount == 2)
                         {
                             if ((ZugaraStatusPackReelLeft.FixZugara[0] == key) && (ZugaraStatusPackReelCenter.FixZugara[0] == key))
                             {
@@ -1600,12 +1601,12 @@ public class LineScript : MonoBehaviour
                         break;
                     case "Big-b7":
                         key = "b7";
-                        if (SlotCore.oneGame.buttonCount == 0)
+                        if (slotCore.oneGame.buttonCount == 0)
                         {
                             srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelRight);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (SlotCore.oneGame.buttonCount == 1)
+                        else if (slotCore.oneGame.buttonCount == 1)
                         {
                             if (ZugaraStatusPackReelCenter.IsFix)
                             {
@@ -1663,7 +1664,7 @@ public class LineScript : MonoBehaviour
 
                             }
                         }
-                        else if (SlotCore.oneGame.buttonCount == 2)
+                        else if (slotCore.oneGame.buttonCount == 2)
                         {
                             if ((ZugaraStatusPackReelLeft.FixZugara[0] == key) && (ZugaraStatusPackReelCenter.FixZugara[0] == key))
                             {
@@ -1709,12 +1710,12 @@ public class LineScript : MonoBehaviour
                         break;
                     case "Reg":
                         key = "bar";
-                        if (SlotCore.oneGame.buttonCount == 0)
+                        if (slotCore.oneGame.buttonCount == 0)
                         {
                             srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelRight);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (SlotCore.oneGame.buttonCount == 1)
+                        else if (slotCore.oneGame.buttonCount == 1)
                         {
                             if (ZugaraStatusPackReelCenter.IsFix)
                             {
@@ -1772,7 +1773,7 @@ public class LineScript : MonoBehaviour
 
                             }
                         }
-                        else if (SlotCore.oneGame.buttonCount == 2)
+                        else if (slotCore.oneGame.buttonCount == 2)
                         {
                             if ((ZugaraStatusPackReelLeft.FixZugara[0] == "r7") && (ZugaraStatusPackReelCenter.FixZugara[0] == "r7"))
                             {
@@ -1820,12 +1821,12 @@ public class LineScript : MonoBehaviour
                 break;
             case "rep":
                 key = "rep";
-                if (SlotCore.oneGame.buttonCount == 0)
+                if (slotCore.oneGame.buttonCount == 0)
                 {
                     srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelRight);
                     if (srideIndex == -1) srideIndex = 0;
                 }
-                else if (SlotCore.oneGame.buttonCount == 1)
+                else if (slotCore.oneGame.buttonCount == 1)
                 {
                     if (ZugaraStatusPackReelCenter.IsFix)
                     {
@@ -1883,7 +1884,7 @@ public class LineScript : MonoBehaviour
 
                     }
                 }
-                else if (SlotCore.oneGame.buttonCount == 2)
+                else if (slotCore.oneGame.buttonCount == 2)
                 {
                     if ((ZugaraStatusPackReelLeft.FixZugara[0] == key) && (ZugaraStatusPackReelCenter.FixZugara[0] == key))
                     {
@@ -1929,12 +1930,12 @@ public class LineScript : MonoBehaviour
                 break;
             case "bell":
                 key = "bell";
-                if (SlotCore.oneGame.buttonCount == 0)
+                if (slotCore.oneGame.buttonCount == 0)
                 {
                     srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelRight);
                     if (srideIndex == -1) srideIndex = 0;
                 }
-                else if (SlotCore.oneGame.buttonCount == 1)
+                else if (slotCore.oneGame.buttonCount == 1)
                 {
                     if (ZugaraStatusPackReelCenter.IsFix)
                     {
@@ -1992,7 +1993,7 @@ public class LineScript : MonoBehaviour
 
                     }
                 }
-                else if (SlotCore.oneGame.buttonCount == 2)
+                else if (slotCore.oneGame.buttonCount == 2)
                 {
                     if ((ZugaraStatusPackReelLeft.FixZugara[0] == key) && (ZugaraStatusPackReelCenter.FixZugara[0] == key))
                     {
@@ -2038,12 +2039,12 @@ public class LineScript : MonoBehaviour
                 break;
             case "suika":
                 key = "suika";
-                if (SlotCore.oneGame.buttonCount == 0)
+                if (slotCore.oneGame.buttonCount == 0)
                 {
                     srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelRight);
                     if (srideIndex == -1) srideIndex = 0;
                 }
-                else if (SlotCore.oneGame.buttonCount == 1)
+                else if (slotCore.oneGame.buttonCount == 1)
                 {
                     if (ZugaraStatusPackReelCenter.IsFix)
                     {
@@ -2101,7 +2102,7 @@ public class LineScript : MonoBehaviour
 
                     }
                 }
-                else if (SlotCore.oneGame.buttonCount == 2)
+                else if (slotCore.oneGame.buttonCount == 2)
                 {
                     if ((ZugaraStatusPackReelLeft.FixZugara[0] == key) && (ZugaraStatusPackReelCenter.FixZugara[0] == key))
                     {
@@ -2154,52 +2155,18 @@ public class LineScript : MonoBehaviour
         }
 
         ZugaraStatusPackReelRight.Fix(srideIndex);
-        SlotCoreScript.OnButtonL3();
     }
 
 
     void Update()
     {
-        oneButtonWaitTimer += Time.deltaTime;
+        Debug.Log($"{ZugaraStatusPackReelLeft.IsFix} {ZugaraStatusPackReelCenter.IsFix} {ZugaraStatusPackReelRight.IsFix}");
+        ZugaraStatusPackReelLeft.Update();
+        ZugaraStatusPackReelCenter.Update();
+        ZugaraStatusPackReelRight.Update();
 
         switch (slotStep)
         {
-            case SlotStep.NowGame:
-                ZugaraStatusPackReelLeft.Update();
-                ZugaraStatusPackReelCenter.Update();
-                ZugaraStatusPackReelRight.Update();
-
-                //if (oneButtonWaitTimerMax <= oneButtonWaitTimer)
-                //{
-                //    //if (Input.GetKeyDown(KeyCode.LeftArrow))
-                //    //{
-                //    //    oneButtonWaitTimer = 0;
-                //    //}
-
-                //    //if (Input.GetKeyDown(KeyCode.DownArrow))
-                //    //{
-                //    //}
-
-                //    //if (Input.GetKeyDown(KeyCode.RightArrow))
-                //    //{
-                //    //    if (!ZugaraStatusPackReelRight.IsFix)
-                //    //    {
-                //    //    }
-                //    //}
-
-                //    if ((ZugaraStatusPackReelLeft.IsReelStop()) && (ZugaraStatusPackReelCenter.IsReelStop()) && (ZugaraStatusPackReelRight.IsReelStop()))
-                //    {
-                //        slotStep = SlotStep.EndGameUpWait;
-                //    }
-                //}
-                //else
-                //{
-                //    ZugaraStatusPackReelCenter.Update();
-                //    ZugaraStatusPackReelRight.Update();
-                //}
-
-                break;
-
             case SlotStep.EndGame:
 
                 //if (Input.GetKeyUp(KeyCode.Backspace))
@@ -2275,84 +2242,168 @@ public class LineScript : MonoBehaviour
 
     }
 
-    public void NextStepEndGame()
+    public void FixOneGame()
     {
-        slotStep = SlotStep.EndGame;
-
         if (CheckHitLine("rep", "rep", "rep"))
         {
-            SlotCoreScript.IsReplay = true;
-            SlotCoreScript.PlayAudio("game_sorou_koyaku_rep", new string[] { "SE" });
-            LampLeft.SetAnimation("ao");
-            LampRight.SetAnimation("ao");
+            slotCore.oneGame.hit = "rep";
+            //LampLeft.SetAnimation("ao");
+            //LampRight.SetAnimation("ao");
         }
         else if (CheckHitLine("bell", "bell", "bell"))
         {
-            if (SlotCoreScript.gameStage == SlotCoreScript.GameStage.Normal)
-            {
-                SlotCoreScript.SetCoinOut(10);
-            }
-            else
-            {
-                SlotCoreScript.SetCoinOut(15);
-            }
-            SlotCoreScript.UpdateText();
-            SlotCoreScript.PlayAudio("game_sorou_koyaku_bell", new string[] { "SE" });
+            slotCore.oneGame.hit = "bell";
+            //if (slotCore.longGame.status == SlotCoreLongGame.Status.BonusGame)
+            //{
+            //    slotCore.longGame.AddOutCoin(10);
+            //}
+            //else
+            //{
+            //    slotCore.longGame.AddOutCoin(15);
+            //}
+            //SlotCoreScript.UpdateText();
+            //SlotCoreScript.PlayAudio("game_sorou_koyaku_bell", new string[] { "SE" });
             LampLeft.SetAnimation("ki");
             LampRight.SetAnimation("ki");
         }
         else if (CheckHitLine("suika", "suika", "suika"))
         {
-            SlotCoreScript.SetCoinOut(6);
-            SlotCoreScript.UpdateText();
-            SlotCoreScript.PlayAudio("game_sorou_koyaku_suika", new string[] { "SE" });
-            LampLeft.SetAnimation("midori");
-            LampRight.SetAnimation("midori");
+            slotCore.oneGame.hit = "suika";
+            //SlotCoreScript.SetCoinOut(6);
+            //SlotCoreScript.UpdateText();
+            //SlotCoreScript.PlayAudio("game_sorou_koyaku_suika", new string[] { "SE" });
+            //LampLeft.SetAnimation("midori");
+            //LampRight.SetAnimation("midori");
         }
         else if (CheckHitLine("chery", "", ""))
         {
-            SlotCoreScript.SetCoinOut(3);
-            SlotCoreScript.UpdateText();
-            SlotCoreScript.PlayAudio("game_sorou_koyaku_chery", new string[] { "SE" });
-            LampLeft.SetAnimation("aka");
-            LampRight.SetAnimation("aka");
+            slotCore.oneGame.hit = "chery";
+            //SlotCoreScript.SetCoinOut(3);
+            //SlotCoreScript.UpdateText();
+            //SlotCoreScript.PlayAudio("game_sorou_koyaku_chery", new string[] { "SE" });
+            //LampLeft.SetAnimation("aka");
+            //LampRight.SetAnimation("aka");
         }
         else if (CheckHitLine("r7", "r7", "r7"))
         {
-            SlotCoreScript.gameStage = SlotCoreScript.GameStage.Bonus;
-            SlotCoreScript.bonusTypeName = "Big-r7";
-            SlotCoreScript.PlayAudio("bonus_in_bgm", new string[] { "BGM" });
-            SlotCoreScript.PlayAudio("game_sorou_bonus", new string[] { "SE" });
-            SlotCoreScript.UpdateText();
-            LampLeft.SetAnimation("shiro");
-            LampRight.SetAnimation("shiro");
+            slotCore.oneGame.hit = "Big-r7";
+            //SlotCoreScript.gameStage = SlotCoreScript.GameStage.Bonus;
+            //SlotCoreScript.bonusTypeName = "Big-r7";
+            //SlotCoreScript.PlayAudio("bonus_in_bgm", new string[] { "BGM" });
+            //SlotCoreScript.PlayAudio("game_sorou_bonus", new string[] { "SE" });
+            //SlotCoreScript.UpdateText();
+            //LampLeft.SetAnimation("shiro");
+            //LampRight.SetAnimation("shiro");
 
-            SlotCoreScript.OnBonusIn();
+            //SlotCoreScript.OnBonusIn();
         }
         else if (CheckHitLine("b7", "b7", "b7"))
         {
-            SlotCoreScript.gameStage = SlotCoreScript.GameStage.Bonus;
-            SlotCoreScript.bonusTypeName = "Big-b7";
-            SlotCoreScript.PlayAudio("bonus_in_bgm", new string[] { "BGM" });
-            SlotCoreScript.PlayAudio("game_sorou_bonus", new string[] { "SE" });
-            SlotCoreScript.UpdateText();
-            LampLeft.SetAnimation("shiro");
-            LampRight.SetAnimation("shiro");
+            slotCore.oneGame.hit = "Big-b7";
+            //SlotCoreScript.gameStage = SlotCoreScript.GameStage.Bonus;
+            //SlotCoreScript.bonusTypeName = "Big-b7";
+            //SlotCoreScript.PlayAudio("bonus_in_bgm", new string[] { "BGM" });
+            //SlotCoreScript.PlayAudio("game_sorou_bonus", new string[] { "SE" });
+            //SlotCoreScript.UpdateText();
+            //LampLeft.SetAnimation("shiro");
+            //LampRight.SetAnimation("shiro");
 
-            SlotCoreScript.OnBonusIn();
+            //SlotCoreScript.OnBonusIn();
         }
         else if (CheckHitLine("r7", "r7", "bar"))
         {
-            SlotCoreScript.gameStage = SlotCoreScript.GameStage.Bonus;
-            SlotCoreScript.bonusTypeName = "Reg";
-            SlotCoreScript.PlayAudio("bonus_in_bgm", new string[] { "BGM" });
-            SlotCoreScript.PlayAudio("game_sorou_bonus", new string[] { "SE" });
-            SlotCoreScript.UpdateText();
-            LampLeft.SetAnimation("shiro");
-            LampRight.SetAnimation("shiro");
+            slotCore.oneGame.hit = "Reg";
+            //SlotCoreScript.gameStage = SlotCoreScript.GameStage.Bonus;
+            //SlotCoreScript.bonusTypeName = "Reg";
+            //SlotCoreScript.PlayAudio("bonus_in_bgm", new string[] { "BGM" });
+            //SlotCoreScript.PlayAudio("game_sorou_bonus", new string[] { "SE" });
+            //SlotCoreScript.UpdateText();
+            //LampLeft.SetAnimation("shiro");
+            //LampRight.SetAnimation("shiro");
 
-            SlotCoreScript.OnBonusIn();
+            //SlotCoreScript.OnBonusIn();
         }
+    }
+
+    // todo : íœ
+    public void NextStepEndGame()
+    {
+        //slotStep = SlotStep.EndGame;
+
+        //if (CheckHitLine("rep", "rep", "rep"))
+        //{
+        //    //SlotCoreScript.IsReplay = true;
+        //    //SlotCoreScript.PlayAudio("game_sorou_koyaku_rep", new string[] { "SE" });
+        //    //LampLeft.SetAnimation("ao");
+        //    //LampRight.SetAnimation("ao");
+        //}
+        //else if (CheckHitLine("bell", "bell", "bell"))
+        //{
+        //    //if (SlotCoreScript.gameStage == SlotCoreScript.GameStage.Normal)
+        //    //{
+        //    //    SlotCoreScript.SetCoinOut(10);
+        //    //}
+        //    //else
+        //    //{
+        //    //    SlotCoreScript.SetCoinOut(15);
+        //    //}
+        //    //SlotCoreScript.UpdateText();
+        //    //SlotCoreScript.PlayAudio("game_sorou_koyaku_bell", new string[] { "SE" });
+        //    //LampLeft.SetAnimation("ki");
+        //    //LampRight.SetAnimation("ki");
+        //}
+        //else if (CheckHitLine("suika", "suika", "suika"))
+        //{
+        //    SlotCoreScript.SetCoinOut(6);
+        //    SlotCoreScript.UpdateText();
+        //    SlotCoreScript.PlayAudio("game_sorou_koyaku_suika", new string[] { "SE" });
+        //    LampLeft.SetAnimation("midori");
+        //    LampRight.SetAnimation("midori");
+        //}
+        //else if (CheckHitLine("chery", "", ""))
+        //{
+        //    SlotCoreScript.SetCoinOut(3);
+        //    SlotCoreScript.UpdateText();
+        //    SlotCoreScript.PlayAudio("game_sorou_koyaku_chery", new string[] { "SE" });
+        //    LampLeft.SetAnimation("aka");
+        //    LampRight.SetAnimation("aka");
+        //}
+        //else if (CheckHitLine("r7", "r7", "r7"))
+        //{
+        //    SlotCoreScript.gameStage = SlotCoreScript.GameStage.Bonus;
+        //    SlotCoreScript.bonusTypeName = "Big-r7";
+        //    SlotCoreScript.PlayAudio("bonus_in_bgm", new string[] { "BGM" });
+        //    SlotCoreScript.PlayAudio("game_sorou_bonus", new string[] { "SE" });
+        //    SlotCoreScript.UpdateText();
+        //    LampLeft.SetAnimation("shiro");
+        //    LampRight.SetAnimation("shiro");
+
+        //    SlotCoreScript.OnBonusIn();
+        //}
+        //else if (CheckHitLine("b7", "b7", "b7"))
+        //{
+        //    SlotCoreScript.gameStage = SlotCoreScript.GameStage.Bonus;
+        //    SlotCoreScript.bonusTypeName = "Big-b7";
+        //    SlotCoreScript.PlayAudio("bonus_in_bgm", new string[] { "BGM" });
+        //    SlotCoreScript.PlayAudio("game_sorou_bonus", new string[] { "SE" });
+        //    SlotCoreScript.UpdateText();
+        //    LampLeft.SetAnimation("shiro");
+        //    LampRight.SetAnimation("shiro");
+
+        //    SlotCoreScript.OnBonusIn();
+        //}
+        //else if (CheckHitLine("r7", "r7", "bar"))
+        //{
+        //    SlotCoreScript.gameStage = SlotCoreScript.GameStage.Bonus;
+        //    SlotCoreScript.bonusTypeName = "Reg";
+        //    SlotCoreScript.PlayAudio("bonus_in_bgm", new string[] { "BGM" });
+        //    SlotCoreScript.PlayAudio("game_sorou_bonus", new string[] { "SE" });
+        //    SlotCoreScript.UpdateText();
+        //    LampLeft.SetAnimation("shiro");
+        //    LampRight.SetAnimation("shiro");
+
+        //    SlotCoreScript.OnBonusIn();
+        //}
     }
 
     public bool CheckHitLine( string key1, string key2, string key3)
@@ -2421,7 +2472,7 @@ public class LineScript : MonoBehaviour
                 }
             }
 
-            if (SlotCore.oneGame.buttonCount == 2 )
+            if (slotCore.oneGame.buttonCount == 2 )
             {
                 System.Func<string, bool> func1 = (key) =>
                  {
@@ -2539,7 +2590,7 @@ public class LineScript : MonoBehaviour
         {
             var tmp = zugaraStatusPack.GetFixZugara(sride);
 
-            if (SlotCore.oneGame.buttonCount == 2)
+            if (slotCore.oneGame.buttonCount == 2)
             {
                 System.Func<string, bool> func2 = (key) =>
                 {
@@ -2655,7 +2706,7 @@ public class LineScript : MonoBehaviour
         {
             var tmp = zugaraStatusPack.GetFixZugara(sride);
 
-            if (SlotCore.oneGame.buttonCount == 2)
+            if (slotCore.oneGame.buttonCount == 2)
             {
                 System.Func<string, bool> func3 = (key) =>
                 {

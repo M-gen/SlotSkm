@@ -1482,7 +1482,7 @@ MonoBehaviour:
   - suika
   - rep
   - air
-  slideMax: 20
+  slideMax: 5
 --- !u!1 &403723802
 GameObject:
   m_ObjectHideFlags: 0

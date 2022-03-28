@@ -83,15 +83,15 @@ public class SlotCore : MonoBehaviour
                         oneGame.oneGameWaitTimer += Time.deltaTime;
                         if (SlotCoreOneGame.oneButtonWaitTimerMax <= oneGame.oneButtonWaitTimer)
                         {
-                            if (Input.GetKeyDown(KeyCode.LeftArrow))
+                            if ( (Input.GetKeyDown(KeyCode.LeftArrow)) && (!lineScript.zugaraStatusPackReelL1.IsFix))
                             {
                                 DoReelStopButtonDown(ButtonType.ReelStopL1);
                             }
-                            else if (Input.GetKeyDown(KeyCode.DownArrow))
+                            else if( (Input.GetKeyDown(KeyCode.DownArrow)) && (!lineScript.zugaraStatusPackReelL2.IsFix))
                             {
                                 DoReelStopButtonDown(ButtonType.ReelStopL2);
                             }
-                            else if (Input.GetKeyDown(KeyCode.RightArrow))
+                            else if((Input.GetKeyDown(KeyCode.RightArrow)) && (!lineScript.zugaraStatusPackReelL3.IsFix))
                             {
                                 DoReelStopButtonDown(ButtonType.ReelStopL3);
                             }
@@ -102,17 +102,17 @@ public class SlotCore : MonoBehaviour
                         oneGame.oneGameWaitTimer += Time.deltaTime;
                         if (SlotCoreOneGame.oneButtonWaitTimerMax <= oneGame.oneButtonWaitTimer)
                         {
-                            if (Input.GetKeyDown(KeyCode.LeftArrow))
+                            if ((Input.GetKeyDown(KeyCode.LeftArrow)) && (!lineScript.zugaraStatusPackReelL1.IsFix))
                             {
-                                DoReelStopButtonDown( ButtonType.ReelStopL1 );
+                                DoReelStopButtonDown(ButtonType.ReelStopL1);
                             }
-                            else if (Input.GetKeyDown(KeyCode.DownArrow))
+                            else if ((Input.GetKeyDown(KeyCode.DownArrow)) && (!lineScript.zugaraStatusPackReelL2.IsFix))
                             {
-                                DoReelStopButtonDown(ButtonType.ReelStopL2 );
+                                DoReelStopButtonDown(ButtonType.ReelStopL2);
                             }
-                            else if (Input.GetKeyDown(KeyCode.RightArrow))
+                            else if ((Input.GetKeyDown(KeyCode.RightArrow)) && (!lineScript.zugaraStatusPackReelL3.IsFix))
                             {
-                                DoReelStopButtonDown(ButtonType.ReelStopL3 );
+                                DoReelStopButtonDown(ButtonType.ReelStopL3);
                             }
                         }
                         break;
@@ -121,15 +121,15 @@ public class SlotCore : MonoBehaviour
                         oneGame.oneGameWaitTimer += Time.deltaTime;
                         if (SlotCoreOneGame.oneButtonWaitTimerMax <= oneGame.oneButtonWaitTimer)
                         {
-                            if (Input.GetKeyDown(KeyCode.LeftArrow))
+                            if ((Input.GetKeyDown(KeyCode.LeftArrow)) && (!lineScript.zugaraStatusPackReelL1.IsFix))
                             {
                                 DoReelStopButtonDown(ButtonType.ReelStopL1);
                             }
-                            else if (Input.GetKeyDown(KeyCode.DownArrow))
+                            else if ((Input.GetKeyDown(KeyCode.DownArrow)) && (!lineScript.zugaraStatusPackReelL2.IsFix))
                             {
                                 DoReelStopButtonDown(ButtonType.ReelStopL2);
                             }
-                            else if (Input.GetKeyDown(KeyCode.RightArrow))
+                            else if ((Input.GetKeyDown(KeyCode.RightArrow)) && (!lineScript.zugaraStatusPackReelL3.IsFix))
                             {
                                 DoReelStopButtonDown(ButtonType.ReelStopL3);
                             }

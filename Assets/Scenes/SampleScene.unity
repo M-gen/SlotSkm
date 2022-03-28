@@ -392,7 +392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8580291eb4703c4fb5e71f8d2d0a645, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotLotData: {fileID: 0}
+  slotLotData: {fileID: 153645921}
   lineScript: {fileID: 366239641}
   uiController: {fileID: 1873062820}
   soundResource: {fileID: 1541000914}
@@ -1356,7 +1356,7 @@ GameObject:
   - component: {fileID: 366239640}
   - component: {fileID: 366239641}
   m_Layer: 0
-  m_Name: Reel
+  m_Name: suika
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1390,28 +1390,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SlotCoreScript: {fileID: 153645917}
   slotCore: {fileID: 153645919}
-  Zugaras:
+  zugaras:
   - Key: r7
     Sprite: {fileID: 21300000, guid: df473025749c13c448701bd4b316ed82, type: 3}
   - Key: b7
     Sprite: {fileID: 21300000, guid: fbdf05fbece44fe42849b9655a67415b, type: 3}
-  - Key: air
-    Sprite: {fileID: 21300000, guid: 65ff6548cfe48924f8e81cfca16e7f11, type: 3}
   - Key: bar
     Sprite: {fileID: 21300000, guid: ad61c38f6bd91654f9c6bfdf172e048b, type: 3}
-  - Key: bell
-    Sprite: {fileID: 21300000, guid: bbcda419aeedb524da9188f51e22d655, type: 3}
   - Key: chery
     Sprite: {fileID: 21300000, guid: 635dae2cef9f68a4795a789e6fb28e4d, type: 3}
   - Key: suika
     Sprite: {fileID: 21300000, guid: 03ca1b50c1f41b14fb27d377be012a03, type: 3}
+  - Key: bell
+    Sprite: {fileID: 21300000, guid: bbcda419aeedb524da9188f51e22d655, type: 3}
   - Key: rep
     Sprite: {fileID: 21300000, guid: 537643884b334fb45918659bcf25b031, type: 3}
-  ZugaraPrefab: {fileID: 8618653492458656738, guid: 4a598ec6a82dac54e907930b72516c55, type: 3}
-  LampLeft: {fileID: 512686096}
-  LampRight: {fileID: 195919868}
+  - Key: air
+    Sprite: {fileID: 21300000, guid: 65ff6548cfe48924f8e81cfca16e7f11, type: 3}
+  zugaraPrefab: {fileID: 8618653492458656738, guid: 4a598ec6a82dac54e907930b72516c55, type: 3}
+  lampLeft: {fileID: 512686096}
+  lampRight: {fileID: 195919868}
   soundResource: {fileID: 1541000914}
-  Reel1ZugaraSource:
+  reel1ZugaraSource:
   - rep
   - r7
   - b7
@@ -1426,13 +1426,13 @@ MonoBehaviour:
   - bell
   - rep
   - bar
-  - suika
   - bell
+  - suika
   - rep
   - air
   - bell
   - suika
-  Reel2ZugaraSource:
+  reel2ZugaraSource:
   - chery
   - r7
   - bell
@@ -1446,14 +1446,14 @@ MonoBehaviour:
   - suika
   - bell
   - rep
-  - chery
   - bar
+  - bell
   - suika
   - bell
   - rep
   - bell
   - rep
-  Reel3ZugaraSource:
+  reel3ZugaraSource:
   - bell
   - r7
   - rep
@@ -1471,9 +1471,9 @@ MonoBehaviour:
   - bar
   - rep
   - bell
-  - air
+  - suika
   - rep
-  - bell
+  - air
 --- !u!1 &403723802
 GameObject:
   m_ObjectHideFlags: 0

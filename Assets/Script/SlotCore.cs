@@ -203,15 +203,12 @@ public class SlotCore : MonoBehaviour
         switch (buttonType)
         {
             case ButtonType.ReelStopL1:
-                oneGame.isDownReelStopButtonLeft = true;
                 oneGame.downButtonType = ButtonType.ReelStopL1;
                 break;
             case ButtonType.ReelStopL2:
-                oneGame.isDownReelStopButtonCenter = true;
                 oneGame.downButtonType = ButtonType.ReelStopL2;
                 break;
             case ButtonType.ReelStopL3:
-                oneGame.isDownReelStopButtonRight = true;
                 oneGame.downButtonType = ButtonType.ReelStopL3;
                 break;
         }
@@ -249,10 +246,6 @@ public class SlotCore : MonoBehaviour
         oneGame.oneGameWaitTimer = 0;
         oneGame.oneButtonWaitTimer = 0;
         oneGame.status = SlotCoreOneGame.Status.ButtonStep1Wait;
-
-        oneGame.isDownReelStopButtonLeft   = false;
-        oneGame.isDownReelStopButtonCenter = false;
-        oneGame.isDownReelStopButtonRight  = false;
 
         oneGame.flagRole = "";
         oneGame.hit = "";

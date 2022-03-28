@@ -32,15 +32,12 @@ public class ConfigSheet : MonoBehaviour
         {
             var fs = new FileStream( configFilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
             var sr = new StreamReader(fs, System.Text.Encoding.UTF8);
-            Debug.Log("StreamReader");
             while (!sr.EndOfStream)
             {
                 var tmp = sr.ReadLine();
-                Debug.Log(tmp);
                 var line = tmp.Split(' ');
                 if (line.Length == 0) continue;
 
-                Debug.Log($"StreamReader {line[0]} {line[1]}");
                 switch (line[0])
                 {
                     case "BGM":
@@ -88,6 +85,5 @@ public class ConfigSheet : MonoBehaviour
             f.WriteLine($"REEL {SliderReel.value}");
         }
 
-        Debug.Log("UpdateConfig");
     }
 }

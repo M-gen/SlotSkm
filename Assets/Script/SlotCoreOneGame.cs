@@ -57,8 +57,4 @@ public class SlotCoreOneGame
 
     public SlotCore.ButtonType downButtonType = SlotCore.ButtonType.None;
 
-    // todo : ÉäÅ[Éãë§Ç≈Ç‡Ç¬Ç±Ç∆Ç…Ç»ÇËÇªÇ§
-    public bool isDownReelStopButtonLeft = false;
-    public bool isDownReelStopButtonCenter = false;
-    public bool isDownReelStopButtonRight = false;
 }

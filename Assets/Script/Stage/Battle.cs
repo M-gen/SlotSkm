@@ -202,7 +202,6 @@ public class Battle : MonoBehaviour
 
     public void SetBackground(string key)
     {
-        Debug.Log($"SetBackground {key} ");
         switch(key)
         {
             default:

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ReelZugaraStatusPack : MonoBehaviour
+public class ReelZugaraStatusPack
 {
     public List<ReelZugaraStatus> Reel = new List<ReelZugaraStatus>();
     public int index = 0;
@@ -45,7 +45,7 @@ public class ReelZugaraStatusPack : MonoBehaviour
 
         foreach (var i in reelZugaraSource)
         {
-            var o = Instantiate(zugaraPrefab, parent);
+            var o = lineScript._Instantiate(zugaraPrefab, parent);
             var zugara = lineScript.GetZugaraByKey(i);
             o.GetComponent<SpriteRenderer>().sprite = zugara.Sprite;
             o.transform.position = new Vector3(OffsetX, y + OffsetY, 0);
@@ -160,7 +160,6 @@ public class ReelZugaraStatusPack : MonoBehaviour
             FixZugara[0] = z1;
             FixZugara[1] = z2;
             FixZugara[2] = z3;
-            Debug.Log($"Fix {z1} {z2} {z3}");
         }
     }
 

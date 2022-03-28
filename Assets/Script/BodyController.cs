@@ -34,6 +34,9 @@ public class BodyController : MonoBehaviour
     [SerializeField]
     GameObject buttonLightL3;
 
+    [SerializeField]
+    GameObject stageStartScreen;
+
     Vector3 leverStartPostion;
 
     void Start()
@@ -72,6 +75,7 @@ public class BodyController : MonoBehaviour
     public void DoLeverOn()
     {
         StartCoroutine("DoLeverOnAction");
+        stageStartScreen.SetActive(false);
     }
 
     private IEnumerator DoLeverOnAction()

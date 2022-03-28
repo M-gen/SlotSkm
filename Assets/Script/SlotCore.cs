@@ -40,6 +40,12 @@ public class SlotCore : MonoBehaviour
     [SerializeField]
     BodyController bodyController;
 
+    [SerializeField]
+    DirectingManager directingManager;
+
+    [SerializeField]
+    StageEffect stageEffect;
+
     void Start()
     {
     }
@@ -253,6 +259,7 @@ public class SlotCore : MonoBehaviour
 
         longGame.gameCount++;
 
+        Debug.Log($"_DoReelStart");
         slotLotData.DoBaseLot();
 
         if ( (longGame.status== SlotCoreLongGame.Status.Normal ) && (oneGame.flagBounus != "") )
@@ -264,6 +271,60 @@ public class SlotCore : MonoBehaviour
         uiController.UpdateGameStatusViewText();
 
         bodyController.DoReelStart();
+
+        // ââèoëJà⁄
+        switch (longGame.status)
+        {
+            case SlotCoreLongGame.Status.Normal:
+                switch (longGame.viewStatus)
+                {
+                    case SlotCoreLongGame.ViewStatus.Normal:
+                        break;
+                    case SlotCoreLongGame.ViewStatus.NormalComboGame:
+                        break;
+                    case SlotCoreLongGame.ViewStatus.BonusGameEnd:
+                        longGame.viewStatus = SlotCoreLongGame.ViewStatus.Normal;
+                        break;
+                }
+                break;
+            case SlotCoreLongGame.Status.BonusFix:
+                switch (longGame.viewStatus)
+                {
+                    case SlotCoreLongGame.ViewStatus.Normal:
+                        break;
+                    case SlotCoreLongGame.ViewStatus.NormalComboGame:
+                        break;
+                    case SlotCoreLongGame.ViewStatus.BonusFixShowIn:
+                        break;
+                    case SlotCoreLongGame.ViewStatus.BonusFixShow:
+                        break;
+                    case SlotCoreLongGame.ViewStatus.BonusFixShowAndBonusTypeShow:
+                        break;
+                }
+
+                break;
+            case SlotCoreLongGame.Status.BonusGame:
+                switch (longGame.viewStatus)
+                {
+                    case SlotCoreLongGame.ViewStatus.BonusGameIn:
+                        longGame.viewStatus = SlotCoreLongGame.ViewStatus.BonusGame;
+                        break;
+                    case SlotCoreLongGame.ViewStatus.BonusGame:
+
+                        if (slotLotData.GetBonusStatus(longGame.bonusTypeName).Coin <= longGame.bonusOutCoin)
+                        {
+                            longGame.status = SlotCoreLongGame.Status.Normal;
+                            longGame.viewStatus = SlotCoreLongGame.ViewStatus.BonusGameEnd;
+                        }
+                        break;
+                }
+                break;
+        }
+
+        // ââèoÇÃíäëIÇ∆é¿çs
+        directingManager.SettingDirection();
+
+        stageEffect.LeberOn();
     }
 
     private void _DoButtonStep1( ButtonType buttonType )
@@ -273,6 +334,7 @@ public class SlotCore : MonoBehaviour
 
         bodyController.DoReelStopButton(buttonType);
         lineScript.StopRollOne(buttonType);
+        stageEffect.Stop1();
     }
 
     private void _DoButtonStep2( ButtonType buttonType )
@@ -282,6 +344,7 @@ public class SlotCore : MonoBehaviour
 
         bodyController.DoReelStopButton(buttonType);
         lineScript.StopRollOne(buttonType);
+        stageEffect.Stop2();
     }
 
     private void _DoButtonStep3( ButtonType buttonType )
@@ -291,9 +354,11 @@ public class SlotCore : MonoBehaviour
 
         bodyController.DoReelStopButton(buttonType);
         lineScript.StopRollOne(buttonType);
+        stageEffect.Stop3();
     }
     private void _DoButtonStep3Release()
     {
+        // 1ÉQÅ[ÉÄÇÃèIóπèàóù
         lineScript.FixOneGame();
         bodyController.FixOneGame();
 
@@ -322,6 +387,7 @@ public class SlotCore : MonoBehaviour
                 break;
         }
 
+        // éüÇÃÉQÅ[ÉÄÇ…Ç‹ÇΩÇ™ÇÈÇ‡ÇÃ
         if (longGame.flagReplay)
         {
             oneGame.status = SlotCoreOneGame.Status.LeverOnWait;
@@ -330,6 +396,19 @@ public class SlotCore : MonoBehaviour
         else
         {
             oneGame.status = SlotCoreOneGame.Status.BetWait;
+        }
+
+        // ââèoëJà⁄
+        switch (longGame.status)
+        {
+            case SlotCoreLongGame.Status.BonusFix:
+                if ( ( oneGame.hit=="Big-r7" ) || ( oneGame.hit == "Big-b7" ) || ( oneGame.hit == "Reg" ) )
+                {
+                    longGame.status = SlotCoreLongGame.Status.BonusGame;
+                    longGame.viewStatus = SlotCoreLongGame.ViewStatus.BonusGameIn;
+                    directingManager.BonusIn(oneGame.hit);
+                }
+                break;
         }
     }
 

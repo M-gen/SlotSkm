@@ -129,7 +129,7 @@ public class ReelZugaraStatusPack
         }
     }
 
-    public void Fix(int srideIndex = 0)
+    public void Fix(int srideIndex)
     {
         if (!IsFix)
         {
@@ -160,6 +160,7 @@ public class ReelZugaraStatusPack
             FixZugara[0] = z1;
             FixZugara[1] = z2;
             FixZugara[2] = z3;
+            Debug.Log($"Reel Fix {index} {srideIndex}");
         }
     }
 

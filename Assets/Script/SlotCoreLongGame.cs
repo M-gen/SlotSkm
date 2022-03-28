@@ -11,7 +11,7 @@ public class SlotCoreLongGame
         BonusFix,   // ボーナス確定（内部的に、表示済みかかわらず）
         BonusGame,  // ボーナス中
     }
-    public Status status = Status.BonusFix;
+    public Status status = Status.Normal;
 
     // 表示状態
     public enum ViewStatus
@@ -21,6 +21,9 @@ public class SlotCoreLongGame
         BonusFixShowIn,                 // ボーナス確定画面に突入
         BonusFixShow,                   // ボーナス確定画面、継続
         BonusFixShowAndBonusTypeShow,   // ボーナス確定画面、継続、図柄表示済み
+        BonusGameIn,                    // ボーナスゲーム突入
+        BonusGame,                      // ボーナスゲーム
+        BonusGameEnd,                   // ボーナスゲーム終了
     }
     public ViewStatus viewStatus = ViewStatus.Normal;
 
@@ -28,8 +31,9 @@ public class SlotCoreLongGame
     public bool flagReplay = false;     // 1ゲームベット不要
     public int inCoin = 0;
     public int outCoin = 0;
-    public int bonusOutCoin = 0;        // ボーナス中の獲得コイン
     public int gameCount = 0;
+    public int bonusOutCoin = 0;        // ボーナス中の獲得コイン
+    public string bonusTypeName = "";
 
     public void AddInCoin(int value)
     {
@@ -44,4 +48,6 @@ public class SlotCoreLongGame
             bonusOutCoin += value;
         }
     }
+
+
 }

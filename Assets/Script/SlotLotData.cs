@@ -72,6 +72,7 @@ public class SlotLotData : MonoBehaviour
                         {
                             slotCore.oneGame.flagBounus = i.Bonus;
                             slotCore.oneGame.flagRole = i.Role;
+                            Debug.Log($"DoBaseLot a {slotCore.oneGame.flagRole} {slotCore.oneGame.flagBounus}");
                             return;
                         }
 
@@ -89,6 +90,7 @@ public class SlotLotData : MonoBehaviour
                         if (r < i.LotValue)
                         {
                             slotCore.oneGame.flagRole = i.Role;
+                            Debug.Log($"DoBaseLot b {slotCore.oneGame.flagRole} {slotCore.oneGame.flagBounus}");
                             return;
                         }
 
@@ -116,5 +118,19 @@ public class SlotLotData : MonoBehaviour
                 }
                 break;
         }
+        Debug.Log($"DoBaseLot c {slotCore.oneGame.flagRole} {slotCore.oneGame.flagBounus}");
     }
+
+    public BonusStatus GetBonusStatus( string name )
+    {
+        foreach( var i in bonusType)
+        {
+            if(i.Name== name)
+            {
+                return i;
+            }
+        }
+        return null;
+    }
+
 }

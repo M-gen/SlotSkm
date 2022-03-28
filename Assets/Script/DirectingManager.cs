@@ -107,9 +107,23 @@ public class DirectingManager : MonoBehaviour
                 break;
 
             case SlotCoreLongGame.ViewStatus.BonusGame:
+                switch( slotCore.longGame.bonusTypeName )
+                {
+                    case "Big-r7":
+                        directionName = "bonus_game_r7";
+                        break;
+                    case "Big-b7":
+                        directionName = "bonus_game_b7";
+                        break;
+                    case "Reg":
+                        directionName = "bonus_game_reg";
+                        break;
+                }
                 break;
 
             case SlotCoreLongGame.ViewStatus.BonusGameEnd:
+                stageEffect.bonusOutCoin = slotCore.longGame.bonusOutCoin;
+                directionName = "bonus_end";
                 break;
         }
 
@@ -617,17 +631,6 @@ public class DirectingManager : MonoBehaviour
 
     public void BonusIn( string bonusTypeName )
     {
-        switch(bonusTypeName)
-        {
-            case "Big-r7":
-                //stageEffect.SetDirection("bonus_in_r7");
-                break;
-            case "Big-b7":
-                //stageEffect.SetDirection("bonus_in_b7");
-                break;
-            case "Reg":
-                //stageEffect.SetDirection("bonus_in_reg");
-                break;
-        }
+        stageEffect.BonusIn(bonusTypeName);
     }
 }

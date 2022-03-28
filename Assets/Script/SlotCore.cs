@@ -300,6 +300,9 @@ public class SlotCore : MonoBehaviour
                         break;
                     case SlotCoreLongGame.ViewStatus.BonusFixShowAndBonusTypeShow:
                         break;
+                    case SlotCoreLongGame.ViewStatus.BonusGameEnd:
+                        longGame.viewStatus = SlotCoreLongGame.ViewStatus.Normal;
+                        break;
                 }
 
                 break;
@@ -311,6 +314,7 @@ public class SlotCore : MonoBehaviour
                         break;
                     case SlotCoreLongGame.ViewStatus.BonusGame:
 
+                        Debug.Log($"SlotCoreLongGame.Status.BonusGame {longGame.bonusTypeName}");
                         if (slotLotData.GetBonusStatus(longGame.bonusTypeName).Coin <= longGame.bonusOutCoin)
                         {
                             longGame.status = SlotCoreLongGame.Status.Normal;
@@ -406,6 +410,8 @@ public class SlotCore : MonoBehaviour
                 {
                     longGame.status = SlotCoreLongGame.Status.BonusGame;
                     longGame.viewStatus = SlotCoreLongGame.ViewStatus.BonusGameIn;
+                    longGame.bonusTypeName = oneGame.hit;
+                    longGame.bonusOutCoin = 0;
                     directingManager.BonusIn(oneGame.hit);
                 }
                 break;

@@ -459,7 +459,7 @@ MonoBehaviour:
     LotValue: 2500
   - Bonus: 
     Role: rep
-    LotValue: 480000
+    LotValue: 4800
   - Bonus: 
     Role: 
     LotValue: 14750
@@ -492,7 +492,13 @@ MonoBehaviour:
   - Bonus: 
     Role: rep
     LotValue: 300
-  bonusType: []
+  bonusType:
+  - Name: Big-r7
+    Coin: 600
+  - Name: Big-b7
+    Coin: 450
+  - Name: Reg
+    Coin: 100
   slotCore: {fileID: 153645919}
 --- !u!1 &158957296
 GameObject:
@@ -1476,6 +1482,7 @@ MonoBehaviour:
   - suika
   - rep
   - air
+  slideMax: 20
 --- !u!1 &403723802
 GameObject:
   m_ObjectHideFlags: 0
@@ -6014,26 +6021,28 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: 748cb389da9c48f4fb43556aa344d87c, type: 3}
   - Key: bonus_fix_show
     Clip: {fileID: 8300000, guid: 464eda333631b0941aea790bcd79fb9b, type: 3}
-  - Key: bonus_end
-    Clip: {fileID: 8300000, guid: 2af4fc9c88076d347a3cc6e291fa8e8f, type: 3}
   - Key: bonus_end_voice
     Clip: {fileID: 8300000, guid: c14c8c405499523498581baf1239660f, type: 3}
   - Key: bonus_fix_aim
     Clip: {fileID: 8300000, guid: 5a54ae31f9971c54383ea357ec2b1101, type: 3}
+  - Key: bonus_in_bgm
+    Clip: {fileID: 8300000, guid: 8f360b05885099d4f918a047589acea5, type: 3}
+  - Key: bonus_in_r7
+    Clip: {fileID: 8300000, guid: 2a71eb01217bf8940bb27cb0acef58b3, type: 3}
+  - Key: bonus_in_b7
+    Clip: {fileID: 8300000, guid: 0f0a9fdae258eb141aeba4577e4e1954, type: 3}
+  - Key: bonus_in_reg
+    Clip: {fileID: 8300000, guid: 0bf55b044f7caa14d99e2093e39c02f3, type: 3}
   - Key: bonus_reg
     Clip: {fileID: 8300000, guid: 5d276afcc82d9d74098a7816b625c362, type: 3}
   - Key: bonus_b7
     Clip: {fileID: 8300000, guid: 3c043e15f8d003b41b6617b4208c4ca8, type: 3}
   - Key: bonus_r7
     Clip: {fileID: 8300000, guid: 1cfc521af41bfdb4eacd49163789a099, type: 3}
-  - Key: bonus_in_reg
-    Clip: {fileID: 8300000, guid: 0bf55b044f7caa14d99e2093e39c02f3, type: 3}
-  - Key: bonus_in_b7
-    Clip: {fileID: 8300000, guid: 0f0a9fdae258eb141aeba4577e4e1954, type: 3}
-  - Key: bonus_in_r7
-    Clip: {fileID: 8300000, guid: 2a71eb01217bf8940bb27cb0acef58b3, type: 3}
+  - Key: bonus_end
+    Clip: {fileID: 8300000, guid: 2af4fc9c88076d347a3cc6e291fa8e8f, type: 3}
   status: 
-  BonusCoinOut: 0
+  bonusOutCoin: 0
 --- !u!1 &2089226049
 GameObject:
   m_ObjectHideFlags: 0

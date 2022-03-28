@@ -67,7 +67,7 @@ public class StageEffect : MonoBehaviour
     public string status = "";
 
     StageLot stageLot;
-    public int BonusCoinOut = 0;
+    public int bonusOutCoin = 0;
 
     void Start()
     {
@@ -2499,7 +2499,7 @@ public class StageEffect : MonoBehaviour
                     maku.IsLogoShow(false);
                     cutin.SetAnimation("");
                     battle.SetAnimation("bonus_end");
-                    battle.SetBonusGetCoinCounter(BonusCoinOut);
+                    battle.SetBonusGetCoinCounter(bonusOutCoin);
                     battle.IsShowBonusGetCoinCounter(true);
 
                     PlayAudio("bonus_end_voice", new string[] { "SE" }, delay:1.5f);
@@ -2679,15 +2679,16 @@ public class StageEffect : MonoBehaviour
         return stageLot.GetLotStringValue( normal, r7, b7, reg);
     }
 
-    public void OnBonusIn()
+    public void BonusIn(string bonusTypeName)
     {
         SetBackGround("");
         maku.SetAnimation("");
         maku.IsLogoShow(false);
         cutin.SetAnimation("");
         charaSDSakamata.SetAnimation("");
+        PlayAudio("bonus_in_bgm", new string[] { "BGM" });
 
-        switch (bonus)
+        switch (bonusTypeName)
         {
             case "Reg":
                 battle.SetAnimation("bonus_in_reg");

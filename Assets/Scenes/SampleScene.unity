@@ -252,7 +252,7 @@ GameObject:
   - component: {fileID: 153645918}
   - component: {fileID: 153645917}
   - component: {fileID: 153645919}
-  - component: {fileID: 153645920}
+  - component: {fileID: 153645921}
   m_Layer: 0
   m_Name: Slot Core
   m_TagString: Untagged
@@ -360,21 +360,7 @@ MonoBehaviour:
     Coin: 450
   - Name: Reg
     Coin: 100
-  betButtonOn: {fileID: 2053971314}
-  betButtonOff: {fileID: 310388352}
-  leber: {fileID: 36681221}
-  buttonLightL1: {fileID: 870820962}
-  buttonLightL2: {fileID: 532845902}
-  buttonLightL3: {fileID: 1601337903}
-  uiText: {fileID: 1517536344}
   Stage: {fileID: 2073401139}
-  AudioClips: []
-  CoinIn: 0
-  CoinOut: 0
-  GameCount: 0
-  IsReplay: 0
-  IsPlay: 0
-  BonusCoinOut: 0
   gameStage: 0
   bonusTypeName: 
   LineScript: {fileID: 366239641}
@@ -406,11 +392,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8580291eb4703c4fb5e71f8d2d0a645, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotLotDatas: {fileID: 0}
+  slotLotData: {fileID: 0}
   lineScript: {fileID: 366239641}
+  uiController: {fileID: 1873062820}
   soundResource: {fileID: 1541000914}
   bodyController: {fileID: 1965213918}
---- !u!114 &153645920
+--- !u!114 &153645921
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -422,6 +409,89 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eabdad70d4bfa8c48b4abda21c14ade6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseLots:
+  - Bonus: Big-r7
+    Role: 
+    LotValue: 2
+  - Bonus: Big-b7
+    Role: 
+    LotValue: 3
+  - Bonus: Reg
+    Role: 
+    LotValue: 10
+  - Bonus: Big-r7
+    Role: chary
+    LotValue: 25
+  - Bonus: Big-b7
+    Role: chary
+    LotValue: 35
+  - Bonus: Reg
+    Role: chary
+    LotValue: 20
+  - Bonus: Big-r7
+    Role: suika
+    LotValue: 16
+  - Bonus: Big-b7
+    Role: suika
+    LotValue: 30
+  - Bonus: Reg
+    Role: suika
+    LotValue: 160
+  - Bonus: Big-r7
+    Role: bell
+    LotValue: 3
+  - Bonus: Big-b7
+    Role: bell
+    LotValue: 8
+  - Bonus: Reg
+    Role: bell
+    LotValue: 10
+  - Bonus: 
+    Role: chary
+    LotValue: 900
+  - Bonus: 
+    Role: suika
+    LotValue: 1300
+  - Bonus: 
+    Role: bell
+    LotValue: 2500
+  - Bonus: 
+    Role: rep
+    LotValue: 4800
+  - Bonus: 
+    Role: 
+    LotValue: 14750
+  bonusInLots:
+  - Bonus: 
+    Role: chary
+    LotValue: 900
+  - Bonus: 
+    Role: suika
+    LotValue: 1300
+  - Bonus: 
+    Role: bell
+    LotValue: 2500
+  - Bonus: 
+    Role: rep
+    LotValue: 4800
+  - Bonus: 
+    Role: 
+    LotValue: 14000
+  bonusLots:
+  - Bonus: 
+    Role: chary
+    LotValue: 15
+  - Bonus: 
+    Role: suika
+    LotValue: 100
+  - Bonus: 
+    Role: bell
+    LotValue: 1500
+  - Bonus: 
+    Role: rep
+    LotValue: 300
+  bonusType: []
+  slotCore: {fileID: 153645919}
 --- !u!1 &158957296
 GameObject:
   m_ObjectHideFlags: 0
@@ -1890,7 +1960,7 @@ GameObject:
   - component: {fileID: 532845903}
   - component: {fileID: 532845904}
   m_Layer: 0
-  m_Name: Center
+  m_Name: L2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2856,7 +2926,7 @@ GameObject:
   - component: {fileID: 870820963}
   - component: {fileID: 870820964}
   m_Layer: 0
-  m_Name: Left
+  m_Name: L1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4256,7 +4326,7 @@ GameObject:
   - component: {fileID: 1601337904}
   - component: {fileID: 1601337905}
   m_Layer: 0
-  m_Name: Right
+  m_Name: L3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5101,6 +5171,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotCore: {fileID: 153645919}
   soundResource: {fileID: 1541000914}
+  LampLeft: {fileID: 512686096}
+  LampRight: {fileID: 195919868}
+  betButtonOn: {fileID: 2053971314}
+  betButtonOff: {fileID: 310388352}
+  lever: {fileID: 36681221}
+  buttonLightL1: {fileID: 870820962}
+  buttonLightL2: {fileID: 532845902}
+  buttonLightL3: {fileID: 1601337903}
 --- !u!1 &1966515243
 GameObject:
   m_ObjectHideFlags: 0

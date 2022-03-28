@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlotCoreScript : MonoBehaviour
+// 抽選にまつわるデータ
+public class SlotLotData : MonoBehaviour
 {
     [System.Serializable]
     public class BaseLot
     {
         public string Bonus;
         public string Role;
-        public int    LotValue; // 抽選の重み
+        public int LotValue; // 抽選の重み
     }
 
 
@@ -32,37 +33,16 @@ public class SlotCoreScript : MonoBehaviour
     [SerializeField]
     BonusStatus[] bonusType;
 
-
     [SerializeField]
-    GameObject Stage;
-
-
-    Vector3 leberStartPostion;
+    SlotCore slotCore;
 
     int baseLotsMax = 0;
     int bonusInLotsMax = 0;
     int bonusLotsMax = 0;
 
-    public enum GameStage
-    {
-        Normal,  // 通常時
-        BonusFix, // ボーナス確定中
-        Bonus,   // ボーナス中
-    }
-
-    public GameStage gameStage = GameStage.Normal;
-    public string bonusTypeName = "";
-    public LineScript LineScript;
-
-    [SerializeField]
-    AudioManager audioManager;
-
-    [SerializeField]
-    StageEffect stageEffect;
-
     private void Start()
     {
-        foreach ( var i in baseLots)
+        foreach (var i in baseLots)
         {
             baseLotsMax += i.LotValue;
         }
@@ -79,82 +59,62 @@ public class SlotCoreScript : MonoBehaviour
 
     }
 
-    public void DoBaseLot( ref string bonus, ref string role )
+    public void DoBaseLot()
     {
-        switch (gameStage)
+        switch (slotCore.longGame.status)
         {
-            case GameStage.Normal:
+            case SlotCoreLongGame.Status.Normal:
                 {
                     var r = Random.Range(0, baseLotsMax);
                     foreach (var i in baseLots)
                     {
                         if (r < i.LotValue)
                         {
-                            bonus = i.Bonus;
-                            role = i.Role;
-
-                            //if(GameCount==1)
-                            //{
-                            //    //bonus = "Big-r7";
-                            //    bonus = "Reg";
-                            //}
-                            //bonus = "Big-r7";
-                            //role = "bell";
-
-                            if (bonus != "")
-                            {
-                                if (gameStage == GameStage.Normal)
-                                {
-                                    gameStage = GameStage.BonusFix;
-                                }
-                            }
-
+                            slotCore.oneGame.flagBounus = i.Bonus;
+                            slotCore.oneGame.flagRole = i.Role;
                             return;
                         }
 
                         r -= i.LotValue;
                     }
-                    bonus = "";
-                    role = "";
+                    slotCore.oneGame.flagBounus = "";
+                    slotCore.oneGame.flagRole = "";
                 }
                 break;
-            case GameStage.BonusFix:
+            case SlotCoreLongGame.Status.BonusFix:
                 {
                     var r = Random.Range(0, bonusInLotsMax);
                     foreach (var i in bonusInLots)
                     {
                         if (r < i.LotValue)
                         {
-                            role = i.Role;
+                            slotCore.oneGame.flagRole = i.Role;
                             return;
                         }
 
                         r -= i.LotValue;
                     }
-                    role = "";
+                    slotCore.oneGame.flagRole = "";
                 }
                 break;
-            case GameStage.Bonus:
+            case SlotCoreLongGame.Status.BonusGame:
                 {
                     var r = Random.Range(0, bonusLotsMax);
-                    bonus = "";
+                    slotCore.oneGame.flagBounus = "";
                     foreach (var i in bonusLots)
                     {
                         if (r < i.LotValue)
                         {
-                            role = i.Role;
-                            Debug.Log($"i.Role {i.Role}");
+                            slotCore.oneGame.flagRole = i.Role;
                             return;
                         }
 
                         r -= i.LotValue;
                     }
-                    Debug.Log($"i.Role X");
-                    bonus = "";
-                    role = "";
+                    slotCore.oneGame.flagBounus = "";
+                    slotCore.oneGame.flagRole = "";
                 }
                 break;
         }
     }
-
 }

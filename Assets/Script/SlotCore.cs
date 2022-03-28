@@ -9,9 +9,9 @@ public class SlotCore : MonoBehaviour
         None,
         Bet,
         Lever,
-        ReelStopLeft,
-        ReelStopCenter,
-        ReelStopRight,
+        ReelStopL1,
+        ReelStopL2,
+        ReelStopL3,
     }
 
     public SlotCoreOneGame oneGame = new SlotCoreOneGame();
@@ -26,7 +26,7 @@ public class SlotCore : MonoBehaviour
     SceneStatus sceneStatus = SceneStatus.Normal;
 
     [SerializeField]
-    SlotLotDatas slotLotDatas;
+    SlotLotData slotLotData;
 
     [SerializeField]
     LineScript lineScript;
@@ -42,7 +42,6 @@ public class SlotCore : MonoBehaviour
 
     void Start()
     {
-        
     }
 
     void Update()
@@ -80,15 +79,15 @@ public class SlotCore : MonoBehaviour
                         {
                             if (Input.GetKeyDown(KeyCode.LeftArrow))
                             {
-                                DoReelStopButtonDown(ButtonType.ReelStopLeft);
+                                DoReelStopButtonDown(ButtonType.ReelStopL1);
                             }
                             else if (Input.GetKeyDown(KeyCode.DownArrow))
                             {
-                                DoReelStopButtonDown(ButtonType.ReelStopCenter);
+                                DoReelStopButtonDown(ButtonType.ReelStopL2);
                             }
                             else if (Input.GetKeyDown(KeyCode.RightArrow))
                             {
-                                DoReelStopButtonDown(ButtonType.ReelStopRight);
+                                DoReelStopButtonDown(ButtonType.ReelStopL3);
                             }
                         }
                         break;
@@ -99,15 +98,15 @@ public class SlotCore : MonoBehaviour
                         {
                             if (Input.GetKeyDown(KeyCode.LeftArrow))
                             {
-                                DoReelStopButtonDown( ButtonType.ReelStopLeft );
+                                DoReelStopButtonDown( ButtonType.ReelStopL1 );
                             }
                             else if (Input.GetKeyDown(KeyCode.DownArrow))
                             {
-                                DoReelStopButtonDown(ButtonType.ReelStopCenter );
+                                DoReelStopButtonDown(ButtonType.ReelStopL2 );
                             }
                             else if (Input.GetKeyDown(KeyCode.RightArrow))
                             {
-                                DoReelStopButtonDown(ButtonType.ReelStopRight );
+                                DoReelStopButtonDown(ButtonType.ReelStopL3 );
                             }
                         }
                         break;
@@ -118,15 +117,15 @@ public class SlotCore : MonoBehaviour
                         {
                             if (Input.GetKeyDown(KeyCode.LeftArrow))
                             {
-                                DoReelStopButtonDown(ButtonType.ReelStopLeft);
+                                DoReelStopButtonDown(ButtonType.ReelStopL1);
                             }
                             else if (Input.GetKeyDown(KeyCode.DownArrow))
                             {
-                                DoReelStopButtonDown(ButtonType.ReelStopCenter);
+                                DoReelStopButtonDown(ButtonType.ReelStopL2);
                             }
                             else if (Input.GetKeyDown(KeyCode.RightArrow))
                             {
-                                DoReelStopButtonDown(ButtonType.ReelStopRight);
+                                DoReelStopButtonDown(ButtonType.ReelStopL3);
                             }
                         }
                         break;
@@ -135,16 +134,16 @@ public class SlotCore : MonoBehaviour
 
                         if (Input.GetKeyUp(KeyCode.LeftArrow))
                         {
-                            DoReelStopButtonUp(ButtonType.ReelStopLeft);
+                            DoReelStopButtonUp(ButtonType.ReelStopL1);
                         }
                         else if (Input.GetKeyUp(KeyCode.DownArrow))
                         {
-                            DoReelStopButtonUp(ButtonType.ReelStopCenter);
+                            DoReelStopButtonUp(ButtonType.ReelStopL2);
 
                         }
                         else if (Input.GetKeyUp(KeyCode.RightArrow))
                         {
-                            DoReelStopButtonUp(ButtonType.ReelStopRight);
+                            DoReelStopButtonUp(ButtonType.ReelStopL3);
 
                         }
 
@@ -203,17 +202,17 @@ public class SlotCore : MonoBehaviour
     {
         switch (buttonType)
         {
-            case ButtonType.ReelStopLeft:
+            case ButtonType.ReelStopL1:
                 oneGame.isDownReelStopButtonLeft = true;
-                oneGame.downButtonType = ButtonType.ReelStopLeft;
+                oneGame.downButtonType = ButtonType.ReelStopL1;
                 break;
-            case ButtonType.ReelStopCenter:
+            case ButtonType.ReelStopL2:
                 oneGame.isDownReelStopButtonCenter = true;
-                oneGame.downButtonType = ButtonType.ReelStopCenter;
+                oneGame.downButtonType = ButtonType.ReelStopL2;
                 break;
-            case ButtonType.ReelStopRight:
+            case ButtonType.ReelStopL3:
                 oneGame.isDownReelStopButtonRight = true;
-                oneGame.downButtonType = ButtonType.ReelStopRight;
+                oneGame.downButtonType = ButtonType.ReelStopL3;
                 break;
         }
 
@@ -243,6 +242,7 @@ public class SlotCore : MonoBehaviour
     private void _DoLeverOn()
     {
         oneGame.status = SlotCoreOneGame.Status.ReelStartWait;
+        bodyController.DoLeverOn();
     }
     private void _DoReelStart()
     {
@@ -259,6 +259,13 @@ public class SlotCore : MonoBehaviour
         oneGame.downButtonType = ButtonType.None;
 
         longGame.gameCount++;
+
+        slotLotData.DoBaseLot();
+
+        if ( (longGame.status== SlotCoreLongGame.Status.Normal ) && (oneGame.flagBounus != "") )
+        {
+            longGame.status = SlotCoreLongGame.Status.BonusFix;
+        }
 
         lineScript.StartRollAll();
         uiController.UpdateGameStatusViewText();

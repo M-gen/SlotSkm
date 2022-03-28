@@ -31,9 +31,9 @@ public class LineScript : MonoBehaviour
     [SerializeField]
     SoundResource soundResource;
 
-    ReelZugaraStatusPack ZugaraStatusPackReelLeft = new ReelZugaraStatusPack();
-    ReelZugaraStatusPack ZugaraStatusPackReelCenter = new ReelZugaraStatusPack();
-    ReelZugaraStatusPack ZugaraStatusPackReelRight = new ReelZugaraStatusPack();
+    ReelZugaraStatusPack ZugaraStatusPackReelL1 = new ReelZugaraStatusPack();
+    ReelZugaraStatusPack ZugaraStatusPackReelL2 = new ReelZugaraStatusPack();
+    ReelZugaraStatusPack ZugaraStatusPackReelL3 = new ReelZugaraStatusPack();
 
     [SerializeField]
     string[] Reel1ZugaraSource;
@@ -61,9 +61,9 @@ public class LineScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ZugaraStatusPackReelLeft.Init(-2.15f, -0.41f, Reel1ZugaraSource, ZugaraPrefab, transform, this);
-        ZugaraStatusPackReelCenter.Init(    0f, -0.41f, Reel2ZugaraSource, ZugaraPrefab, transform, this);
-        ZugaraStatusPackReelRight.Init( 2.15f, -0.41f, Reel3ZugaraSource, ZugaraPrefab, transform, this);
+        ZugaraStatusPackReelL1.Init(-2.15f, -0.41f, Reel1ZugaraSource, ZugaraPrefab, transform, this);
+        ZugaraStatusPackReelL2.Init(    0f, -0.41f, Reel2ZugaraSource, ZugaraPrefab, transform, this);
+        ZugaraStatusPackReelL3.Init( 2.15f, -0.41f, Reel3ZugaraSource, ZugaraPrefab, transform, this);
     }
 
     public Zugara GetZugaraByKey(string key)
@@ -77,19 +77,12 @@ public class LineScript : MonoBehaviour
 
     public void StartRollAll()
     {
-        ZugaraStatusPackReelLeft.Play();
-        ZugaraStatusPackReelCenter.Play();
-        ZugaraStatusPackReelRight.Play();
+        ZugaraStatusPackReelL1.Play();
+        ZugaraStatusPackReelL2.Play();
+        ZugaraStatusPackReelL3.Play();
 
-        SlotCoreScript.DoBaseLot(ref bonus, ref role);
-        Debug.Log($"DoBaseLot {bonus}, {role}");
-
-        //slotStep = SlotStep.NowGame;
-        //SlotCoreScript.LeverOn(role, bonus);
-        //SlotCoreScript.PlayAudio("game_02_start_a", new string[] { "SE" });
-
-        //SlotCoreScript.GameCount++;
-        //SlotCoreScript.UpdateText();
+        //SlotCoreScript.DoBaseLot(ref bonus, ref role);
+        //Debug.Log($"DoBaseLot {bonus}, {role}");
 
         LampLeft.SetAnimation("def");
         LampRight.SetAnimation("def");
@@ -101,13 +94,13 @@ public class LineScript : MonoBehaviour
     {
         switch (buttonType)
         {
-            case SlotCore.ButtonType.ReelStopLeft:
+            case SlotCore.ButtonType.ReelStopL1:
                 StopRollOneLeft();
                 break;
-            case SlotCore.ButtonType.ReelStopCenter:
+            case SlotCore.ButtonType.ReelStopL2:
                 StopRollOneCenter();
                 break;
-            case SlotCore.ButtonType.ReelStopRight:
+            case SlotCore.ButtonType.ReelStopL3:
                 StopRollOneRight();
                 break;
         }
@@ -115,7 +108,7 @@ public class LineScript : MonoBehaviour
 
     private void StopRollOneLeft()
     {
-        if (ZugaraStatusPackReelLeft.IsFix) return;
+        if (ZugaraStatusPackReelL1.IsFix) return;
         var srideIndex = 0;
         var key = "";
         switch (role)
@@ -128,106 +121,106 @@ public class LineScript : MonoBehaviour
                         key = "r7";
                         if (slotCore.oneGame.buttonCount == 0)
                         {
-                            srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelLeft);
+                            srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelL1);
                             if (srideIndex == -1) srideIndex = 0;
                         }
                         else if (slotCore.oneGame.buttonCount == 1)
                         {
-                            if (ZugaraStatusPackReelCenter.IsFix)
+                            if (ZugaraStatusPackReelL2.IsFix)
                             {
-                                if (ZugaraStatusPackReelCenter.FixZugara[0] == key)
+                                if (ZugaraStatusPackReelL2.FixZugara[0] == key)
                                 {
                                     // key key ???
                                     // --- --- ???
                                     // --- --- ???
-                                    srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelLeft);
+                                    srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL1);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
-                                else if (ZugaraStatusPackReelCenter.FixZugara[1] == key)
+                                else if (ZugaraStatusPackReelL2.FixZugara[1] == key)
                                 {
                                     // key --- ???
                                     // key key ???
                                     // key --- ???
-                                    srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelLeft);
+                                    srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelL1);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
-                                else if (ZugaraStatusPackReelCenter.FixZugara[2] == key)
+                                else if (ZugaraStatusPackReelL2.FixZugara[2] == key)
                                 {
                                     // --- --- ???
                                     // --- --- ???
                                     // key key ???
-                                    srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelLeft);
+                                    srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL1);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
                             }
                             else
                             {
-                                if (ZugaraStatusPackReelRight.FixZugara[0] == key)
+                                if (ZugaraStatusPackReelL3.FixZugara[0] == key)
                                 {
                                     // key ??? key
                                     // --- ??? ---
                                     // key ??? ---
-                                    srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelLeft);
+                                    srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelL1);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
-                                else if (ZugaraStatusPackReelRight.FixZugara[1] == key)
+                                else if (ZugaraStatusPackReelL3.FixZugara[1] == key)
                                 {
                                     // --- ??? ---
                                     // key ??? key
                                     // --- ??? ---
-                                    srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelLeft);
+                                    srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL1);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
-                                else if (ZugaraStatusPackReelRight.FixZugara[2] == key)
+                                else if (ZugaraStatusPackReelL3.FixZugara[2] == key)
                                 {
                                     // key ??? ---
                                     // --- ??? ---
                                     // key ??? key
-                                    srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelLeft);
+                                    srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelL1);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
                             }
                         }
                         else if (slotCore.oneGame.buttonCount == 2)
                         {
-                            if ((ZugaraStatusPackReelCenter.FixZugara[0] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == key))
+                            if ((ZugaraStatusPackReelL2.FixZugara[0] == key) && (ZugaraStatusPackReelL3.FixZugara[0] == key))
                             {
                                 // key key key
                                 // --- --- ---
                                 // --- --- ---
-                                srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelLeft);
+                                srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL1);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
-                            else if ((ZugaraStatusPackReelCenter.FixZugara[1] == key) && (ZugaraStatusPackReelRight.FixZugara[2] == key))
+                            else if ((ZugaraStatusPackReelL2.FixZugara[1] == key) && (ZugaraStatusPackReelL3.FixZugara[2] == key))
                             {
                                 // key --- ---
                                 // --- key ---
                                 // --- --- key
-                                srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelLeft);
+                                srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL1);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
-                            else if ((ZugaraStatusPackReelCenter.FixZugara[1] == key) && (ZugaraStatusPackReelRight.FixZugara[1] == key))
+                            else if ((ZugaraStatusPackReelL2.FixZugara[1] == key) && (ZugaraStatusPackReelL3.FixZugara[1] == key))
                             {
                                 // --- --- ---
                                 // key key key
                                 // --- --- ---
-                                srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelLeft);
+                                srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL1);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
-                            else if ((ZugaraStatusPackReelCenter.FixZugara[1] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == key))
+                            else if ((ZugaraStatusPackReelL2.FixZugara[1] == key) && (ZugaraStatusPackReelL3.FixZugara[0] == key))
                             {
                                 // --- --- key
                                 // --- key ---
                                 // key --- ---
-                                srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelLeft);
+                                srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL1);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
-                            else if ((ZugaraStatusPackReelCenter.FixZugara[2] == key) && (ZugaraStatusPackReelRight.FixZugara[2] == key))
+                            else if ((ZugaraStatusPackReelL2.FixZugara[2] == key) && (ZugaraStatusPackReelL3.FixZugara[2] == key))
                             {
                                 // --- --- ---
                                 // --- --- ---
                                 // key key key
-                                srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelLeft);
+                                srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL1);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
                         }
@@ -236,106 +229,106 @@ public class LineScript : MonoBehaviour
                         key = "b7";
                         if (slotCore.oneGame.buttonCount == 0)
                         {
-                            srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelLeft);
+                            srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelL1);
                             if (srideIndex == -1) srideIndex = 0;
                         }
                         else if (slotCore.oneGame.buttonCount == 1)
                         {
-                            if (ZugaraStatusPackReelCenter.IsFix)
+                            if (ZugaraStatusPackReelL2.IsFix)
                             {
-                                if (ZugaraStatusPackReelCenter.FixZugara[0] == key)
+                                if (ZugaraStatusPackReelL2.FixZugara[0] == key)
                                 {
                                     // key key ???
                                     // --- --- ???
                                     // --- --- ???
-                                    srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelLeft);
+                                    srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL1);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
-                                else if (ZugaraStatusPackReelCenter.FixZugara[1] == key)
+                                else if (ZugaraStatusPackReelL2.FixZugara[1] == key)
                                 {
                                     // key --- ???
                                     // key key ???
                                     // key --- ???
-                                    srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelLeft);
+                                    srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelL1);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
-                                else if (ZugaraStatusPackReelCenter.FixZugara[2] == key)
+                                else if (ZugaraStatusPackReelL2.FixZugara[2] == key)
                                 {
                                     // --- --- ???
                                     // --- --- ???
                                     // key key ???
-                                    srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelLeft);
+                                    srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL1);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
                             }
                             else
                             {
-                                if (ZugaraStatusPackReelRight.FixZugara[0] == key)
+                                if (ZugaraStatusPackReelL3.FixZugara[0] == key)
                                 {
                                     // key ??? key
                                     // --- ??? ---
                                     // key ??? ---
-                                    srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelLeft);
+                                    srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelL1);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
-                                else if (ZugaraStatusPackReelRight.FixZugara[1] == key)
+                                else if (ZugaraStatusPackReelL3.FixZugara[1] == key)
                                 {
                                     // --- ??? ---
                                     // key ??? key
                                     // --- ??? ---
-                                    srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelLeft);
+                                    srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL1);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
-                                else if (ZugaraStatusPackReelRight.FixZugara[2] == key)
+                                else if (ZugaraStatusPackReelL3.FixZugara[2] == key)
                                 {
                                     // key ??? ---
                                     // --- ??? ---
                                     // key ??? key
-                                    srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelLeft);
+                                    srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelL1);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
                             }
                         }
                         else if (slotCore.oneGame.buttonCount == 2)
                         {
-                            if ((ZugaraStatusPackReelCenter.FixZugara[0] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == key))
+                            if ((ZugaraStatusPackReelL2.FixZugara[0] == key) && (ZugaraStatusPackReelL3.FixZugara[0] == key))
                             {
                                 // key key key
                                 // --- --- ---
                                 // --- --- ---
-                                srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelLeft);
+                                srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL1);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
-                            else if ((ZugaraStatusPackReelCenter.FixZugara[1] == key) && (ZugaraStatusPackReelRight.FixZugara[2] == key))
+                            else if ((ZugaraStatusPackReelL2.FixZugara[1] == key) && (ZugaraStatusPackReelL3.FixZugara[2] == key))
                             {
                                 // key --- ---
                                 // --- key ---
                                 // --- --- key
-                                srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelLeft);
+                                srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL1);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
-                            else if ((ZugaraStatusPackReelCenter.FixZugara[1] == key) && (ZugaraStatusPackReelRight.FixZugara[1] == key))
+                            else if ((ZugaraStatusPackReelL2.FixZugara[1] == key) && (ZugaraStatusPackReelL3.FixZugara[1] == key))
                             {
                                 // --- --- ---
                                 // key key key
                                 // --- --- ---
-                                srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelLeft);
+                                srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL1);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
-                            else if ((ZugaraStatusPackReelCenter.FixZugara[1] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == key))
+                            else if ((ZugaraStatusPackReelL2.FixZugara[1] == key) && (ZugaraStatusPackReelL3.FixZugara[0] == key))
                             {
                                 // --- --- key
                                 // --- key ---
                                 // key --- ---
-                                srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelLeft);
+                                srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL1);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
-                            else if ((ZugaraStatusPackReelCenter.FixZugara[2] == key) && (ZugaraStatusPackReelRight.FixZugara[2] == key))
+                            else if ((ZugaraStatusPackReelL2.FixZugara[2] == key) && (ZugaraStatusPackReelL3.FixZugara[2] == key))
                             {
                                 // --- --- ---
                                 // --- --- ---
                                 // key key key
-                                srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelLeft);
+                                srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL1);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
                         }
@@ -344,106 +337,106 @@ public class LineScript : MonoBehaviour
                         key = "r7";
                         if (slotCore.oneGame.buttonCount == 0)
                         {
-                            srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelLeft);
+                            srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelL1);
                             if (srideIndex == -1) srideIndex = 0;
                         }
                         else if (slotCore.oneGame.buttonCount == 1)
                         {
-                            if (ZugaraStatusPackReelCenter.IsFix)
+                            if (ZugaraStatusPackReelL2.IsFix)
                             {
-                                if (ZugaraStatusPackReelCenter.FixZugara[0] == key)
+                                if (ZugaraStatusPackReelL2.FixZugara[0] == key)
                                 {
                                     // key key ???
                                     // --- --- ???
                                     // --- --- ???
-                                    srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelLeft);
+                                    srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL1);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
-                                else if (ZugaraStatusPackReelCenter.FixZugara[1] == key)
+                                else if (ZugaraStatusPackReelL2.FixZugara[1] == key)
                                 {
                                     // key --- ???
                                     // key key ???
                                     // key --- ???
-                                    srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelLeft);
+                                    srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelL1);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
-                                else if (ZugaraStatusPackReelCenter.FixZugara[2] == key)
+                                else if (ZugaraStatusPackReelL2.FixZugara[2] == key)
                                 {
                                     // --- --- ???
                                     // --- --- ???
                                     // key key ???
-                                    srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelLeft);
+                                    srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL1);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
                             }
                             else
                             {
-                                if (ZugaraStatusPackReelRight.FixZugara[0] == "bar")
+                                if (ZugaraStatusPackReelL3.FixZugara[0] == "bar")
                                 {
                                     // key ??? key
                                     // --- ??? ---
                                     // key ??? ---
-                                    srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelLeft);
+                                    srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelL1);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
-                                else if (ZugaraStatusPackReelRight.FixZugara[1] == "bar")
+                                else if (ZugaraStatusPackReelL3.FixZugara[1] == "bar")
                                 {
                                     // --- ??? ---
                                     // key ??? key
                                     // --- ??? ---
-                                    srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelLeft);
+                                    srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL1);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
-                                else if (ZugaraStatusPackReelRight.FixZugara[2] == "bar")
+                                else if (ZugaraStatusPackReelL3.FixZugara[2] == "bar")
                                 {
                                     // key ??? ---
                                     // --- ??? ---
                                     // key ??? key
-                                    srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelLeft);
+                                    srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelL1);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
                             }
                         }
                         else if (slotCore.oneGame.buttonCount == 2)
                         {
-                            if ((ZugaraStatusPackReelCenter.FixZugara[0] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == "bar"))
+                            if ((ZugaraStatusPackReelL2.FixZugara[0] == key) && (ZugaraStatusPackReelL3.FixZugara[0] == "bar"))
                             {
                                 // key key key
                                 // --- --- ---
                                 // --- --- ---
-                                srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelLeft);
+                                srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL1);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
-                            else if ((ZugaraStatusPackReelCenter.FixZugara[1] == key) && (ZugaraStatusPackReelRight.FixZugara[2] == "bar"))
+                            else if ((ZugaraStatusPackReelL2.FixZugara[1] == key) && (ZugaraStatusPackReelL3.FixZugara[2] == "bar"))
                             {
                                 // key --- ---
                                 // --- key ---
                                 // --- --- key
-                                srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelLeft);
+                                srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL1);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
-                            else if ((ZugaraStatusPackReelCenter.FixZugara[1] == key) && (ZugaraStatusPackReelRight.FixZugara[1] == "bar"))
+                            else if ((ZugaraStatusPackReelL2.FixZugara[1] == key) && (ZugaraStatusPackReelL3.FixZugara[1] == "bar"))
                             {
                                 // --- --- ---
                                 // key key key
                                 // --- --- ---
-                                srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelLeft);
+                                srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL1);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
-                            else if ((ZugaraStatusPackReelCenter.FixZugara[1] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == "bar"))
+                            else if ((ZugaraStatusPackReelL2.FixZugara[1] == key) && (ZugaraStatusPackReelL3.FixZugara[0] == "bar"))
                             {
                                 // --- --- key
                                 // --- key ---
                                 // key --- ---
-                                srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelLeft);
+                                srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL1);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
-                            else if ((ZugaraStatusPackReelCenter.FixZugara[2] == key) && (ZugaraStatusPackReelRight.FixZugara[2] == "bar"))
+                            else if ((ZugaraStatusPackReelL2.FixZugara[2] == key) && (ZugaraStatusPackReelL3.FixZugara[2] == "bar"))
                             {
                                 // --- --- ---
                                 // --- --- ---
                                 // key key key
-                                srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelLeft);
+                                srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL1);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
                         }
@@ -454,106 +447,106 @@ public class LineScript : MonoBehaviour
                 key = "rep";
                 if (slotCore.oneGame.buttonCount == 0)
                 {
-                    srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelLeft);
+                    srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelL1);
                     if (srideIndex == -1) srideIndex = 0;
                 }
                 else if (slotCore.oneGame.buttonCount == 1)
                 {
-                    if (ZugaraStatusPackReelCenter.IsFix)
+                    if (ZugaraStatusPackReelL2.IsFix)
                     {
-                        if (ZugaraStatusPackReelCenter.FixZugara[0] == key)
+                        if (ZugaraStatusPackReelL2.FixZugara[0] == key)
                         {
                             // key key ???
                             // --- --- ???
                             // --- --- ???
-                            srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelLeft);
+                            srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL1);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (ZugaraStatusPackReelCenter.FixZugara[1] == key)
+                        else if (ZugaraStatusPackReelL2.FixZugara[1] == key)
                         {
                             // key --- ???
                             // key key ???
                             // key --- ???
-                            srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelLeft);
+                            srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelL1);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (ZugaraStatusPackReelCenter.FixZugara[2] == key)
+                        else if (ZugaraStatusPackReelL2.FixZugara[2] == key)
                         {
                             // --- --- ???
                             // --- --- ???
                             // key key ???
-                            srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelLeft);
+                            srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL1);
                             if (srideIndex == -1) srideIndex = 0;
                         }
                     }
                     else
                     {
-                        if (ZugaraStatusPackReelRight.FixZugara[0] == key)
+                        if (ZugaraStatusPackReelL3.FixZugara[0] == key)
                         {
                             // key ??? key
                             // --- ??? ---
                             // key ??? ---
-                            srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelLeft);
+                            srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelL1);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (ZugaraStatusPackReelRight.FixZugara[1] == key)
+                        else if (ZugaraStatusPackReelL3.FixZugara[1] == key)
                         {
                             // --- ??? ---
                             // key ??? key
                             // --- ??? ---
-                            srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelLeft);
+                            srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL1);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (ZugaraStatusPackReelRight.FixZugara[2] == key)
+                        else if (ZugaraStatusPackReelL3.FixZugara[2] == key)
                         {
                             // key ??? ---
                             // --- ??? ---
                             // key ??? key
-                            srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelLeft);
+                            srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelL1);
                             if (srideIndex == -1) srideIndex = 0;
                         }
                     }
                 }
                 else if (slotCore.oneGame.buttonCount == 2)
                 {
-                    if ((ZugaraStatusPackReelCenter.FixZugara[0] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == key))
+                    if ((ZugaraStatusPackReelL2.FixZugara[0] == key) && (ZugaraStatusPackReelL3.FixZugara[0] == key))
                     {
                         // key key key
                         // --- --- ---
                         // --- --- ---
-                        srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelLeft);
+                        srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL1);
                         if (srideIndex == -1) srideIndex = 0;
                     }
-                    else if ((ZugaraStatusPackReelCenter.FixZugara[1] == key) && (ZugaraStatusPackReelRight.FixZugara[2] == key))
+                    else if ((ZugaraStatusPackReelL2.FixZugara[1] == key) && (ZugaraStatusPackReelL3.FixZugara[2] == key))
                     {
                         // key --- ---
                         // --- key ---
                         // --- --- key
-                        srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelLeft);
+                        srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL1);
                         if (srideIndex == -1) srideIndex = 0;
                     }
-                    else if ((ZugaraStatusPackReelCenter.FixZugara[1] == key) && (ZugaraStatusPackReelRight.FixZugara[1] == key))
+                    else if ((ZugaraStatusPackReelL2.FixZugara[1] == key) && (ZugaraStatusPackReelL3.FixZugara[1] == key))
                     {
                         // --- --- ---
                         // key key key
                         // --- --- ---
-                        srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelLeft);
+                        srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL1);
                         if (srideIndex == -1) srideIndex = 0;
                     }
-                    else if ((ZugaraStatusPackReelCenter.FixZugara[1] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == key))
+                    else if ((ZugaraStatusPackReelL2.FixZugara[1] == key) && (ZugaraStatusPackReelL3.FixZugara[0] == key))
                     {
                         // --- --- key
                         // --- key ---
                         // key --- ---
-                        srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelLeft);
+                        srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL1);
                         if (srideIndex == -1) srideIndex = 0;
                     }
-                    else if ((ZugaraStatusPackReelCenter.FixZugara[2] == key) && (ZugaraStatusPackReelRight.FixZugara[2] == key))
+                    else if ((ZugaraStatusPackReelL2.FixZugara[2] == key) && (ZugaraStatusPackReelL3.FixZugara[2] == key))
                     {
                         // --- --- ---
                         // --- --- ---
                         // key key key
-                        srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelLeft);
+                        srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL1);
                         if (srideIndex == -1) srideIndex = 0;
                     }
                 }
@@ -562,62 +555,62 @@ public class LineScript : MonoBehaviour
                 key = "bell";
                 if (slotCore.oneGame.buttonCount == 0)
                 {
-                    srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelLeft);
+                    srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelL1);
                     if (srideIndex == -1) srideIndex = 0;
                 }
                 else if (slotCore.oneGame.buttonCount == 1)
                 {
-                    if (ZugaraStatusPackReelCenter.IsFix)
+                    if (ZugaraStatusPackReelL2.IsFix)
                     {
-                        if (ZugaraStatusPackReelCenter.FixZugara[0] == key)
+                        if (ZugaraStatusPackReelL2.FixZugara[0] == key)
                         {
                             // key key ???
                             // --- --- ???
                             // --- --- ???
-                            srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelLeft);
+                            srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL1);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (ZugaraStatusPackReelCenter.FixZugara[1] == key)
+                        else if (ZugaraStatusPackReelL2.FixZugara[1] == key)
                         {
                             // key --- ???
                             // key key ???
                             // key --- ???
-                            srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelLeft);
+                            srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelL1);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (ZugaraStatusPackReelCenter.FixZugara[2] == key)
+                        else if (ZugaraStatusPackReelL2.FixZugara[2] == key)
                         {
                             // --- --- ???
                             // --- --- ???
                             // key key ???
-                            srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelLeft);
+                            srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL1);
                             if (srideIndex == -1) srideIndex = 0;
                         }
                     }
                     else
                     {
-                        if (ZugaraStatusPackReelRight.FixZugara[0] == key)
+                        if (ZugaraStatusPackReelL3.FixZugara[0] == key)
                         {
                             // key ??? key
                             // --- ??? ---
                             // key ??? ---
-                            srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelLeft);
+                            srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelL1);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (ZugaraStatusPackReelRight.FixZugara[1] == key)
+                        else if (ZugaraStatusPackReelL3.FixZugara[1] == key)
                         {
                             // --- ??? ---
                             // key ??? key
                             // --- ??? ---
-                            srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelLeft);
+                            srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL1);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (ZugaraStatusPackReelRight.FixZugara[2] == key)
+                        else if (ZugaraStatusPackReelL3.FixZugara[2] == key)
                         {
                             // key ??? ---
                             // --- ??? ---
                             // key ??? key
-                            srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelLeft);
+                            srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelL1);
                             if (srideIndex == -1) srideIndex = 0;
                         }
 
@@ -625,44 +618,44 @@ public class LineScript : MonoBehaviour
                 }
                 else if (slotCore.oneGame.buttonCount == 2)
                 {
-                    if ((ZugaraStatusPackReelCenter.FixZugara[0] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == key))
+                    if ((ZugaraStatusPackReelL2.FixZugara[0] == key) && (ZugaraStatusPackReelL3.FixZugara[0] == key))
                     {
                         // key key key
                         // --- --- ---
                         // --- --- ---
-                        srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelLeft);
+                        srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL1);
                         if (srideIndex == -1) srideIndex = 0;
                     }
-                    else if ((ZugaraStatusPackReelCenter.FixZugara[1] == key) && (ZugaraStatusPackReelRight.FixZugara[2] == key))
+                    else if ((ZugaraStatusPackReelL2.FixZugara[1] == key) && (ZugaraStatusPackReelL3.FixZugara[2] == key))
                     {
                         // key --- ---
                         // --- key ---
                         // --- --- key
-                        srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelLeft);
+                        srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL1);
                         if (srideIndex == -1) srideIndex = 0;
                     }
-                    else if ((ZugaraStatusPackReelCenter.FixZugara[1] == key) && (ZugaraStatusPackReelRight.FixZugara[1] == key))
+                    else if ((ZugaraStatusPackReelL2.FixZugara[1] == key) && (ZugaraStatusPackReelL3.FixZugara[1] == key))
                     {
                         // --- --- ---
                         // key key key
                         // --- --- ---
-                        srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelLeft);
+                        srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL1);
                         if (srideIndex == -1) srideIndex = 0;
                     }
-                    else if ((ZugaraStatusPackReelCenter.FixZugara[1] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == key))
+                    else if ((ZugaraStatusPackReelL2.FixZugara[1] == key) && (ZugaraStatusPackReelL3.FixZugara[0] == key))
                     {
                         // --- --- key
                         // --- key ---
                         // key --- ---
-                        srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelLeft);
+                        srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL1);
                         if (srideIndex == -1) srideIndex = 0;
                     }
-                    else if ((ZugaraStatusPackReelCenter.FixZugara[2] == key) && (ZugaraStatusPackReelRight.FixZugara[2] == key))
+                    else if ((ZugaraStatusPackReelL2.FixZugara[2] == key) && (ZugaraStatusPackReelL3.FixZugara[2] == key))
                     {
                         // --- --- ---
                         // --- --- ---
                         // key key key
-                        srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelLeft);
+                        srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL1);
                         if (srideIndex == -1) srideIndex = 0;
                     }
 
@@ -672,62 +665,62 @@ public class LineScript : MonoBehaviour
                 key = "suika";
                 if (slotCore.oneGame.buttonCount == 0)
                 {
-                    srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelLeft);
+                    srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelL1);
                     if (srideIndex == -1) srideIndex = 0;
                 }
                 else if (slotCore.oneGame.buttonCount == 1)
                 {
-                    if (ZugaraStatusPackReelCenter.IsFix)
+                    if (ZugaraStatusPackReelL2.IsFix)
                     {
-                        if (ZugaraStatusPackReelCenter.FixZugara[0] == key)
+                        if (ZugaraStatusPackReelL2.FixZugara[0] == key)
                         {
                             // key key ???
                             // --- --- ???
                             // --- --- ???
-                            srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelLeft);
+                            srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL1);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (ZugaraStatusPackReelCenter.FixZugara[1] == key)
+                        else if (ZugaraStatusPackReelL2.FixZugara[1] == key)
                         {
                             // key --- ???
                             // key key ???
                             // key --- ???
-                            srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelLeft);
+                            srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelL1);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (ZugaraStatusPackReelCenter.FixZugara[2] == key)
+                        else if (ZugaraStatusPackReelL2.FixZugara[2] == key)
                         {
                             // --- --- ???
                             // --- --- ???
                             // key key ???
-                            srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelLeft);
+                            srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL1);
                             if (srideIndex == -1) srideIndex = 0;
                         }
                     }
                     else
                     {
-                        if (ZugaraStatusPackReelRight.FixZugara[0] == key)
+                        if (ZugaraStatusPackReelL3.FixZugara[0] == key)
                         {
                             // key ??? key
                             // --- ??? ---
                             // key ??? ---
-                            srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelLeft);
+                            srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelL1);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (ZugaraStatusPackReelRight.FixZugara[1] == key)
+                        else if (ZugaraStatusPackReelL3.FixZugara[1] == key)
                         {
                             // --- ??? ---
                             // key ??? key
                             // --- ??? ---
-                            srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelLeft);
+                            srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL1);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (ZugaraStatusPackReelRight.FixZugara[2] == key)
+                        else if (ZugaraStatusPackReelL3.FixZugara[2] == key)
                         {
                             // key ??? ---
                             // --- ??? ---
                             // key ??? key
-                            srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelLeft);
+                            srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelL1);
                             if (srideIndex == -1) srideIndex = 0;
                         }
 
@@ -735,44 +728,44 @@ public class LineScript : MonoBehaviour
                 }
                 else if (slotCore.oneGame.buttonCount == 2)
                 {
-                    if ((ZugaraStatusPackReelCenter.FixZugara[0] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == key))
+                    if ((ZugaraStatusPackReelL2.FixZugara[0] == key) && (ZugaraStatusPackReelL3.FixZugara[0] == key))
                     {
                         // key key key
                         // --- --- ---
                         // --- --- ---
-                        srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelLeft);
+                        srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL1);
                         if (srideIndex == -1) srideIndex = 0;
                     }
-                    else if ((ZugaraStatusPackReelCenter.FixZugara[1] == key) && (ZugaraStatusPackReelRight.FixZugara[2] == key))
+                    else if ((ZugaraStatusPackReelL2.FixZugara[1] == key) && (ZugaraStatusPackReelL3.FixZugara[2] == key))
                     {
                         // key --- ---
                         // --- key ---
                         // --- --- key
-                        srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelLeft);
+                        srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL1);
                         if (srideIndex == -1) srideIndex = 0;
                     }
-                    else if ((ZugaraStatusPackReelCenter.FixZugara[1] == key) && (ZugaraStatusPackReelRight.FixZugara[1] == key))
+                    else if ((ZugaraStatusPackReelL2.FixZugara[1] == key) && (ZugaraStatusPackReelL3.FixZugara[1] == key))
                     {
                         // --- --- ---
                         // key key key
                         // --- --- ---
-                        srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelLeft);
+                        srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL1);
                         if (srideIndex == -1) srideIndex = 0;
                     }
-                    else if ((ZugaraStatusPackReelCenter.FixZugara[1] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == key))
+                    else if ((ZugaraStatusPackReelL2.FixZugara[1] == key) && (ZugaraStatusPackReelL3.FixZugara[0] == key))
                     {
                         // --- --- key
                         // --- key ---
                         // key --- ---
-                        srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelLeft);
+                        srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL1);
                         if (srideIndex == -1) srideIndex = 0;
                     }
-                    else if ((ZugaraStatusPackReelCenter.FixZugara[2] == key) && (ZugaraStatusPackReelRight.FixZugara[2] == key))
+                    else if ((ZugaraStatusPackReelL2.FixZugara[2] == key) && (ZugaraStatusPackReelL3.FixZugara[2] == key))
                     {
                         // --- --- ---
                         // --- --- ---
                         // key key key
-                        srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelLeft);
+                        srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL1);
                         if (srideIndex == -1) srideIndex = 0;
                     }
 
@@ -780,18 +773,18 @@ public class LineScript : MonoBehaviour
                 break;
         }
 
-        if (CheckBadRoleHit(0, srideIndex, ZugaraStatusPackReelLeft))
+        if (CheckBadRoleHit(0, srideIndex, ZugaraStatusPackReelL1))
         {
-            srideIndex = GetSrideBadRoleHit(0, ZugaraStatusPackReelLeft);
+            srideIndex = GetSrideBadRoleHit(0, ZugaraStatusPackReelL1);
             Debug.Log($"GetSrideBadRoleHit L1 {srideIndex} ");
         }
 
-        ZugaraStatusPackReelLeft.Fix(srideIndex);
+        ZugaraStatusPackReelL1.Fix(srideIndex);
     }
 
     private void StopRollOneCenter()
     {
-        if (ZugaraStatusPackReelCenter.IsFix) return;
+        if (ZugaraStatusPackReelL2.IsFix) return;
 
         var srideIndex = 0;
         var key = "";
@@ -804,108 +797,108 @@ public class LineScript : MonoBehaviour
                         key = "r7";
                         if (slotCore.oneGame.buttonCount == 0)
                         {
-                            srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelCenter);
+                            srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelL2);
                             if (srideIndex == -1) srideIndex = 0;
                         }
                         else if (slotCore.oneGame.buttonCount == 1)
                         {
-                            if (ZugaraStatusPackReelLeft.IsFix)
+                            if (ZugaraStatusPackReelL1.IsFix)
                             {
-                                if (ZugaraStatusPackReelLeft.FixZugara[0] == key)
+                                if (ZugaraStatusPackReelL1.FixZugara[0] == key)
                                 {
                                     // key key ???
                                     // --- key ???
                                     // --- --- ???
-                                    srideIndex = FixSride_O_O_X(key, ZugaraStatusPackReelCenter);
+                                    srideIndex = FixSride_O_O_X(key, ZugaraStatusPackReelL2);
                                     if (srideIndex == -1) srideIndex = 0;
 
                                 }
-                                else if (ZugaraStatusPackReelLeft.FixZugara[1] == key)
+                                else if (ZugaraStatusPackReelL1.FixZugara[1] == key)
                                 {
                                     // --- --- ???
                                     // key key ???
                                     // --- --- ???
-                                    srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelCenter);
+                                    srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL2);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
-                                else if (ZugaraStatusPackReelLeft.FixZugara[2] == key)
+                                else if (ZugaraStatusPackReelL1.FixZugara[2] == key)
                                 {
                                     // --- --- ???
                                     // --- key ???
                                     // key key ???
-                                    srideIndex = FixSride_X_O_O(key, ZugaraStatusPackReelCenter);
+                                    srideIndex = FixSride_X_O_O(key, ZugaraStatusPackReelL2);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
                             }
                             else
                             {
-                                if (ZugaraStatusPackReelRight.FixZugara[0] == key)
+                                if (ZugaraStatusPackReelL3.FixZugara[0] == key)
                                 {
                                     // ??? key key
                                     // ??? key ---
                                     // ??? --- ---
-                                    srideIndex = FixSride_O_O_X(key, ZugaraStatusPackReelCenter);
+                                    srideIndex = FixSride_O_O_X(key, ZugaraStatusPackReelL2);
                                     if (srideIndex == -1) srideIndex = 0;
 
                                 }
-                                else if (ZugaraStatusPackReelRight.FixZugara[1] == key)
+                                else if (ZugaraStatusPackReelL3.FixZugara[1] == key)
                                 {
                                     // ??? --- ---
                                     // ??? key key
                                     // ??? --- ---
-                                    srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelCenter);
+                                    srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL2);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
-                                else if (ZugaraStatusPackReelRight.FixZugara[2] == key)
+                                else if (ZugaraStatusPackReelL3.FixZugara[2] == key)
                                 {
                                     // ??? --- ---
                                     // ??? key ---
                                     // ??? key key
-                                    srideIndex = FixSride_X_O_O(key, ZugaraStatusPackReelCenter);
+                                    srideIndex = FixSride_X_O_O(key, ZugaraStatusPackReelL2);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
                             }
                         }
                         else if (slotCore.oneGame.buttonCount == 2)
                         {
-                            if ((ZugaraStatusPackReelLeft.FixZugara[0] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == key))
+                            if ((ZugaraStatusPackReelL1.FixZugara[0] == key) && (ZugaraStatusPackReelL3.FixZugara[0] == key))
                             {
                                 // key key key
                                 // --- --- ---
                                 // --- --- ---
-                                srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelCenter);
+                                srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL2);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
-                            else if ((ZugaraStatusPackReelLeft.FixZugara[0] == key) && (ZugaraStatusPackReelRight.FixZugara[2] == key))
+                            else if ((ZugaraStatusPackReelL1.FixZugara[0] == key) && (ZugaraStatusPackReelL3.FixZugara[2] == key))
                             {
                                 // key --- ---
                                 // --- key ---
                                 // --- --- key
-                                srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelCenter);
+                                srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL2);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
-                            else if ((ZugaraStatusPackReelLeft.FixZugara[1] == key) && (ZugaraStatusPackReelRight.FixZugara[1] == key))
+                            else if ((ZugaraStatusPackReelL1.FixZugara[1] == key) && (ZugaraStatusPackReelL3.FixZugara[1] == key))
                             {
                                 // --- --- ---
                                 // key key key
                                 // --- --- ---
-                                srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelCenter);
+                                srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL2);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
-                            else if ((ZugaraStatusPackReelLeft.FixZugara[2] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == key))
+                            else if ((ZugaraStatusPackReelL1.FixZugara[2] == key) && (ZugaraStatusPackReelL3.FixZugara[0] == key))
                             {
                                 // --- --- key
                                 // --- key ---
                                 // key --- ---
-                                srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelCenter);
+                                srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL2);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
-                            else if ((ZugaraStatusPackReelLeft.FixZugara[2] == key) && (ZugaraStatusPackReelRight.FixZugara[2] == key))
+                            else if ((ZugaraStatusPackReelL1.FixZugara[2] == key) && (ZugaraStatusPackReelL3.FixZugara[2] == key))
                             {
                                 // --- --- ---
                                 // --- --- ---
                                 // key key key
-                                srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelCenter);
+                                srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL2);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
 
@@ -915,108 +908,108 @@ public class LineScript : MonoBehaviour
                         key = "b7";
                         if (slotCore.oneGame.buttonCount == 0)
                         {
-                            srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelCenter);
+                            srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelL2);
                             if (srideIndex == -1) srideIndex = 0;
                         }
                         else if (slotCore.oneGame.buttonCount == 1)
                         {
-                            if (ZugaraStatusPackReelLeft.IsFix)
+                            if (ZugaraStatusPackReelL1.IsFix)
                             {
-                                if (ZugaraStatusPackReelLeft.FixZugara[0] == key)
+                                if (ZugaraStatusPackReelL1.FixZugara[0] == key)
                                 {
                                     // key key ???
                                     // --- key ???
                                     // --- --- ???
-                                    srideIndex = FixSride_O_O_X(key, ZugaraStatusPackReelCenter);
+                                    srideIndex = FixSride_O_O_X(key, ZugaraStatusPackReelL2);
                                     if (srideIndex == -1) srideIndex = 0;
 
                                 }
-                                else if (ZugaraStatusPackReelLeft.FixZugara[1] == key)
+                                else if (ZugaraStatusPackReelL1.FixZugara[1] == key)
                                 {
                                     // --- --- ???
                                     // key key ???
                                     // --- --- ???
-                                    srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelCenter);
+                                    srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL2);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
-                                else if (ZugaraStatusPackReelLeft.FixZugara[2] == key)
+                                else if (ZugaraStatusPackReelL1.FixZugara[2] == key)
                                 {
                                     // --- --- ???
                                     // --- key ???
                                     // key key ???
-                                    srideIndex = FixSride_X_O_O(key, ZugaraStatusPackReelCenter);
+                                    srideIndex = FixSride_X_O_O(key, ZugaraStatusPackReelL2);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
                             }
                             else
                             {
-                                if (ZugaraStatusPackReelRight.FixZugara[0] == key)
+                                if (ZugaraStatusPackReelL3.FixZugara[0] == key)
                                 {
                                     // ??? key key
                                     // ??? key ---
                                     // ??? --- ---
-                                    srideIndex = FixSride_O_O_X(key, ZugaraStatusPackReelCenter);
+                                    srideIndex = FixSride_O_O_X(key, ZugaraStatusPackReelL2);
                                     if (srideIndex == -1) srideIndex = 0;
 
                                 }
-                                else if (ZugaraStatusPackReelRight.FixZugara[1] == key)
+                                else if (ZugaraStatusPackReelL3.FixZugara[1] == key)
                                 {
                                     // ??? --- ---
                                     // ??? key key
                                     // ??? --- ---
-                                    srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelCenter);
+                                    srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL2);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
-                                else if (ZugaraStatusPackReelRight.FixZugara[2] == key)
+                                else if (ZugaraStatusPackReelL3.FixZugara[2] == key)
                                 {
                                     // ??? --- ---
                                     // ??? key ---
                                     // ??? key key
-                                    srideIndex = FixSride_X_O_O(key, ZugaraStatusPackReelCenter);
+                                    srideIndex = FixSride_X_O_O(key, ZugaraStatusPackReelL2);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
                             }
                         }
                         else if (slotCore.oneGame.buttonCount == 2)
                         {
-                            if ((ZugaraStatusPackReelLeft.FixZugara[0] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == key))
+                            if ((ZugaraStatusPackReelL1.FixZugara[0] == key) && (ZugaraStatusPackReelL3.FixZugara[0] == key))
                             {
                                 // key key key
                                 // --- --- ---
                                 // --- --- ---
-                                srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelCenter);
+                                srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL2);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
-                            else if ((ZugaraStatusPackReelLeft.FixZugara[0] == key) && (ZugaraStatusPackReelRight.FixZugara[2] == key))
+                            else if ((ZugaraStatusPackReelL1.FixZugara[0] == key) && (ZugaraStatusPackReelL3.FixZugara[2] == key))
                             {
                                 // key --- ---
                                 // --- key ---
                                 // --- --- key
-                                srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelCenter);
+                                srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL2);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
-                            else if ((ZugaraStatusPackReelLeft.FixZugara[1] == key) && (ZugaraStatusPackReelRight.FixZugara[1] == key))
+                            else if ((ZugaraStatusPackReelL1.FixZugara[1] == key) && (ZugaraStatusPackReelL3.FixZugara[1] == key))
                             {
                                 // --- --- ---
                                 // key key key
                                 // --- --- ---
-                                srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelCenter);
+                                srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL2);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
-                            else if ((ZugaraStatusPackReelLeft.FixZugara[2] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == key))
+                            else if ((ZugaraStatusPackReelL1.FixZugara[2] == key) && (ZugaraStatusPackReelL3.FixZugara[0] == key))
                             {
                                 // --- --- key
                                 // --- key ---
                                 // key --- ---
-                                srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelCenter);
+                                srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL2);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
-                            else if ((ZugaraStatusPackReelLeft.FixZugara[2] == key) && (ZugaraStatusPackReelRight.FixZugara[2] == key))
+                            else if ((ZugaraStatusPackReelL1.FixZugara[2] == key) && (ZugaraStatusPackReelL3.FixZugara[2] == key))
                             {
                                 // --- --- ---
                                 // --- --- ---
                                 // key key key
-                                srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelCenter);
+                                srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL2);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
 
@@ -1026,108 +1019,108 @@ public class LineScript : MonoBehaviour
                         key = "r7";
                         if (slotCore.oneGame.buttonCount == 0)
                         {
-                            srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelCenter);
+                            srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelL2);
                             if (srideIndex == -1) srideIndex = 0;
                         }
                         else if (slotCore.oneGame.buttonCount == 1)
                         {
-                            if (ZugaraStatusPackReelLeft.IsFix)
+                            if (ZugaraStatusPackReelL1.IsFix)
                             {
-                                if (ZugaraStatusPackReelLeft.FixZugara[0] == key)
+                                if (ZugaraStatusPackReelL1.FixZugara[0] == key)
                                 {
                                     // key key ???
                                     // --- key ???
                                     // --- --- ???
-                                    srideIndex = FixSride_O_O_X(key, ZugaraStatusPackReelCenter);
+                                    srideIndex = FixSride_O_O_X(key, ZugaraStatusPackReelL2);
                                     if (srideIndex == -1) srideIndex = 0;
 
                                 }
-                                else if (ZugaraStatusPackReelLeft.FixZugara[1] == key)
+                                else if (ZugaraStatusPackReelL1.FixZugara[1] == key)
                                 {
                                     // --- --- ???
                                     // key key ???
                                     // --- --- ???
-                                    srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelCenter);
+                                    srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL2);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
-                                else if (ZugaraStatusPackReelLeft.FixZugara[2] == key)
+                                else if (ZugaraStatusPackReelL1.FixZugara[2] == key)
                                 {
                                     // --- --- ???
                                     // --- key ???
                                     // key key ???
-                                    srideIndex = FixSride_X_O_O(key, ZugaraStatusPackReelCenter);
+                                    srideIndex = FixSride_X_O_O(key, ZugaraStatusPackReelL2);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
                             }
                             else
                             {
-                                if (ZugaraStatusPackReelRight.FixZugara[0] == "bar")
+                                if (ZugaraStatusPackReelL3.FixZugara[0] == "bar")
                                 {
                                     // ??? key key
                                     // ??? key ---
                                     // ??? --- ---
-                                    srideIndex = FixSride_O_O_X(key, ZugaraStatusPackReelCenter);
+                                    srideIndex = FixSride_O_O_X(key, ZugaraStatusPackReelL2);
                                     if (srideIndex == -1) srideIndex = 0;
 
                                 }
-                                else if (ZugaraStatusPackReelRight.FixZugara[1] == "bar")
+                                else if (ZugaraStatusPackReelL3.FixZugara[1] == "bar")
                                 {
                                     // ??? --- ---
                                     // ??? key key
                                     // ??? --- ---
-                                    srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelCenter);
+                                    srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL2);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
-                                else if (ZugaraStatusPackReelRight.FixZugara[2] == "bar")
+                                else if (ZugaraStatusPackReelL3.FixZugara[2] == "bar")
                                 {
                                     // ??? --- ---
                                     // ??? key ---
                                     // ??? key key
-                                    srideIndex = FixSride_X_O_O(key, ZugaraStatusPackReelCenter);
+                                    srideIndex = FixSride_X_O_O(key, ZugaraStatusPackReelL2);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
                             }
                         }
                         else if (slotCore.oneGame.buttonCount == 2)
                         {
-                            if ((ZugaraStatusPackReelLeft.FixZugara[0] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == "bar"))
+                            if ((ZugaraStatusPackReelL1.FixZugara[0] == key) && (ZugaraStatusPackReelL3.FixZugara[0] == "bar"))
                             {
                                 // key key key
                                 // --- --- ---
                                 // --- --- ---
-                                srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelCenter);
+                                srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL2);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
-                            else if ((ZugaraStatusPackReelLeft.FixZugara[0] == key) && (ZugaraStatusPackReelRight.FixZugara[2] == "bar"))
+                            else if ((ZugaraStatusPackReelL1.FixZugara[0] == key) && (ZugaraStatusPackReelL3.FixZugara[2] == "bar"))
                             {
                                 // key --- ---
                                 // --- key ---
                                 // --- --- key
-                                srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelCenter);
+                                srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL2);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
-                            else if ((ZugaraStatusPackReelLeft.FixZugara[1] == key) && (ZugaraStatusPackReelRight.FixZugara[1] == "bar"))
+                            else if ((ZugaraStatusPackReelL1.FixZugara[1] == key) && (ZugaraStatusPackReelL3.FixZugara[1] == "bar"))
                             {
                                 // --- --- ---
                                 // key key key
                                 // --- --- ---
-                                srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelCenter);
+                                srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL2);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
-                            else if ((ZugaraStatusPackReelLeft.FixZugara[2] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == "bar"))
+                            else if ((ZugaraStatusPackReelL1.FixZugara[2] == key) && (ZugaraStatusPackReelL3.FixZugara[0] == "bar"))
                             {
                                 // --- --- key
                                 // --- key ---
                                 // key --- ---
-                                srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelCenter);
+                                srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL2);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
-                            else if ((ZugaraStatusPackReelLeft.FixZugara[2] == key) && (ZugaraStatusPackReelRight.FixZugara[2] == "bar"))
+                            else if ((ZugaraStatusPackReelL1.FixZugara[2] == key) && (ZugaraStatusPackReelL3.FixZugara[2] == "bar"))
                             {
                                 // --- --- ---
                                 // --- --- ---
                                 // key key key
-                                srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelCenter);
+                                srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL2);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
 
@@ -1139,108 +1132,108 @@ public class LineScript : MonoBehaviour
                 key = "rep";
                 if (slotCore.oneGame.buttonCount == 0)
                 {
-                    srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelCenter);
+                    srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelL2);
                     if (srideIndex == -1) srideIndex = 0;
                 }
                 else if (slotCore.oneGame.buttonCount == 1)
                 {
-                    if (ZugaraStatusPackReelLeft.IsFix)
+                    if (ZugaraStatusPackReelL1.IsFix)
                     {
-                        if (ZugaraStatusPackReelLeft.FixZugara[0] == key)
+                        if (ZugaraStatusPackReelL1.FixZugara[0] == key)
                         {
                             // key key ???
                             // --- key ???
                             // --- --- ???
-                            srideIndex = FixSride_O_O_X(key, ZugaraStatusPackReelCenter);
+                            srideIndex = FixSride_O_O_X(key, ZugaraStatusPackReelL2);
                             if (srideIndex == -1) srideIndex = 0;
 
                         }
-                        else if (ZugaraStatusPackReelLeft.FixZugara[1] == key)
+                        else if (ZugaraStatusPackReelL1.FixZugara[1] == key)
                         {
                             // --- --- ???
                             // key key ???
                             // --- --- ???
-                            srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelCenter);
+                            srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL2);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (ZugaraStatusPackReelLeft.FixZugara[2] == key)
+                        else if (ZugaraStatusPackReelL1.FixZugara[2] == key)
                         {
                             // --- --- ???
                             // --- key ???
                             // key key ???
-                            srideIndex = FixSride_X_O_O(key, ZugaraStatusPackReelCenter);
+                            srideIndex = FixSride_X_O_O(key, ZugaraStatusPackReelL2);
                             if (srideIndex == -1) srideIndex = 0;
                         }
                     }
                     else
                     {
-                        if (ZugaraStatusPackReelRight.FixZugara[0] == key)
+                        if (ZugaraStatusPackReelL3.FixZugara[0] == key)
                         {
                             // ??? key key
                             // ??? key ---
                             // ??? --- ---
-                            srideIndex = FixSride_O_O_X(key, ZugaraStatusPackReelCenter);
+                            srideIndex = FixSride_O_O_X(key, ZugaraStatusPackReelL2);
                             if (srideIndex == -1) srideIndex = 0;
 
                         }
-                        else if (ZugaraStatusPackReelRight.FixZugara[1] == key)
+                        else if (ZugaraStatusPackReelL3.FixZugara[1] == key)
                         {
                             // ??? --- ---
                             // ??? key key
                             // ??? --- ---
-                            srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelCenter);
+                            srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL2);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (ZugaraStatusPackReelRight.FixZugara[2] == key)
+                        else if (ZugaraStatusPackReelL3.FixZugara[2] == key)
                         {
                             // ??? --- ---
                             // ??? key ---
                             // ??? key key
-                            srideIndex = FixSride_X_O_O(key, ZugaraStatusPackReelCenter);
+                            srideIndex = FixSride_X_O_O(key, ZugaraStatusPackReelL2);
                             if (srideIndex == -1) srideIndex = 0;
                         }
                     }
                 }
                 else if (slotCore.oneGame.buttonCount == 2)
                 {
-                    if ((ZugaraStatusPackReelLeft.FixZugara[0] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == key))
+                    if ((ZugaraStatusPackReelL1.FixZugara[0] == key) && (ZugaraStatusPackReelL3.FixZugara[0] == key))
                     {
                         // key key key
                         // --- --- ---
                         // --- --- ---
-                        srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelCenter);
+                        srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL2);
                         if (srideIndex == -1) srideIndex = 0;
                     }
-                    else if ((ZugaraStatusPackReelLeft.FixZugara[0] == key) && (ZugaraStatusPackReelRight.FixZugara[2] == key))
+                    else if ((ZugaraStatusPackReelL1.FixZugara[0] == key) && (ZugaraStatusPackReelL3.FixZugara[2] == key))
                     {
                         // key --- ---
                         // --- key ---
                         // --- --- key
-                        srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelCenter);
+                        srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL2);
                         if (srideIndex == -1) srideIndex = 0;
                     }
-                    else if ((ZugaraStatusPackReelLeft.FixZugara[1] == key) && (ZugaraStatusPackReelRight.FixZugara[1] == key))
+                    else if ((ZugaraStatusPackReelL1.FixZugara[1] == key) && (ZugaraStatusPackReelL3.FixZugara[1] == key))
                     {
                         // --- --- ---
                         // key key key
                         // --- --- ---
-                        srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelCenter);
+                        srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL2);
                         if (srideIndex == -1) srideIndex = 0;
                     }
-                    else if ((ZugaraStatusPackReelLeft.FixZugara[2] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == key))
+                    else if ((ZugaraStatusPackReelL1.FixZugara[2] == key) && (ZugaraStatusPackReelL3.FixZugara[0] == key))
                     {
                         // --- --- key
                         // --- key ---
                         // key --- ---
-                        srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelCenter);
+                        srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL2);
                         if (srideIndex == -1) srideIndex = 0;
                     }
-                    else if ((ZugaraStatusPackReelLeft.FixZugara[2] == key) && (ZugaraStatusPackReelRight.FixZugara[2] == key))
+                    else if ((ZugaraStatusPackReelL1.FixZugara[2] == key) && (ZugaraStatusPackReelL3.FixZugara[2] == key))
                     {
                         // --- --- ---
                         // --- --- ---
                         // key key key
-                        srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelCenter);
+                        srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL2);
                         if (srideIndex == -1) srideIndex = 0;
                     }
 
@@ -1250,108 +1243,108 @@ public class LineScript : MonoBehaviour
                 key = "bell";
                 if (slotCore.oneGame.buttonCount == 0)
                 {
-                    srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelCenter);
+                    srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelL2);
                     if (srideIndex == -1) srideIndex = 0;
                 }
                 else if (slotCore.oneGame.buttonCount == 1)
                 {
-                    if (ZugaraStatusPackReelLeft.IsFix)
+                    if (ZugaraStatusPackReelL1.IsFix)
                     {
-                        if (ZugaraStatusPackReelLeft.FixZugara[0] == key)
+                        if (ZugaraStatusPackReelL1.FixZugara[0] == key)
                         {
                             // key key ???
                             // --- key ???
                             // --- --- ???
-                            srideIndex = FixSride_O_O_X(key, ZugaraStatusPackReelCenter);
+                            srideIndex = FixSride_O_O_X(key, ZugaraStatusPackReelL2);
                             if (srideIndex == -1) srideIndex = 0;
 
                         }
-                        else if (ZugaraStatusPackReelLeft.FixZugara[1] == key)
+                        else if (ZugaraStatusPackReelL1.FixZugara[1] == key)
                         {
                             // --- --- ???
                             // key key ???
                             // --- --- ???
-                            srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelCenter);
+                            srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL2);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (ZugaraStatusPackReelLeft.FixZugara[2] == key)
+                        else if (ZugaraStatusPackReelL1.FixZugara[2] == key)
                         {
                             // --- --- ???
                             // --- key ???
                             // key key ???
-                            srideIndex = FixSride_X_O_O(key, ZugaraStatusPackReelCenter);
+                            srideIndex = FixSride_X_O_O(key, ZugaraStatusPackReelL2);
                             if (srideIndex == -1) srideIndex = 0;
                         }
                     }
                     else
                     {
-                        if (ZugaraStatusPackReelRight.FixZugara[0] == key)
+                        if (ZugaraStatusPackReelL3.FixZugara[0] == key)
                         {
                             // ??? key key
                             // ??? key ---
                             // ??? --- ---
-                            srideIndex = FixSride_O_O_X(key, ZugaraStatusPackReelCenter);
+                            srideIndex = FixSride_O_O_X(key, ZugaraStatusPackReelL2);
                             if (srideIndex == -1) srideIndex = 0;
 
                         }
-                        else if (ZugaraStatusPackReelRight.FixZugara[1] == key)
+                        else if (ZugaraStatusPackReelL3.FixZugara[1] == key)
                         {
                             // ??? --- ---
                             // ??? key key
                             // ??? --- ---
-                            srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelCenter);
+                            srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL2);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (ZugaraStatusPackReelRight.FixZugara[2] == key)
+                        else if (ZugaraStatusPackReelL3.FixZugara[2] == key)
                         {
                             // ??? --- ---
                             // ??? key ---
                             // ??? key key
-                            srideIndex = FixSride_X_O_O(key, ZugaraStatusPackReelCenter);
+                            srideIndex = FixSride_X_O_O(key, ZugaraStatusPackReelL2);
                             if (srideIndex == -1) srideIndex = 0;
                         }
                     }
                 }
                 else if (slotCore.oneGame.buttonCount == 2)
                 {
-                    if ((ZugaraStatusPackReelLeft.FixZugara[0] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == key))
+                    if ((ZugaraStatusPackReelL1.FixZugara[0] == key) && (ZugaraStatusPackReelL3.FixZugara[0] == key))
                     {
                         // key key key
                         // --- --- ---
                         // --- --- ---
-                        srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelCenter);
+                        srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL2);
                         if (srideIndex == -1) srideIndex = 0;
                     }
-                    else if ((ZugaraStatusPackReelLeft.FixZugara[0] == key) && (ZugaraStatusPackReelRight.FixZugara[2] == key))
+                    else if ((ZugaraStatusPackReelL1.FixZugara[0] == key) && (ZugaraStatusPackReelL3.FixZugara[2] == key))
                     {
                         // key --- ---
                         // --- key ---
                         // --- --- key
-                        srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelCenter);
+                        srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL2);
                         if (srideIndex == -1) srideIndex = 0;
                     }
-                    else if ((ZugaraStatusPackReelLeft.FixZugara[1] == key) && (ZugaraStatusPackReelRight.FixZugara[1] == key))
+                    else if ((ZugaraStatusPackReelL1.FixZugara[1] == key) && (ZugaraStatusPackReelL3.FixZugara[1] == key))
                     {
                         // --- --- ---
                         // key key key
                         // --- --- ---
-                        srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelCenter);
+                        srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL2);
                         if (srideIndex == -1) srideIndex = 0;
                     }
-                    else if ((ZugaraStatusPackReelLeft.FixZugara[2] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == key))
+                    else if ((ZugaraStatusPackReelL1.FixZugara[2] == key) && (ZugaraStatusPackReelL3.FixZugara[0] == key))
                     {
                         // --- --- key
                         // --- key ---
                         // key --- ---
-                        srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelCenter);
+                        srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL2);
                         if (srideIndex == -1) srideIndex = 0;
                     }
-                    else if ((ZugaraStatusPackReelLeft.FixZugara[2] == key) && (ZugaraStatusPackReelRight.FixZugara[2] == key))
+                    else if ((ZugaraStatusPackReelL1.FixZugara[2] == key) && (ZugaraStatusPackReelL3.FixZugara[2] == key))
                     {
                         // --- --- ---
                         // --- --- ---
                         // key key key
-                        srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelCenter);
+                        srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL2);
                         if (srideIndex == -1) srideIndex = 0;
                     }
 
@@ -1361,108 +1354,108 @@ public class LineScript : MonoBehaviour
                 key = "suika";
                 if (slotCore.oneGame.buttonCount == 0)
                 {
-                    srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelCenter);
+                    srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelL2);
                     if (srideIndex == -1) srideIndex = 0;
                 }
                 else if (slotCore.oneGame.buttonCount == 1)
                 {
-                    if (ZugaraStatusPackReelLeft.IsFix)
+                    if (ZugaraStatusPackReelL1.IsFix)
                     {
-                        if (ZugaraStatusPackReelLeft.FixZugara[0] == key)
+                        if (ZugaraStatusPackReelL1.FixZugara[0] == key)
                         {
                             // key key ???
                             // --- key ???
                             // --- --- ???
-                            srideIndex = FixSride_O_O_X(key, ZugaraStatusPackReelCenter);
+                            srideIndex = FixSride_O_O_X(key, ZugaraStatusPackReelL2);
                             if (srideIndex == -1) srideIndex = 0;
 
                         }
-                        else if (ZugaraStatusPackReelLeft.FixZugara[1] == key)
+                        else if (ZugaraStatusPackReelL1.FixZugara[1] == key)
                         {
                             // --- --- ???
                             // key key ???
                             // --- --- ???
-                            srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelCenter);
+                            srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL2);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (ZugaraStatusPackReelLeft.FixZugara[2] == key)
+                        else if (ZugaraStatusPackReelL1.FixZugara[2] == key)
                         {
                             // --- --- ???
                             // --- key ???
                             // key key ???
-                            srideIndex = FixSride_X_O_O(key, ZugaraStatusPackReelCenter);
+                            srideIndex = FixSride_X_O_O(key, ZugaraStatusPackReelL2);
                             if (srideIndex == -1) srideIndex = 0;
                         }
                     }
                     else
                     {
-                        if (ZugaraStatusPackReelRight.FixZugara[0] == key)
+                        if (ZugaraStatusPackReelL3.FixZugara[0] == key)
                         {
                             // ??? key key
                             // ??? key ---
                             // ??? --- ---
-                            srideIndex = FixSride_O_O_X(key, ZugaraStatusPackReelCenter);
+                            srideIndex = FixSride_O_O_X(key, ZugaraStatusPackReelL2);
                             if (srideIndex == -1) srideIndex = 0;
 
                         }
-                        else if (ZugaraStatusPackReelRight.FixZugara[1] == key)
+                        else if (ZugaraStatusPackReelL3.FixZugara[1] == key)
                         {
                             // ??? --- ---
                             // ??? key key
                             // ??? --- ---
-                            srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelCenter);
+                            srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL2);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (ZugaraStatusPackReelRight.FixZugara[2] == key)
+                        else if (ZugaraStatusPackReelL3.FixZugara[2] == key)
                         {
                             // ??? --- ---
                             // ??? key ---
                             // ??? key key
-                            srideIndex = FixSride_X_O_O(key, ZugaraStatusPackReelCenter);
+                            srideIndex = FixSride_X_O_O(key, ZugaraStatusPackReelL2);
                             if (srideIndex == -1) srideIndex = 0;
                         }
                     }
                 }
                 else if (slotCore.oneGame.buttonCount == 2)
                 {
-                    if ((ZugaraStatusPackReelLeft.FixZugara[0] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == key))
+                    if ((ZugaraStatusPackReelL1.FixZugara[0] == key) && (ZugaraStatusPackReelL3.FixZugara[0] == key))
                     {
                         // key key key
                         // --- --- ---
                         // --- --- ---
-                        srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelCenter);
+                        srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL2);
                         if (srideIndex == -1) srideIndex = 0;
                     }
-                    else if ((ZugaraStatusPackReelLeft.FixZugara[0] == key) && (ZugaraStatusPackReelRight.FixZugara[2] == key))
+                    else if ((ZugaraStatusPackReelL1.FixZugara[0] == key) && (ZugaraStatusPackReelL3.FixZugara[2] == key))
                     {
                         // key --- ---
                         // --- key ---
                         // --- --- key
-                        srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelCenter);
+                        srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL2);
                         if (srideIndex == -1) srideIndex = 0;
                     }
-                    else if ((ZugaraStatusPackReelLeft.FixZugara[1] == key) && (ZugaraStatusPackReelRight.FixZugara[1] == key))
+                    else if ((ZugaraStatusPackReelL1.FixZugara[1] == key) && (ZugaraStatusPackReelL3.FixZugara[1] == key))
                     {
                         // --- --- ---
                         // key key key
                         // --- --- ---
-                        srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelCenter);
+                        srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL2);
                         if (srideIndex == -1) srideIndex = 0;
                     }
-                    else if ((ZugaraStatusPackReelLeft.FixZugara[2] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == key))
+                    else if ((ZugaraStatusPackReelL1.FixZugara[2] == key) && (ZugaraStatusPackReelL3.FixZugara[0] == key))
                     {
                         // --- --- key
                         // --- key ---
                         // key --- ---
-                        srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelCenter);
+                        srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL2);
                         if (srideIndex == -1) srideIndex = 0;
                     }
-                    else if ((ZugaraStatusPackReelLeft.FixZugara[2] == key) && (ZugaraStatusPackReelRight.FixZugara[2] == key))
+                    else if ((ZugaraStatusPackReelL1.FixZugara[2] == key) && (ZugaraStatusPackReelL3.FixZugara[2] == key))
                     {
                         // --- --- ---
                         // --- --- ---
                         // key key key
-                        srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelCenter);
+                        srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL2);
                         if (srideIndex == -1) srideIndex = 0;
                     }
 
@@ -1470,18 +1463,18 @@ public class LineScript : MonoBehaviour
                 break;
         }
 
-        if (CheckBadRoleHit(1, srideIndex, ZugaraStatusPackReelCenter))
+        if (CheckBadRoleHit(1, srideIndex, ZugaraStatusPackReelL2))
         {
-            srideIndex = GetSrideBadRoleHit(1, ZugaraStatusPackReelCenter);
+            srideIndex = GetSrideBadRoleHit(1, ZugaraStatusPackReelL2);
             Debug.Log($"GetSrideBadRoleHit L2 {srideIndex} ");
         }
 
-        ZugaraStatusPackReelCenter.Fix(srideIndex);
+        ZugaraStatusPackReelL2.Fix(srideIndex);
     }
 
     private void StopRollOneRight()
     {
-        if (ZugaraStatusPackReelRight.IsFix) return;
+        if (ZugaraStatusPackReelL3.IsFix) return;
 
         var srideIndex = 0;
         var key = "";
@@ -1494,62 +1487,62 @@ public class LineScript : MonoBehaviour
                         key = "r7";
                         if (slotCore.oneGame.buttonCount == 0)
                         {
-                            srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelRight);
+                            srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelL3);
                             if (srideIndex == -1) srideIndex = 0;
                         }
                         else if (slotCore.oneGame.buttonCount == 1)
                         {
-                            if (ZugaraStatusPackReelCenter.IsFix)
+                            if (ZugaraStatusPackReelL2.IsFix)
                             {
-                                if (ZugaraStatusPackReelCenter.FixZugara[0] == key)
+                                if (ZugaraStatusPackReelL2.FixZugara[0] == key)
                                 {
                                     // ??? key key
                                     // ??? --- ---
                                     // ??? --- ---
-                                    srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelRight);
+                                    srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL3);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
-                                else if (ZugaraStatusPackReelCenter.FixZugara[1] == key)
+                                else if (ZugaraStatusPackReelL2.FixZugara[1] == key)
                                 {
                                     // ??? --- key
                                     // ??? key key
                                     // ??? --- key
-                                    srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelRight);
+                                    srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelL3);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
-                                else if (ZugaraStatusPackReelCenter.FixZugara[2] == key)
+                                else if (ZugaraStatusPackReelL2.FixZugara[2] == key)
                                 {
                                     // ??? --- ---
                                     // ??? --- ---
                                     // ??? key key
-                                    srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelRight);
+                                    srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL3);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
                             }
                             else
                             {
-                                if (ZugaraStatusPackReelLeft.FixZugara[0] == key)
+                                if (ZugaraStatusPackReelL1.FixZugara[0] == key)
                                 {
                                     // key ??? key
                                     // --- ??? ---
                                     // --- ??? key
-                                    srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelRight);
+                                    srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelL3);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
-                                else if (ZugaraStatusPackReelLeft.FixZugara[1] == key)
+                                else if (ZugaraStatusPackReelL1.FixZugara[1] == key)
                                 {
                                     // --- ??? ---
                                     // key ??? key
                                     // --- ??? ---
-                                    srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelRight);
+                                    srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL3);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
-                                else if (ZugaraStatusPackReelCenter.FixZugara[2] == key)
+                                else if (ZugaraStatusPackReelL2.FixZugara[2] == key)
                                 {
                                     // --- ??? key
                                     // --- ??? ---
                                     // key ??? key
-                                    srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelRight);
+                                    srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelL3);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
 
@@ -1557,44 +1550,44 @@ public class LineScript : MonoBehaviour
                         }
                         else if (slotCore.oneGame.buttonCount == 2)
                         {
-                            if ((ZugaraStatusPackReelLeft.FixZugara[0] == key) && (ZugaraStatusPackReelCenter.FixZugara[0] == key))
+                            if ((ZugaraStatusPackReelL1.FixZugara[0] == key) && (ZugaraStatusPackReelL2.FixZugara[0] == key))
                             {
                                 // key key key
                                 // --- --- ---
                                 // --- --- ---
-                                srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelRight);
+                                srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL3);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
-                            else if ((ZugaraStatusPackReelLeft.FixZugara[0] == key) && (ZugaraStatusPackReelCenter.FixZugara[1] == key))
+                            else if ((ZugaraStatusPackReelL1.FixZugara[0] == key) && (ZugaraStatusPackReelL2.FixZugara[1] == key))
                             {
                                 // key --- ---
                                 // --- key ---
                                 // --- --- key
-                                srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelRight); // todo : 不具合ありそう、赤7がそろわないことがあった、はじいてるかも
+                                srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL3); // todo : 不具合ありそう、赤7がそろわないことがあった、はじいてるかも
                                 if (srideIndex == -1) srideIndex = 0;
                             }
-                            else if ((ZugaraStatusPackReelLeft.FixZugara[1] == key) && (ZugaraStatusPackReelCenter.FixZugara[1] == key))
+                            else if ((ZugaraStatusPackReelL1.FixZugara[1] == key) && (ZugaraStatusPackReelL2.FixZugara[1] == key))
                             {
                                 // --- --- ---
                                 // key key key
                                 // --- --- ---
-                                srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelRight);
+                                srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL3);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
-                            else if ((ZugaraStatusPackReelLeft.FixZugara[2] == key) && (ZugaraStatusPackReelCenter.FixZugara[1] == key))
+                            else if ((ZugaraStatusPackReelL1.FixZugara[2] == key) && (ZugaraStatusPackReelL2.FixZugara[1] == key))
                             {
                                 // --- --- key
                                 // --- key ---
                                 // key --- ---
-                                srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelRight);
+                                srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL3);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
-                            else if ((ZugaraStatusPackReelLeft.FixZugara[2] == key) && (ZugaraStatusPackReelCenter.FixZugara[2] == key))
+                            else if ((ZugaraStatusPackReelL1.FixZugara[2] == key) && (ZugaraStatusPackReelL2.FixZugara[2] == key))
                             {
                                 // --- --- ---
                                 // --- --- ---
                                 // key key key
-                                srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelRight);
+                                srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL3);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
                         }
@@ -1603,62 +1596,62 @@ public class LineScript : MonoBehaviour
                         key = "b7";
                         if (slotCore.oneGame.buttonCount == 0)
                         {
-                            srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelRight);
+                            srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelL3);
                             if (srideIndex == -1) srideIndex = 0;
                         }
                         else if (slotCore.oneGame.buttonCount == 1)
                         {
-                            if (ZugaraStatusPackReelCenter.IsFix)
+                            if (ZugaraStatusPackReelL2.IsFix)
                             {
-                                if (ZugaraStatusPackReelCenter.FixZugara[0] == key)
+                                if (ZugaraStatusPackReelL2.FixZugara[0] == key)
                                 {
                                     // ??? key key
                                     // ??? --- ---
                                     // ??? --- ---
-                                    srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelRight);
+                                    srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL3);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
-                                else if (ZugaraStatusPackReelCenter.FixZugara[1] == key)
+                                else if (ZugaraStatusPackReelL2.FixZugara[1] == key)
                                 {
                                     // ??? --- key
                                     // ??? key key
                                     // ??? --- key
-                                    srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelRight);
+                                    srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelL3);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
-                                else if (ZugaraStatusPackReelCenter.FixZugara[2] == key)
+                                else if (ZugaraStatusPackReelL2.FixZugara[2] == key)
                                 {
                                     // ??? --- ---
                                     // ??? --- ---
                                     // ??? key key
-                                    srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelRight);
+                                    srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL3);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
                             }
                             else
                             {
-                                if (ZugaraStatusPackReelLeft.FixZugara[0] == key)
+                                if (ZugaraStatusPackReelL1.FixZugara[0] == key)
                                 {
                                     // key ??? key
                                     // --- ??? ---
                                     // --- ??? key
-                                    srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelRight);
+                                    srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelL3);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
-                                else if (ZugaraStatusPackReelLeft.FixZugara[1] == key)
+                                else if (ZugaraStatusPackReelL1.FixZugara[1] == key)
                                 {
                                     // --- ??? ---
                                     // key ??? key
                                     // --- ??? ---
-                                    srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelRight);
+                                    srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL3);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
-                                else if (ZugaraStatusPackReelCenter.FixZugara[2] == key)
+                                else if (ZugaraStatusPackReelL2.FixZugara[2] == key)
                                 {
                                     // --- ??? key
                                     // --- ??? ---
                                     // key ??? key
-                                    srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelRight);
+                                    srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelL3);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
 
@@ -1666,44 +1659,44 @@ public class LineScript : MonoBehaviour
                         }
                         else if (slotCore.oneGame.buttonCount == 2)
                         {
-                            if ((ZugaraStatusPackReelLeft.FixZugara[0] == key) && (ZugaraStatusPackReelCenter.FixZugara[0] == key))
+                            if ((ZugaraStatusPackReelL1.FixZugara[0] == key) && (ZugaraStatusPackReelL2.FixZugara[0] == key))
                             {
                                 // key key key
                                 // --- --- ---
                                 // --- --- ---
-                                srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelRight);
+                                srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL3);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
-                            else if ((ZugaraStatusPackReelLeft.FixZugara[0] == key) && (ZugaraStatusPackReelCenter.FixZugara[1] == key))
+                            else if ((ZugaraStatusPackReelL1.FixZugara[0] == key) && (ZugaraStatusPackReelL2.FixZugara[1] == key))
                             {
                                 // key --- ---
                                 // --- key ---
                                 // --- --- key
-                                srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelRight);
+                                srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL3);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
-                            else if ((ZugaraStatusPackReelLeft.FixZugara[1] == key) && (ZugaraStatusPackReelCenter.FixZugara[1] == key))
+                            else if ((ZugaraStatusPackReelL1.FixZugara[1] == key) && (ZugaraStatusPackReelL2.FixZugara[1] == key))
                             {
                                 // --- --- ---
                                 // key key key
                                 // --- --- ---
-                                srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelRight);
+                                srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL3);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
-                            else if ((ZugaraStatusPackReelLeft.FixZugara[2] == key) && (ZugaraStatusPackReelCenter.FixZugara[1] == key))
+                            else if ((ZugaraStatusPackReelL1.FixZugara[2] == key) && (ZugaraStatusPackReelL2.FixZugara[1] == key))
                             {
                                 // --- --- key
                                 // --- key ---
                                 // key --- ---
-                                srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelRight);
+                                srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL3);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
-                            else if ((ZugaraStatusPackReelLeft.FixZugara[2] == key) && (ZugaraStatusPackReelCenter.FixZugara[2] == key))
+                            else if ((ZugaraStatusPackReelL1.FixZugara[2] == key) && (ZugaraStatusPackReelL2.FixZugara[2] == key))
                             {
                                 // --- --- ---
                                 // --- --- ---
                                 // key key key
-                                srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelRight);
+                                srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL3);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
                         }
@@ -1712,62 +1705,62 @@ public class LineScript : MonoBehaviour
                         key = "bar";
                         if (slotCore.oneGame.buttonCount == 0)
                         {
-                            srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelRight);
+                            srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelL3);
                             if (srideIndex == -1) srideIndex = 0;
                         }
                         else if (slotCore.oneGame.buttonCount == 1)
                         {
-                            if (ZugaraStatusPackReelCenter.IsFix)
+                            if (ZugaraStatusPackReelL2.IsFix)
                             {
-                                if (ZugaraStatusPackReelCenter.FixZugara[0] == "r7")
+                                if (ZugaraStatusPackReelL2.FixZugara[0] == "r7")
                                 {
                                     // ??? key key
                                     // ??? --- ---
                                     // ??? --- ---
-                                    srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelRight);
+                                    srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL3);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
-                                else if (ZugaraStatusPackReelCenter.FixZugara[1] == "r7")
+                                else if (ZugaraStatusPackReelL2.FixZugara[1] == "r7")
                                 {
                                     // ??? --- key
                                     // ??? key key
                                     // ??? --- key
-                                    srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelRight);
+                                    srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelL3);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
-                                else if (ZugaraStatusPackReelCenter.FixZugara[2] == "r7")
+                                else if (ZugaraStatusPackReelL2.FixZugara[2] == "r7")
                                 {
                                     // ??? --- ---
                                     // ??? --- ---
                                     // ??? key key
-                                    srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelRight);
+                                    srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL3);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
                             }
                             else
                             {
-                                if (ZugaraStatusPackReelLeft.FixZugara[0] == "r7")
+                                if (ZugaraStatusPackReelL1.FixZugara[0] == "r7")
                                 {
                                     // key ??? key
                                     // --- ??? ---
                                     // --- ??? key
-                                    srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelRight);
+                                    srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelL3);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
-                                else if (ZugaraStatusPackReelLeft.FixZugara[1] == "r7")
+                                else if (ZugaraStatusPackReelL1.FixZugara[1] == "r7")
                                 {
                                     // --- ??? ---
                                     // key ??? key
                                     // --- ??? ---
-                                    srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelRight);
+                                    srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL3);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
-                                else if (ZugaraStatusPackReelCenter.FixZugara[2] == "r7")
+                                else if (ZugaraStatusPackReelL2.FixZugara[2] == "r7")
                                 {
                                     // --- ??? key
                                     // --- ??? ---
                                     // key ??? key
-                                    srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelRight);
+                                    srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelL3);
                                     if (srideIndex == -1) srideIndex = 0;
                                 }
 
@@ -1775,44 +1768,44 @@ public class LineScript : MonoBehaviour
                         }
                         else if (slotCore.oneGame.buttonCount == 2)
                         {
-                            if ((ZugaraStatusPackReelLeft.FixZugara[0] == "r7") && (ZugaraStatusPackReelCenter.FixZugara[0] == "r7"))
+                            if ((ZugaraStatusPackReelL1.FixZugara[0] == "r7") && (ZugaraStatusPackReelL2.FixZugara[0] == "r7"))
                             {
                                 // key key key
                                 // --- --- ---
                                 // --- --- ---
-                                srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelRight);
+                                srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL3);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
-                            else if ((ZugaraStatusPackReelLeft.FixZugara[0] == "r7") && (ZugaraStatusPackReelCenter.FixZugara[1] == "r7"))
+                            else if ((ZugaraStatusPackReelL1.FixZugara[0] == "r7") && (ZugaraStatusPackReelL2.FixZugara[1] == "r7"))
                             {
                                 // key --- ---
                                 // --- key ---
                                 // --- --- key
-                                srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelRight);
+                                srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL3);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
-                            else if ((ZugaraStatusPackReelLeft.FixZugara[1] == "r7") && (ZugaraStatusPackReelCenter.FixZugara[1] == "r7"))
+                            else if ((ZugaraStatusPackReelL1.FixZugara[1] == "r7") && (ZugaraStatusPackReelL2.FixZugara[1] == "r7"))
                             {
                                 // --- --- ---
                                 // key key key
                                 // --- --- ---
-                                srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelRight);
+                                srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL3);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
-                            else if ((ZugaraStatusPackReelLeft.FixZugara[2] == "r7") && (ZugaraStatusPackReelCenter.FixZugara[1] == "r7"))
+                            else if ((ZugaraStatusPackReelL1.FixZugara[2] == "r7") && (ZugaraStatusPackReelL2.FixZugara[1] == "r7"))
                             {
                                 // --- --- key
                                 // --- key ---
                                 // key --- ---
-                                srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelRight);
+                                srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL3);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
-                            else if ((ZugaraStatusPackReelLeft.FixZugara[2] == "r7") && (ZugaraStatusPackReelCenter.FixZugara[2] == "r7"))
+                            else if ((ZugaraStatusPackReelL1.FixZugara[2] == "r7") && (ZugaraStatusPackReelL2.FixZugara[2] == "r7"))
                             {
                                 // --- --- ---
                                 // --- --- ---
                                 // key key key
-                                srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelRight);
+                                srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL3);
                                 if (srideIndex == -1) srideIndex = 0;
                             }
                         }
@@ -1823,62 +1816,62 @@ public class LineScript : MonoBehaviour
                 key = "rep";
                 if (slotCore.oneGame.buttonCount == 0)
                 {
-                    srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelRight);
+                    srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelL3);
                     if (srideIndex == -1) srideIndex = 0;
                 }
                 else if (slotCore.oneGame.buttonCount == 1)
                 {
-                    if (ZugaraStatusPackReelCenter.IsFix)
+                    if (ZugaraStatusPackReelL2.IsFix)
                     {
-                        if (ZugaraStatusPackReelCenter.FixZugara[0] == key)
+                        if (ZugaraStatusPackReelL2.FixZugara[0] == key)
                         {
                             // ??? key key
                             // ??? --- ---
                             // ??? --- ---
-                            srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelRight);
+                            srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL3);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (ZugaraStatusPackReelCenter.FixZugara[1] == key)
+                        else if (ZugaraStatusPackReelL2.FixZugara[1] == key)
                         {
                             // ??? --- key
                             // ??? key key
                             // ??? --- key
-                            srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelRight);
+                            srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelL3);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (ZugaraStatusPackReelCenter.FixZugara[2] == key)
+                        else if (ZugaraStatusPackReelL2.FixZugara[2] == key)
                         {
                             // ??? --- ---
                             // ??? --- ---
                             // ??? key key
-                            srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelRight);
+                            srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL3);
                             if (srideIndex == -1) srideIndex = 0;
                         }
                     }
                     else
                     {
-                        if (ZugaraStatusPackReelLeft.FixZugara[0] == key)
+                        if (ZugaraStatusPackReelL1.FixZugara[0] == key)
                         {
                             // key ??? key
                             // --- ??? ---
                             // --- ??? key
-                            srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelRight);
+                            srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelL3);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (ZugaraStatusPackReelLeft.FixZugara[1] == key)
+                        else if (ZugaraStatusPackReelL1.FixZugara[1] == key)
                         {
                             // --- ??? ---
                             // key ??? key
                             // --- ??? ---
-                            srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelRight);
+                            srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL3);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (ZugaraStatusPackReelCenter.FixZugara[2] == key)
+                        else if (ZugaraStatusPackReelL2.FixZugara[2] == key)
                         {
                             // --- ??? key
                             // --- ??? ---
                             // key ??? key
-                            srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelRight);
+                            srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelL3);
                             if (srideIndex == -1) srideIndex = 0;
                         }
 
@@ -1886,44 +1879,44 @@ public class LineScript : MonoBehaviour
                 }
                 else if (slotCore.oneGame.buttonCount == 2)
                 {
-                    if ((ZugaraStatusPackReelLeft.FixZugara[0] == key) && (ZugaraStatusPackReelCenter.FixZugara[0] == key))
+                    if ((ZugaraStatusPackReelL1.FixZugara[0] == key) && (ZugaraStatusPackReelL2.FixZugara[0] == key))
                     {
                         // key key key
                         // --- --- ---
                         // --- --- ---
-                        srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelRight);
+                        srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL3);
                         if (srideIndex == -1) srideIndex = 0;
                     }
-                    else if ((ZugaraStatusPackReelLeft.FixZugara[0] == key) && (ZugaraStatusPackReelCenter.FixZugara[1] == key))
+                    else if ((ZugaraStatusPackReelL1.FixZugara[0] == key) && (ZugaraStatusPackReelL2.FixZugara[1] == key))
                     {
                         // key --- ---
                         // --- key ---
                         // --- --- key
-                        srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelRight);
+                        srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL3);
                         if (srideIndex == -1) srideIndex = 0;
                     }
-                    else if ((ZugaraStatusPackReelLeft.FixZugara[1] == key) && (ZugaraStatusPackReelCenter.FixZugara[1] == key))
+                    else if ((ZugaraStatusPackReelL1.FixZugara[1] == key) && (ZugaraStatusPackReelL2.FixZugara[1] == key))
                     {
                         // --- --- ---
                         // key key key
                         // --- --- ---
-                        srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelRight);
+                        srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL3);
                         if (srideIndex == -1) srideIndex = 0;
                     }
-                    else if ((ZugaraStatusPackReelLeft.FixZugara[2] == key) && (ZugaraStatusPackReelCenter.FixZugara[1] == key))
+                    else if ((ZugaraStatusPackReelL1.FixZugara[2] == key) && (ZugaraStatusPackReelL2.FixZugara[1] == key))
                     {
                         // --- --- key
                         // --- key ---
                         // key --- ---
-                        srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelRight);
+                        srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL3);
                         if (srideIndex == -1) srideIndex = 0;
                     }
-                    else if ((ZugaraStatusPackReelLeft.FixZugara[2] == key) && (ZugaraStatusPackReelCenter.FixZugara[2] == key))
+                    else if ((ZugaraStatusPackReelL1.FixZugara[2] == key) && (ZugaraStatusPackReelL2.FixZugara[2] == key))
                     {
                         // --- --- ---
                         // --- --- ---
                         // key key key
-                        srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelRight);
+                        srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL3);
                         if (srideIndex == -1) srideIndex = 0;
                     }
                 }
@@ -1932,62 +1925,62 @@ public class LineScript : MonoBehaviour
                 key = "bell";
                 if (slotCore.oneGame.buttonCount == 0)
                 {
-                    srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelRight);
+                    srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelL3);
                     if (srideIndex == -1) srideIndex = 0;
                 }
                 else if (slotCore.oneGame.buttonCount == 1)
                 {
-                    if (ZugaraStatusPackReelCenter.IsFix)
+                    if (ZugaraStatusPackReelL2.IsFix)
                     {
-                        if (ZugaraStatusPackReelCenter.FixZugara[0] == key)
+                        if (ZugaraStatusPackReelL2.FixZugara[0] == key)
                         {
                             // ??? key key
                             // ??? --- ---
                             // ??? --- ---
-                            srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelRight);
+                            srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL3);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (ZugaraStatusPackReelCenter.FixZugara[1] == key)
+                        else if (ZugaraStatusPackReelL2.FixZugara[1] == key)
                         {
                             // ??? --- key
                             // ??? key key
                             // ??? --- key
-                            srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelRight);
+                            srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelL3);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (ZugaraStatusPackReelCenter.FixZugara[2] == key)
+                        else if (ZugaraStatusPackReelL2.FixZugara[2] == key)
                         {
                             // ??? --- ---
                             // ??? --- ---
                             // ??? key key
-                            srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelRight);
+                            srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL3);
                             if (srideIndex == -1) srideIndex = 0;
                         }
                     }
                     else
                     {
-                        if (ZugaraStatusPackReelLeft.FixZugara[0] == key)
+                        if (ZugaraStatusPackReelL1.FixZugara[0] == key)
                         {
                             // key ??? key
                             // --- ??? ---
                             // --- ??? key
-                            srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelRight);
+                            srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelL3);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (ZugaraStatusPackReelLeft.FixZugara[1] == key)
+                        else if (ZugaraStatusPackReelL1.FixZugara[1] == key)
                         {
                             // --- ??? ---
                             // key ??? key
                             // --- ??? ---
-                            srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelRight);
+                            srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL3);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (ZugaraStatusPackReelCenter.FixZugara[2] == key)
+                        else if (ZugaraStatusPackReelL2.FixZugara[2] == key)
                         {
                             // --- ??? key
                             // --- ??? ---
                             // key ??? key
-                            srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelRight);
+                            srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelL3);
                             if (srideIndex == -1) srideIndex = 0;
                         }
 
@@ -1995,44 +1988,44 @@ public class LineScript : MonoBehaviour
                 }
                 else if (slotCore.oneGame.buttonCount == 2)
                 {
-                    if ((ZugaraStatusPackReelLeft.FixZugara[0] == key) && (ZugaraStatusPackReelCenter.FixZugara[0] == key))
+                    if ((ZugaraStatusPackReelL1.FixZugara[0] == key) && (ZugaraStatusPackReelL2.FixZugara[0] == key))
                     {
                         // key key key
                         // --- --- ---
                         // --- --- ---
-                        srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelRight);
+                        srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL3);
                         if (srideIndex == -1) srideIndex = 0;
                     }
-                    else if ((ZugaraStatusPackReelLeft.FixZugara[0] == key) && (ZugaraStatusPackReelCenter.FixZugara[1] == key))
+                    else if ((ZugaraStatusPackReelL1.FixZugara[0] == key) && (ZugaraStatusPackReelL2.FixZugara[1] == key))
                     {
                         // key --- ---
                         // --- key ---
                         // --- --- key
-                        srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelRight);
+                        srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL3);
                         if (srideIndex == -1) srideIndex = 0;
                     }
-                    else if ((ZugaraStatusPackReelLeft.FixZugara[1] == key) && (ZugaraStatusPackReelCenter.FixZugara[1] == key))
+                    else if ((ZugaraStatusPackReelL1.FixZugara[1] == key) && (ZugaraStatusPackReelL2.FixZugara[1] == key))
                     {
                         // --- --- ---
                         // key key key
                         // --- --- ---
-                        srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelRight);
+                        srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL3);
                         if (srideIndex == -1) srideIndex = 0;
                     }
-                    else if ((ZugaraStatusPackReelLeft.FixZugara[2] == key) && (ZugaraStatusPackReelCenter.FixZugara[1] == key))
+                    else if ((ZugaraStatusPackReelL1.FixZugara[2] == key) && (ZugaraStatusPackReelL2.FixZugara[1] == key))
                     {
                         // --- --- key
                         // --- key ---
                         // key --- ---
-                        srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelRight);
+                        srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL3);
                         if (srideIndex == -1) srideIndex = 0;
                     }
-                    else if ((ZugaraStatusPackReelLeft.FixZugara[2] == key) && (ZugaraStatusPackReelCenter.FixZugara[2] == key))
+                    else if ((ZugaraStatusPackReelL1.FixZugara[2] == key) && (ZugaraStatusPackReelL2.FixZugara[2] == key))
                     {
                         // --- --- ---
                         // --- --- ---
                         // key key key
-                        srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelRight);
+                        srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL3);
                         if (srideIndex == -1) srideIndex = 0;
                     }
                 }
@@ -2041,62 +2034,62 @@ public class LineScript : MonoBehaviour
                 key = "suika";
                 if (slotCore.oneGame.buttonCount == 0)
                 {
-                    srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelRight);
+                    srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelL3);
                     if (srideIndex == -1) srideIndex = 0;
                 }
                 else if (slotCore.oneGame.buttonCount == 1)
                 {
-                    if (ZugaraStatusPackReelCenter.IsFix)
+                    if (ZugaraStatusPackReelL2.IsFix)
                     {
-                        if (ZugaraStatusPackReelCenter.FixZugara[0] == key)
+                        if (ZugaraStatusPackReelL2.FixZugara[0] == key)
                         {
                             // ??? key key
                             // ??? --- ---
                             // ??? --- ---
-                            srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelRight);
+                            srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL3);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (ZugaraStatusPackReelCenter.FixZugara[1] == key)
+                        else if (ZugaraStatusPackReelL2.FixZugara[1] == key)
                         {
                             // ??? --- key
                             // ??? key key
                             // ??? --- key
-                            srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelRight);
+                            srideIndex = FixSride_O_O_O(key, ZugaraStatusPackReelL3);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (ZugaraStatusPackReelCenter.FixZugara[2] == key)
+                        else if (ZugaraStatusPackReelL2.FixZugara[2] == key)
                         {
                             // ??? --- ---
                             // ??? --- ---
                             // ??? key key
-                            srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelRight);
+                            srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL3);
                             if (srideIndex == -1) srideIndex = 0;
                         }
                     }
                     else
                     {
-                        if (ZugaraStatusPackReelLeft.FixZugara[0] == key)
+                        if (ZugaraStatusPackReelL1.FixZugara[0] == key)
                         {
                             // key ??? key
                             // --- ??? ---
                             // --- ??? key
-                            srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelRight);
+                            srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelL3);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (ZugaraStatusPackReelLeft.FixZugara[1] == key)
+                        else if (ZugaraStatusPackReelL1.FixZugara[1] == key)
                         {
                             // --- ??? ---
                             // key ??? key
                             // --- ??? ---
-                            srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelRight);
+                            srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL3);
                             if (srideIndex == -1) srideIndex = 0;
                         }
-                        else if (ZugaraStatusPackReelCenter.FixZugara[2] == key)
+                        else if (ZugaraStatusPackReelL2.FixZugara[2] == key)
                         {
                             // --- ??? key
                             // --- ??? ---
                             // key ??? key
-                            srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelRight);
+                            srideIndex = FixSride_O_X_O(key, ZugaraStatusPackReelL3);
                             if (srideIndex == -1) srideIndex = 0;
                         }
 
@@ -2104,66 +2097,65 @@ public class LineScript : MonoBehaviour
                 }
                 else if (slotCore.oneGame.buttonCount == 2)
                 {
-                    if ((ZugaraStatusPackReelLeft.FixZugara[0] == key) && (ZugaraStatusPackReelCenter.FixZugara[0] == key))
+                    if ((ZugaraStatusPackReelL1.FixZugara[0] == key) && (ZugaraStatusPackReelL2.FixZugara[0] == key))
                     {
                         // key key key
                         // --- --- ---
                         // --- --- ---
-                        srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelRight);
+                        srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL3);
                         if (srideIndex == -1) srideIndex = 0;
                     }
-                    else if ((ZugaraStatusPackReelLeft.FixZugara[0] == key) && (ZugaraStatusPackReelCenter.FixZugara[1] == key))
+                    else if ((ZugaraStatusPackReelL1.FixZugara[0] == key) && (ZugaraStatusPackReelL2.FixZugara[1] == key))
                     {
                         // key --- ---
                         // --- key ---
                         // --- --- key
-                        srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelRight);
+                        srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL3);
                         if (srideIndex == -1) srideIndex = 0;
                     }
-                    else if ((ZugaraStatusPackReelLeft.FixZugara[1] == key) && (ZugaraStatusPackReelCenter.FixZugara[1] == key))
+                    else if ((ZugaraStatusPackReelL1.FixZugara[1] == key) && (ZugaraStatusPackReelL2.FixZugara[1] == key))
                     {
                         // --- --- ---
                         // key key key
                         // --- --- ---
-                        srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelRight);
+                        srideIndex = FixSride_X_O_X(key, ZugaraStatusPackReelL3);
                         if (srideIndex == -1) srideIndex = 0;
                     }
-                    else if ((ZugaraStatusPackReelLeft.FixZugara[2] == key) && (ZugaraStatusPackReelCenter.FixZugara[1] == key))
+                    else if ((ZugaraStatusPackReelL1.FixZugara[2] == key) && (ZugaraStatusPackReelL2.FixZugara[1] == key))
                     {
                         // --- --- key
                         // --- key ---
                         // key --- ---
-                        srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelRight);
+                        srideIndex = FixSride_O_X_X(key, ZugaraStatusPackReelL3);
                         if (srideIndex == -1) srideIndex = 0;
                     }
-                    else if ((ZugaraStatusPackReelLeft.FixZugara[2] == key) && (ZugaraStatusPackReelCenter.FixZugara[2] == key))
+                    else if ((ZugaraStatusPackReelL1.FixZugara[2] == key) && (ZugaraStatusPackReelL2.FixZugara[2] == key))
                     {
                         // --- --- ---
                         // --- --- ---
                         // key key key
-                        srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelRight);
+                        srideIndex = FixSride_X_X_O(key, ZugaraStatusPackReelL3);
                         if (srideIndex == -1) srideIndex = 0;
                     }
                 }
                 break;
         }
 
-        if (CheckBadRoleHit(2, srideIndex, ZugaraStatusPackReelRight))
+        if (CheckBadRoleHit(2, srideIndex, ZugaraStatusPackReelL3))
         {
-            srideIndex = GetSrideBadRoleHit(2, ZugaraStatusPackReelRight);
+            srideIndex = GetSrideBadRoleHit(2, ZugaraStatusPackReelL3);
             Debug.Log($"GetSrideBadRoleHit L3 {srideIndex} ");
         }
 
-        ZugaraStatusPackReelRight.Fix(srideIndex);
+        ZugaraStatusPackReelL3.Fix(srideIndex);
     }
 
 
     void Update()
     {
-        Debug.Log($"{ZugaraStatusPackReelLeft.IsFix} {ZugaraStatusPackReelCenter.IsFix} {ZugaraStatusPackReelRight.IsFix}");
-        ZugaraStatusPackReelLeft.Update();
-        ZugaraStatusPackReelCenter.Update();
-        ZugaraStatusPackReelRight.Update();
+        ZugaraStatusPackReelL1.Update();
+        ZugaraStatusPackReelL2.Update();
+        ZugaraStatusPackReelL3.Update();
 
         switch (slotStep)
         {
@@ -2410,7 +2402,7 @@ public class LineScript : MonoBehaviour
     {
         if (key1=="chery")
         {
-            if ((ZugaraStatusPackReelLeft.FixZugara[0] == key1) || (ZugaraStatusPackReelLeft.FixZugara[1] == key1) || (ZugaraStatusPackReelLeft.FixZugara[2] == key1))
+            if ((ZugaraStatusPackReelL1.FixZugara[0] == key1) || (ZugaraStatusPackReelL1.FixZugara[1] == key1) || (ZugaraStatusPackReelL1.FixZugara[2] == key1))
             {
                 return true;
             }
@@ -2420,35 +2412,35 @@ public class LineScript : MonoBehaviour
             }
         }
 
-        if ((ZugaraStatusPackReelLeft.FixZugara[0] == key1) && (ZugaraStatusPackReelCenter.FixZugara[0] == key2) && (ZugaraStatusPackReelRight.FixZugara[0] == key3))
+        if ((ZugaraStatusPackReelL1.FixZugara[0] == key1) && (ZugaraStatusPackReelL2.FixZugara[0] == key2) && (ZugaraStatusPackReelL3.FixZugara[0] == key3))
         {
             // key key key
             // --- --- ---
             // --- --- ---
             return true;
         }
-        else if ((ZugaraStatusPackReelLeft.FixZugara[0] == key1) && (ZugaraStatusPackReelCenter.FixZugara[1] == key2) && (ZugaraStatusPackReelRight.FixZugara[2] == key3))
+        else if ((ZugaraStatusPackReelL1.FixZugara[0] == key1) && (ZugaraStatusPackReelL2.FixZugara[1] == key2) && (ZugaraStatusPackReelL3.FixZugara[2] == key3))
         {
             // key --- ---
             // --- key ---
             // --- --- key
             return true;
         }
-        else if ((ZugaraStatusPackReelLeft.FixZugara[1] == key1) && (ZugaraStatusPackReelCenter.FixZugara[1] == key2) && (ZugaraStatusPackReelRight.FixZugara[1] == key3))
+        else if ((ZugaraStatusPackReelL1.FixZugara[1] == key1) && (ZugaraStatusPackReelL2.FixZugara[1] == key2) && (ZugaraStatusPackReelL3.FixZugara[1] == key3))
         {
             // --- --- ---
             // key key key
             // --- --- ---
             return true;
         }
-        else if ((ZugaraStatusPackReelLeft.FixZugara[2] == key1) && (ZugaraStatusPackReelCenter.FixZugara[1] == key2) && (ZugaraStatusPackReelRight.FixZugara[0] == key3))
+        else if ((ZugaraStatusPackReelL1.FixZugara[2] == key1) && (ZugaraStatusPackReelL2.FixZugara[1] == key2) && (ZugaraStatusPackReelL3.FixZugara[0] == key3))
         {
             // --- --- key
             // --- key ---
             // key --- ---
             return true;
         }
-        else if ((ZugaraStatusPackReelLeft.FixZugara[2] == key1) && (ZugaraStatusPackReelCenter.FixZugara[2] == key2) && (ZugaraStatusPackReelRight.FixZugara[2] == key3))
+        else if ((ZugaraStatusPackReelL1.FixZugara[2] == key1) && (ZugaraStatusPackReelL2.FixZugara[2] == key2) && (ZugaraStatusPackReelL3.FixZugara[2] == key3))
         {
             // --- --- ---
             // --- --- ---
@@ -2476,35 +2468,35 @@ public class LineScript : MonoBehaviour
             {
                 System.Func<string, bool> func1 = (key) =>
                  {
-                     if ((tmp[0] == key) && (ZugaraStatusPackReelCenter.FixZugara[0] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == key))
+                     if ((tmp[0] == key) && (ZugaraStatusPackReelL2.FixZugara[0] == key) && (ZugaraStatusPackReelL3.FixZugara[0] == key))
                      {
                         // key key key
                         // --- --- ---
                         // --- --- ---
                         return true;
                      }
-                     else if ((tmp[0] == key) && (ZugaraStatusPackReelCenter.FixZugara[1] == key) && (ZugaraStatusPackReelRight.FixZugara[2] == key))
+                     else if ((tmp[0] == key) && (ZugaraStatusPackReelL2.FixZugara[1] == key) && (ZugaraStatusPackReelL3.FixZugara[2] == key))
                      {
                         // key --- ---
                         // --- key ---
                         // --- --- key
                         return true;
                      }
-                     else if ((tmp[1] == key) && (ZugaraStatusPackReelCenter.FixZugara[1] == key) && (ZugaraStatusPackReelRight.FixZugara[1] == key))
+                     else if ((tmp[1] == key) && (ZugaraStatusPackReelL2.FixZugara[1] == key) && (ZugaraStatusPackReelL3.FixZugara[1] == key))
                      {
                         // --- --- ---
                         // key key key
                         // --- --- ---
                         return true;
                      }
-                     else if ((tmp[2] == key) && (ZugaraStatusPackReelCenter.FixZugara[1] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == key))
+                     else if ((tmp[2] == key) && (ZugaraStatusPackReelL2.FixZugara[1] == key) && (ZugaraStatusPackReelL3.FixZugara[0] == key))
                      {
                         // --- --- key
                         // --- key ---
                         // key --- ---
                         return true;
                      }
-                     else if ((tmp[2] == key) && (ZugaraStatusPackReelCenter.FixZugara[2] == key) && (ZugaraStatusPackReelRight.FixZugara[2] == key))
+                     else if ((tmp[2] == key) && (ZugaraStatusPackReelL2.FixZugara[2] == key) && (ZugaraStatusPackReelL3.FixZugara[2] == key))
                      {
                         // --- --- ---
                         // --- --- ---
@@ -2547,35 +2539,35 @@ public class LineScript : MonoBehaviour
                 key = "Reg";
                 if (key != bonus)
                 {
-                    if ((tmp[0] == "r7") && (ZugaraStatusPackReelCenter.FixZugara[0] == "r7") && (ZugaraStatusPackReelRight.FixZugara[0] == "bar"))
+                    if ((tmp[0] == "r7") && (ZugaraStatusPackReelL2.FixZugara[0] == "r7") && (ZugaraStatusPackReelL3.FixZugara[0] == "bar"))
                     {
                         // key key key
                         // --- --- ---
                         // --- --- ---
                         return true;
                     }
-                    else if ((tmp[0] == "r7") && (ZugaraStatusPackReelCenter.FixZugara[1] == "r7") && (ZugaraStatusPackReelRight.FixZugara[2] == "bar"))
+                    else if ((tmp[0] == "r7") && (ZugaraStatusPackReelL2.FixZugara[1] == "r7") && (ZugaraStatusPackReelL3.FixZugara[2] == "bar"))
                     {
                         // key --- ---
                         // --- key ---
                         // --- --- key
                         return true;
                     }
-                    else if ((tmp[1] == "r7") && (ZugaraStatusPackReelCenter.FixZugara[1] == "r7") && (ZugaraStatusPackReelRight.FixZugara[1] == "bar"))
+                    else if ((tmp[1] == "r7") && (ZugaraStatusPackReelL2.FixZugara[1] == "r7") && (ZugaraStatusPackReelL3.FixZugara[1] == "bar"))
                     {
                         // --- --- ---
                         // key key key
                         // --- --- ---
                         return true;
                     }
-                    else if ((tmp[2] == "r7") && (ZugaraStatusPackReelCenter.FixZugara[1] == "r7") && (ZugaraStatusPackReelRight.FixZugara[0] == "bar"))
+                    else if ((tmp[2] == "r7") && (ZugaraStatusPackReelL2.FixZugara[1] == "r7") && (ZugaraStatusPackReelL3.FixZugara[0] == "bar"))
                     {
                         // --- --- key
                         // --- key ---
                         // key --- ---
                         return true;
                     }
-                    else if ((tmp[2] == "r7") && (ZugaraStatusPackReelCenter.FixZugara[2] == "r7") && (ZugaraStatusPackReelRight.FixZugara[2] == "bar"))
+                    else if ((tmp[2] == "r7") && (ZugaraStatusPackReelL2.FixZugara[2] == "r7") && (ZugaraStatusPackReelL3.FixZugara[2] == "bar"))
                     {
                         // --- --- ---
                         // --- --- ---
@@ -2594,35 +2586,35 @@ public class LineScript : MonoBehaviour
             {
                 System.Func<string, bool> func2 = (key) =>
                 {
-                    if ((tmp[0] == key) && (ZugaraStatusPackReelLeft.FixZugara[0] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == key))
+                    if ((tmp[0] == key) && (ZugaraStatusPackReelL1.FixZugara[0] == key) && (ZugaraStatusPackReelL3.FixZugara[0] == key))
                     {
                         // key key key
                         // --- --- ---
                         // --- --- ---
                         return true;
                     }
-                    else if ((tmp[1] == key) && (ZugaraStatusPackReelLeft.FixZugara[0] == key) && (ZugaraStatusPackReelRight.FixZugara[2] == key))
+                    else if ((tmp[1] == key) && (ZugaraStatusPackReelL1.FixZugara[0] == key) && (ZugaraStatusPackReelL3.FixZugara[2] == key))
                     {
                         // key --- ---
                         // --- key ---
                         // --- --- key
                         return true;
                     }
-                    else if ((tmp[1] == key) && (ZugaraStatusPackReelLeft.FixZugara[1] == key) && (ZugaraStatusPackReelRight.FixZugara[1] == key))
+                    else if ((tmp[1] == key) && (ZugaraStatusPackReelL1.FixZugara[1] == key) && (ZugaraStatusPackReelL3.FixZugara[1] == key))
                     {
                         // --- --- ---
                         // key key key
                         // --- --- ---
                         return true;
                     }
-                    else if ((tmp[1] == key) && (ZugaraStatusPackReelLeft.FixZugara[2] == key) && (ZugaraStatusPackReelRight.FixZugara[0] == key))
+                    else if ((tmp[1] == key) && (ZugaraStatusPackReelL1.FixZugara[2] == key) && (ZugaraStatusPackReelL3.FixZugara[0] == key))
                     {
                         // --- --- key
                         // --- key ---
                         // key --- ---
                         return true;
                     }
-                    else if ((tmp[2] == key) && (ZugaraStatusPackReelLeft.FixZugara[2] == key) && (ZugaraStatusPackReelRight.FixZugara[2] == key))
+                    else if ((tmp[2] == key) && (ZugaraStatusPackReelL1.FixZugara[2] == key) && (ZugaraStatusPackReelL3.FixZugara[2] == key))
                     {
                         // --- --- ---
                         // --- --- ---
@@ -2663,35 +2655,35 @@ public class LineScript : MonoBehaviour
                 }
 
                 if ("Reg" != bonus) {
-                    if ((tmp[0] == "r7") && (ZugaraStatusPackReelLeft.FixZugara[0] == "r7") && (ZugaraStatusPackReelRight.FixZugara[0] == "bar"))
+                    if ((tmp[0] == "r7") && (ZugaraStatusPackReelL1.FixZugara[0] == "r7") && (ZugaraStatusPackReelL3.FixZugara[0] == "bar"))
                     {
                         // key key key
                         // --- --- ---
                         // --- --- ---
                         return true;
                     }
-                    else if ((tmp[1] == "r7") && (ZugaraStatusPackReelLeft.FixZugara[0] == "r7") && (ZugaraStatusPackReelRight.FixZugara[2] == "bar"))
+                    else if ((tmp[1] == "r7") && (ZugaraStatusPackReelL1.FixZugara[0] == "r7") && (ZugaraStatusPackReelL3.FixZugara[2] == "bar"))
                     {
                         // key --- ---
                         // --- key ---
                         // --- --- key
                         return true;
                     }
-                    else if ((tmp[1] == "r7") && (ZugaraStatusPackReelLeft.FixZugara[1] == "r7") && (ZugaraStatusPackReelRight.FixZugara[1] == "bar"))
+                    else if ((tmp[1] == "r7") && (ZugaraStatusPackReelL1.FixZugara[1] == "r7") && (ZugaraStatusPackReelL3.FixZugara[1] == "bar"))
                     {
                         // --- --- ---
                         // key key key
                         // --- --- ---
                         return true;
                     }
-                    else if ((tmp[1] == "r7") && (ZugaraStatusPackReelLeft.FixZugara[2] == "r7") && (ZugaraStatusPackReelRight.FixZugara[0] == "bar"))
+                    else if ((tmp[1] == "r7") && (ZugaraStatusPackReelL1.FixZugara[2] == "r7") && (ZugaraStatusPackReelL3.FixZugara[0] == "bar"))
                     {
                         // --- --- key
                         // --- key ---
                         // key --- ---
                         return true;
                     }
-                    else if ((tmp[2] == "r7") && (ZugaraStatusPackReelLeft.FixZugara[2] == "r7") && (ZugaraStatusPackReelRight.FixZugara[2] == "bar"))
+                    else if ((tmp[2] == "r7") && (ZugaraStatusPackReelL1.FixZugara[2] == "r7") && (ZugaraStatusPackReelL3.FixZugara[2] == "bar"))
                     {
                         // --- --- ---
                         // --- --- ---
@@ -2710,35 +2702,35 @@ public class LineScript : MonoBehaviour
             {
                 System.Func<string, bool> func3 = (key) =>
                 {
-                    if ((tmp[0] == key) && (ZugaraStatusPackReelLeft.FixZugara[0] == key) && (ZugaraStatusPackReelCenter.FixZugara[0] == key))
+                    if ((tmp[0] == key) && (ZugaraStatusPackReelL1.FixZugara[0] == key) && (ZugaraStatusPackReelL2.FixZugara[0] == key))
                     {
                         // key key key
                         // --- --- ---
                         // --- --- ---
                         return true;
                     }
-                    else if ((tmp[2] == key) && (ZugaraStatusPackReelLeft.FixZugara[0] == key) && (ZugaraStatusPackReelCenter.FixZugara[1] == key))
+                    else if ((tmp[2] == key) && (ZugaraStatusPackReelL1.FixZugara[0] == key) && (ZugaraStatusPackReelL2.FixZugara[1] == key))
                     {
                         // key --- ---
                         // --- key ---
                         // --- --- key
                         return true;
                     }
-                    else if ((tmp[1] == key) && (ZugaraStatusPackReelLeft.FixZugara[1] == key) && (ZugaraStatusPackReelCenter.FixZugara[1] == key))
+                    else if ((tmp[1] == key) && (ZugaraStatusPackReelL1.FixZugara[1] == key) && (ZugaraStatusPackReelL2.FixZugara[1] == key))
                     {
                         // --- --- ---
                         // key key key
                         // --- --- ---
                         return true;
                     }
-                    else if ((tmp[0] == key) && (ZugaraStatusPackReelLeft.FixZugara[2] == key) && (ZugaraStatusPackReelCenter.FixZugara[1] == key))
+                    else if ((tmp[0] == key) && (ZugaraStatusPackReelL1.FixZugara[2] == key) && (ZugaraStatusPackReelL2.FixZugara[1] == key))
                     {
                         // --- --- key
                         // --- key ---
                         // key --- ---
                         return true;
                     }
-                    else if ((tmp[2] == key) && (ZugaraStatusPackReelLeft.FixZugara[2] == key) && (ZugaraStatusPackReelCenter.FixZugara[2] == key))
+                    else if ((tmp[2] == key) && (ZugaraStatusPackReelL1.FixZugara[2] == key) && (ZugaraStatusPackReelL2.FixZugara[2] == key))
                     {
                         // --- --- ---
                         // --- --- ---
@@ -2780,35 +2772,35 @@ public class LineScript : MonoBehaviour
 
                 if ("Reg" != bonus)
                 {
-                    if ((tmp[0] == "r7") && (ZugaraStatusPackReelLeft.FixZugara[0] == "r7") && (ZugaraStatusPackReelCenter.FixZugara[0] == "bar"))
+                    if ((tmp[0] == "r7") && (ZugaraStatusPackReelL1.FixZugara[0] == "r7") && (ZugaraStatusPackReelL2.FixZugara[0] == "bar"))
                     {
                         // key key key
                         // --- --- ---
                         // --- --- ---
                         return true;
                     }
-                    else if ((tmp[2] == "r7") && (ZugaraStatusPackReelLeft.FixZugara[0] == "r7") && (ZugaraStatusPackReelCenter.FixZugara[1] == "bar"))
+                    else if ((tmp[2] == "r7") && (ZugaraStatusPackReelL1.FixZugara[0] == "r7") && (ZugaraStatusPackReelL2.FixZugara[1] == "bar"))
                     {
                         // key --- ---
                         // --- key ---
                         // --- --- key
                         return true;
                     }
-                    else if ((tmp[1] == "r7") && (ZugaraStatusPackReelLeft.FixZugara[1] == "r7") && (ZugaraStatusPackReelCenter.FixZugara[1] == "bar"))
+                    else if ((tmp[1] == "r7") && (ZugaraStatusPackReelL1.FixZugara[1] == "r7") && (ZugaraStatusPackReelL2.FixZugara[1] == "bar"))
                     {
                         // --- --- ---
                         // key key key
                         // --- --- ---
                         return true;
                     }
-                    else if ((tmp[0] == "r7") && (ZugaraStatusPackReelLeft.FixZugara[2] == "r7") && (ZugaraStatusPackReelCenter.FixZugara[1] == "bar"))
+                    else if ((tmp[0] == "r7") && (ZugaraStatusPackReelL1.FixZugara[2] == "r7") && (ZugaraStatusPackReelL2.FixZugara[1] == "bar"))
                     {
                         // --- --- key
                         // --- key ---
                         // key --- ---
                         return true;
                     }
-                    else if ((tmp[2] == "r7") && (ZugaraStatusPackReelLeft.FixZugara[2] == "r7") && (ZugaraStatusPackReelCenter.FixZugara[2] == "bar"))
+                    else if ((tmp[2] == "r7") && (ZugaraStatusPackReelL1.FixZugara[2] == "r7") && (ZugaraStatusPackReelL2.FixZugara[2] == "bar"))
                     {
                         // --- --- ---
                         // --- --- ---
@@ -2937,13 +2929,13 @@ public class LineScript : MonoBehaviour
 
         var offsetBase = 5f;
 
-        ZugaraStatusPackReelLeft.ReelTimerMaxOffset = value;
-        ZugaraStatusPackReelLeft.ReelTimerMax = ZugaraStatusPackReelLeft.ReelTimerMaxBase * (1f + (1f - value) * offsetBase);
+        ZugaraStatusPackReelL1.ReelTimerMaxOffset = value;
+        ZugaraStatusPackReelL1.ReelTimerMax = ZugaraStatusPackReelL1.ReelTimerMaxBase * (1f + (1f - value) * offsetBase);
 
-        ZugaraStatusPackReelCenter.ReelTimerMaxOffset = value;
-        ZugaraStatusPackReelCenter.ReelTimerMax = ZugaraStatusPackReelCenter.ReelTimerMaxBase * (1f + (1f - value) * offsetBase);
+        ZugaraStatusPackReelL2.ReelTimerMaxOffset = value;
+        ZugaraStatusPackReelL2.ReelTimerMax = ZugaraStatusPackReelL2.ReelTimerMaxBase * (1f + (1f - value) * offsetBase);
 
-        ZugaraStatusPackReelRight.ReelTimerMaxOffset = value;
-        ZugaraStatusPackReelRight.ReelTimerMax = ZugaraStatusPackReelRight.ReelTimerMaxBase * (1f + (1f - value) * offsetBase);
+        ZugaraStatusPackReelL3.ReelTimerMaxOffset = value;
+        ZugaraStatusPackReelL3.ReelTimerMax = ZugaraStatusPackReelL3.ReelTimerMaxBase * (1f + (1f - value) * offsetBase);
     }
 }

@@ -12,7 +12,7 @@ public class ReelZugaraStatusPack : MonoBehaviour
     public float ReelTimerMaxBase = 0.0333f;
     public float ReelTimerMaxOffset = 1.0f;
 
-    public bool IsFix = false;
+    public bool IsFix = true;
     public string[] FixZugara = new string[] { "", "", "" };
 
     public float Speed = 15.0f;

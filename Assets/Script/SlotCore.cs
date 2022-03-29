@@ -378,8 +378,16 @@ public class SlotCore : MonoBehaviour
                 longGame.flagReplay = true;
                 break;
             case "bell":
-                longGame.AddOutCoin(10);
-                uiController.UpdateGameStatusViewText();
+                if ( longGame.status == SlotCoreLongGame.Status.BonusGame )
+                {
+                    longGame.AddOutCoin(15);
+                    uiController.UpdateGameStatusViewText();
+                }
+                else
+                {
+                    longGame.AddOutCoin(10);
+                    uiController.UpdateGameStatusViewText();
+                }
                 break;
             case "suika":
                 longGame.AddOutCoin(6);

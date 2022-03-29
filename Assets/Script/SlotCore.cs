@@ -293,10 +293,16 @@ public class SlotCore : MonoBehaviour
                     case SlotCoreLongGame.ViewStatus.Normal:
                         break;
                     case SlotCoreLongGame.ViewStatus.NormalComboGame:
+                        if ( directingManager.comboDirectionName.Count == 0 ) // 連続演出が終了したうえでボーナスが確定しているので、確定画面にする
+                        {
+                            longGame.viewStatus = SlotCoreLongGame.ViewStatus.BonusFixShowIn;
+                        }
                         break;
                     case SlotCoreLongGame.ViewStatus.BonusFixShowIn:
+                        longGame.viewStatus = SlotCoreLongGame.ViewStatus.BonusFixShow;
                         break;
                     case SlotCoreLongGame.ViewStatus.BonusFixShow:
+                        longGame.viewStatus = SlotCoreLongGame.ViewStatus.BonusFixShowAndBonusTypeShow;
                         break;
                     case SlotCoreLongGame.ViewStatus.BonusFixShowAndBonusTypeShow:
                         break;

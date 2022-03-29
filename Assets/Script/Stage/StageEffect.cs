@@ -5,6 +5,12 @@ using UnityEngine;
 public class StageEffect : MonoBehaviour
 {
     [SerializeField]
+    SlotCore slotCore;
+
+    [SerializeField]
+    DirectingManager directingManager;
+
+    [SerializeField]
     StageBackGround stageBackGround;
 
     [SerializeField]
@@ -2234,7 +2240,7 @@ public class StageEffect : MonoBehaviour
                 {
                     DeleteAudios("BGM");
 
-                    if (bonus == "")
+                    if (slotCore.oneGame.flagBounus == "")
                     {
                         battle.SetAnimation("battle_03");
                         battle.SetBackground("");
@@ -2676,7 +2682,7 @@ public class StageEffect : MonoBehaviour
 
     public int GetLotStringValue(int normal, int r7, int b7, int reg)
     {
-        return stageLot.GetLotStringValue( normal, r7, b7, reg);
+        return directingManager.GetLotStringValue( normal, r7, b7, reg);
     }
 
     public void BonusIn(string bonusTypeName)

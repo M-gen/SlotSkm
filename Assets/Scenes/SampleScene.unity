@@ -423,22 +423,22 @@ MonoBehaviour:
     LotValue: 10
   - Bonus: Big-r7
     Role: chary
-    LotValue: 25
+    LotValue: 30
   - Bonus: Big-b7
     Role: chary
-    LotValue: 35
+    LotValue: 40
   - Bonus: Reg
     Role: chary
-    LotValue: 20
+    LotValue: 22
   - Bonus: Big-r7
     Role: suika
     LotValue: 16
   - Bonus: Big-b7
     Role: suika
-    LotValue: 30
+    LotValue: 45
   - Bonus: Reg
     Role: suika
-    LotValue: 160
+    LotValue: 170
   - Bonus: Big-r7
     Role: bell
     LotValue: 3
@@ -462,7 +462,7 @@ MonoBehaviour:
     LotValue: 4800
   - Bonus: 
     Role: 
-    LotValue: 14750
+    LotValue: 13000
   bonusInLots:
   - Bonus: 
     Role: chary
@@ -478,7 +478,7 @@ MonoBehaviour:
     LotValue: 4800
   - Bonus: 
     Role: 
-    LotValue: 14000
+    LotValue: 13000
   bonusLots:
   - Bonus: 
     Role: chary
@@ -5974,6 +5974,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cc16587e09a8d24b9255ba9fc5f2612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slotCore: {fileID: 153645919}
+  directingManager: {fileID: 1952844033}
   stageBackGround: {fileID: 1989685227}
   stageBackGroundGroup: {fileID: 1908933781}
   charaSDSakamata: {fileID: 314914167}

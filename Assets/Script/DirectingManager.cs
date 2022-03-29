@@ -98,12 +98,50 @@ public class DirectingManager : MonoBehaviour
                 break;
 
             case SlotCoreLongGame.ViewStatus.BonusFixShowIn:
+                directionName = "bonus_fix_in";
                 break;
 
             case SlotCoreLongGame.ViewStatus.BonusFixShow:
+                directionName = "bonus_fix";
                 break;
 
             case SlotCoreLongGame.ViewStatus.BonusFixShowAndBonusTypeShow:
+                switch (slotCore.oneGame.flagBounus)
+                {
+                    case "Big-r7":
+                        switch(directionName)
+                        {
+                            default:
+                                directionName = "bonus_fix_big_r7";
+                                break;
+                            case "bonus_fix":
+                                directionName = "bonus_fix_big_r7_in";
+                                break;
+                        }
+                        break;
+                    case "Big-b7":
+                        switch (directionName)
+                        {
+                            default:
+                                directionName = "bonus_fix_big_b7";
+                                break;
+                            case "bonus_fix":
+                                directionName = "bonus_fix_big_b7_in";
+                                break;
+                        }
+                        break;
+                    case "Reg":
+                        switch (directionName)
+                        {
+                            default:
+                                directionName = "bonus_fix_reg";
+                                break;
+                            case "bonus_fix":
+                                directionName = "bonus_fix_reg_in";
+                                break;
+                        }
+                        break;
+                }
                 break;
 
             case SlotCoreLongGame.ViewStatus.BonusGame:
@@ -272,6 +310,8 @@ public class DirectingManager : MonoBehaviour
 
     public void LotComboDirection()
     {
+        comboDirectionName.Clear();
+
         System.Func<int> getGameCount_group_1 = () =>
         {
             var gameCount = Lottery.LotteryBase.DefaultLottery(new int[] {

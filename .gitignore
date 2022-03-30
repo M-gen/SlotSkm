@@ -9,6 +9,7 @@ Obj/
 UnityGenerated/
 Library/
 Build/
+BuildWeb/
 
 # ===================================== #
 # Visual Studio / MonoDevelop generated #

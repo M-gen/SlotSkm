@@ -23,10 +23,13 @@ public class ConfigSheet : MonoBehaviour
     [SerializeField]
     AudioClip OnClickSE;
 
+#if !UNITY_WEBGL
     string configFilePath = "config.txt";
+#endif
 
     private void Start()
     {
+#if !UNITY_WEBGL
 
         if (File.Exists(configFilePath))
         {
@@ -66,7 +69,7 @@ public class ConfigSheet : MonoBehaviour
             sr.Close();
             fs.Close();
         }
-
+#endif
         gameObject.SetActive(false);
     }
 
@@ -78,12 +81,13 @@ public class ConfigSheet : MonoBehaviour
 
     public void UpdateConfig()
     {
+#if !UNITY_WEBGL
         using (var f = new System.IO.StreamWriter(configFilePath, false, System.Text.Encoding.UTF8))
         {
             f.WriteLine($"BGM {SliderBGM.value}");
             f.WriteLine($"SE {SliderSE.value}");
             f.WriteLine($"REEL {SliderReel.value}");
         }
-
+#endif
     }
 }

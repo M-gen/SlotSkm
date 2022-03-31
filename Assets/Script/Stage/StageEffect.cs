@@ -69,7 +69,6 @@ public class StageEffect : MonoBehaviour
 
     string role = "";
     string bonus = "";
-    string bonusType = "";
     public string status = "";
 
     StageLot stageLot;
@@ -520,6 +519,448 @@ public class StageEffect : MonoBehaviour
                 {
                     SetBackGround("default_stop");
                     charaSDSakamata.SetAnimation("stop_?");
+                }
+            });
+            directions.Add(dir);
+        }
+
+
+        {
+            var dir = new Direction() { Name = "draw_0_2" };
+            dir.Dirs.Add(new DirectionOne()
+            {
+                directionStep = DirectionStep.LeberOn,
+                Action = () =>
+                {
+                    SetBackGround("");
+                    maku.SetAnimation("");
+                    maku.IsLogoShow(false);
+                    cutin.SetAnimation("");
+                    PlayAudio("normal_event_draw_bgm", new string[] { "BGM" }, volume: 0.35f);
+
+                    switch (slotCore.oneGame.flagRole)
+                    {
+                        default:
+                            switch (Lottery.LotteryBase.DefaultLottery(new int[] {
+                                GetLotStringValue( 100,  100,  100,  100) , // 0
+                                GetLotStringValue(   0,   40,   20,   10) ,
+                            }))
+                            {
+                                default:
+                                    battle.SetAnimation("draw_in_shiro");
+                                    break;
+                                case 1:
+                                    battle.SetAnimation("draw_in_sp");
+                                    break;
+                            }
+                            break;
+                        case "rep":
+                            switch (Lottery.LotteryBase.DefaultLottery(new int[] {
+                                GetLotStringValue( 100,  100,  100,  100) , // 0
+                                GetLotStringValue(  20,   35,   35,   35) ,
+                            }))
+                            {
+                                default:
+                                    battle.SetAnimation("draw_in_shiro");
+                                    break;
+                                case 1:
+                                    battle.SetAnimation("draw_in_ao");
+                                    break;
+                            }
+                            break;
+                        case "bell":
+                            switch (Lottery.LotteryBase.DefaultLottery(new int[] {
+                                GetLotStringValue(  90,   90,   90,   90) , // 0
+                                GetLotStringValue(  20,   35,   35,   35) ,
+                            }))
+                            {
+                                default:
+                                    battle.SetAnimation("draw_in_shiro");
+                                    break;
+                                case 1:
+                                    battle.SetAnimation("draw_in_ki");
+                                    break;
+                            }
+                            break;
+                        case "suika":
+                            switch (Lottery.LotteryBase.DefaultLottery(new int[] {
+                                GetLotStringValue(  65,   50,   50,   50) ,
+                                GetLotStringValue(  30,   40,   40,   40) ,
+                                GetLotStringValue(  10,   15,   15,   15) ,
+                            }))
+                            {
+                                default:
+                                    battle.SetAnimation("draw_in_shiro");
+                                    break;
+                                case 1:
+                                    battle.SetAnimation("draw_in_midori");
+                                    break;
+                                case 2:
+                                    battle.SetAnimation("draw_in_sp");
+                                    break;
+                            }
+                            break;
+                        case "chary":
+                            switch (Lottery.LotteryBase.DefaultLottery(new int[] {
+                                GetLotStringValue(  45,   25,   25,   25) ,
+                                GetLotStringValue(  50,   40,   40,   40) ,
+                                GetLotStringValue(  10,   25,   20,   15) ,
+                            }))
+                            {
+                                default:
+                                    battle.SetAnimation("draw_in_shiro");
+                                    break;
+                                case 1:
+                                    battle.SetAnimation("draw_in_aka");
+                                    break;
+                                case 2:
+                                    battle.SetAnimation("draw_in_sp");
+                                    break;
+                            }
+                            break;
+                    }
+                }
+            });
+            dir.Dirs.Add(new DirectionOne()
+            {
+                directionStep = DirectionStep.Stop2,
+                Action = () =>
+                {
+                    audioManager.DeleteAudios("BGM");
+                    PlayAudio("normal_event_draw_res", new string[] { "SE" }, volume: 0.5f);
+                    switch ( slotCore.oneGame.flagRole )
+                    {
+                        default:
+                            switch (Lottery.LotteryBase.DefaultLottery(new int[] {
+                                GetLotStringValue(  45,   25,   25,   25) ,
+                                GetLotStringValue(   5,  100,   90,   40) , // 1 ありがとう
+                                GetLotStringValue(  10,   90,   80,   80) , //   天才
+                                GetLotStringValue(  15,  120,  120,  120) , //   良
+                                GetLotStringValue(  20,   50,   50,   80) , //   自分
+                                GetLotStringValue(  25,   50,   80,   50) , //   まさに
+                                GetLotStringValue(   5,  200,  200,  200) , // 6 めちょ
+                                GetLotStringValue(  10,   10,   10,   10) , //
+                                GetLotStringValue(  10,   10,   10,   10) , //
+                                GetLotStringValue(  10,   10,   10,   10) , //
+                                GetLotStringValue(  10,   10,   10,   10) , //
+                                GetLotStringValue(  10,   10,   10,   10) , // 10
+                                GetLotStringValue(  15,    5,    5,    5) , //
+                                GetLotStringValue(  10,   10,   10,   10) , //
+                                GetLotStringValue(   5,   15,   15,   15)   // 14
+                            }))
+                            {
+                                default:
+                                    battle.SetAnimation("draw_res_gake_normal");
+                                    break;
+                                case 1: // 「ありがとう」赤文字なので、かなり熱い演出
+                                    battle.SetAnimation("draw_res_moji_arigatougozaimasu");
+                                    break;
+                                case 2:
+                                    battle.SetAnimation("draw_res_moji_tensai");
+                                    break;
+                                case 3:
+                                    battle.SetAnimation("draw_res_moji_yoi");
+                                    break;
+                                case 4:
+                                    battle.SetAnimation("draw_res_moji_jibun");
+                                    break;
+                                case 5:
+                                    battle.SetAnimation("draw_res_moji_masani");
+                                    break;
+                                case 6:
+                                    battle.SetAnimation("draw_res_moji_mecho");
+                                    break;
+                                case 7:
+                                    battle.SetAnimation("draw_res_moji_natu");
+                                    break;
+                                case 8:
+                                    battle.SetAnimation("draw_res_moji_okinawa");
+                                    break;
+                                case 9:
+                                    battle.SetAnimation("draw_res_moji_outa");
+                                    break;
+                                case 10:
+                                    battle.SetAnimation("draw_res_moji_hokkaidou");
+                                    break;
+                                case 11:
+                                    battle.SetAnimation("draw_res_moji_migiatamashita");
+                                    break;
+                                case 12:
+                                    battle.SetAnimation("draw_res_nihon_1");
+                                    break;
+                                case 13:
+                                    battle.SetAnimation("draw_res_nihon_2");
+                                    break;
+                                case 14:
+                                    battle.SetAnimation("draw_res_nihon_3");
+                                    break;
+                            }
+                            break;
+                        case "rep":
+                            switch (Lottery.LotteryBase.DefaultLottery(new int[] {
+                                GetLotStringValue(  45,   25,   25,   25) ,
+                                GetLotStringValue(   5,  100,   90,   40) , // 1 ありがとう
+                                GetLotStringValue(  10,   90,   80,   80) , //   天才
+                                GetLotStringValue(  15,  120,  120,  120) , //   良
+                                GetLotStringValue(  20,   50,   50,   80) , //   自分
+                                GetLotStringValue(  25,   50,   80,   50) , //   まさに
+                                GetLotStringValue(   5,  200,  200,  200) , // 6 めちょ
+                                GetLotStringValue(  10,   10,   10,   10) , //
+                                GetLotStringValue(  10,   10,   10,   10) , //
+                                GetLotStringValue(  10,   10,   10,   10) , //
+                                GetLotStringValue(  10,   10,   10,   10) , //
+                                GetLotStringValue(  10,   10,   10,   10) , // 10
+                                GetLotStringValue(  15,    5,    5,    5) , //
+                                GetLotStringValue(  10,   10,   10,   10) , //
+                                GetLotStringValue(   5,   15,   15,   15)   // 14
+                            }))
+                            {
+                                default:
+                                    battle.SetAnimation("draw_res_gake_ao");
+                                    break;
+                                case 1: // 「ありがとう」赤文字なので、かなり熱い演出
+                                    battle.SetAnimation("draw_res_moji_arigatougozaimasu");
+                                    break;
+                                case 2:
+                                    battle.SetAnimation("draw_res_moji_tensai");
+                                    break;
+                                case 3:
+                                    battle.SetAnimation("draw_res_moji_yoi");
+                                    break;
+                                case 4:
+                                    battle.SetAnimation("draw_res_moji_jibun");
+                                    break;
+                                case 5:
+                                    battle.SetAnimation("draw_res_moji_masani");
+                                    break;
+                                case 6:
+                                    battle.SetAnimation("draw_res_moji_mecho");
+                                    break;
+                                case 7:
+                                    battle.SetAnimation("draw_res_moji_natu");
+                                    break;
+                                case 8:
+                                    battle.SetAnimation("draw_res_moji_okinawa");
+                                    break;
+                                case 9:
+                                    battle.SetAnimation("draw_res_moji_outa");
+                                    break;
+                                case 10:
+                                    battle.SetAnimation("draw_res_moji_hokkaidou");
+                                    break;
+                                case 11:
+                                    battle.SetAnimation("draw_res_moji_migiatamashita");
+                                    break;
+                                case 12:
+                                    battle.SetAnimation("draw_res_nihon_1");
+                                    break;
+                                case 13:
+                                    battle.SetAnimation("draw_res_nihon_2");
+                                    break;
+                                case 14:
+                                    battle.SetAnimation("draw_res_nihon_3");
+                                    break;
+                            }
+                            break;
+                        case "bell":
+                            switch (Lottery.LotteryBase.DefaultLottery(new int[] {
+                                GetLotStringValue(  45,   25,   25,   25) ,
+                                GetLotStringValue(   5,  100,   90,   40) , // 1 ありがとう
+                                GetLotStringValue(  10,   90,   80,   80) , //   天才
+                                GetLotStringValue(  15,  120,  120,  120) , //   良
+                                GetLotStringValue(  20,   50,   50,   80) , //   自分
+                                GetLotStringValue(  25,   50,   80,   50) , //   まさに
+                                GetLotStringValue(   5,  200,  200,  200) , // 6 めちょ
+                                GetLotStringValue(  10,   10,   10,   10) , //
+                                GetLotStringValue(  10,   10,   10,   10) , //
+                                GetLotStringValue(  10,   10,   10,   10) , //
+                                GetLotStringValue(  10,   10,   10,   10) , //
+                                GetLotStringValue(  10,   10,   10,   10) , // 10
+                                GetLotStringValue(  15,    5,    5,    5) , //
+                                GetLotStringValue(  10,   10,   10,   10) , //
+                                GetLotStringValue(   5,   15,   15,   15)   // 14
+                            }))
+                            {
+                                default:
+                                    battle.SetAnimation("draw_res_gake_ki");
+                                    break;
+                                case 1: // 「ありがとう」赤文字なので、かなり熱い演出
+                                    battle.SetAnimation("draw_res_moji_arigatougozaimasu");
+                                    break;
+                                case 2:
+                                    battle.SetAnimation("draw_res_moji_tensai");
+                                    break;
+                                case 3:
+                                    battle.SetAnimation("draw_res_moji_yoi");
+                                    break;
+                                case 4:
+                                    battle.SetAnimation("draw_res_moji_jibun");
+                                    break;
+                                case 5:
+                                    battle.SetAnimation("draw_res_moji_masani");
+                                    break;
+                                case 6:
+                                    battle.SetAnimation("draw_res_moji_mecho");
+                                    break;
+                                case 7:
+                                    battle.SetAnimation("draw_res_moji_natu");
+                                    break;
+                                case 8:
+                                    battle.SetAnimation("draw_res_moji_okinawa");
+                                    break;
+                                case 9:
+                                    battle.SetAnimation("draw_res_moji_outa");
+                                    break;
+                                case 10:
+                                    battle.SetAnimation("draw_res_moji_hokkaidou");
+                                    break;
+                                case 11:
+                                    battle.SetAnimation("draw_res_moji_migiatamashita");
+                                    break;
+                                case 12:
+                                    battle.SetAnimation("draw_res_nihon_1");
+                                    break;
+                                case 13:
+                                    battle.SetAnimation("draw_res_nihon_2");
+                                    break;
+                                case 14:
+                                    battle.SetAnimation("draw_res_nihon_3");
+                                    break;
+                            }
+                            break;
+                        case "suika":
+                            switch (Lottery.LotteryBase.DefaultLottery(new int[] {
+                                GetLotStringValue(  45,   25,   25,   25) ,
+                                GetLotStringValue(   5,  100,   90,   40) , // 1 ありがとう
+                                GetLotStringValue(  10,   90,   80,   80) , //   天才
+                                GetLotStringValue(  15,  120,  120,  120) , //   良
+                                GetLotStringValue(  20,   50,   50,   80) , //   自分
+                                GetLotStringValue(  25,   50,   80,   50) , //   まさに
+                                GetLotStringValue(   5,  200,  200,  200) , // 6 めちょ
+                                GetLotStringValue(  10,   10,   10,   10) , //
+                                GetLotStringValue(  10,   10,   10,   10) , //
+                                GetLotStringValue(  10,   10,   10,   10) , //
+                                GetLotStringValue(  10,   10,   10,   10) , //
+                                GetLotStringValue(  10,   10,   10,   10) , // 10
+                                GetLotStringValue(  15,    5,    5,    5) , //
+                                GetLotStringValue(  10,   10,   10,   10) , //
+                                GetLotStringValue(   5,   15,   15,   15)   // 14
+                            }))
+                            {
+                                default:
+                                    battle.SetAnimation("draw_res_gake_midori");
+                                    break;
+                                case 1: // 「ありがとう」赤文字なので、かなり熱い演出
+                                    battle.SetAnimation("draw_res_moji_arigatougozaimasu");
+                                    break;
+                                case 2:
+                                    battle.SetAnimation("draw_res_moji_tensai");
+                                    break;
+                                case 3:
+                                    battle.SetAnimation("draw_res_moji_yoi");
+                                    break;
+                                case 4:
+                                    battle.SetAnimation("draw_res_moji_jibun");
+                                    break;
+                                case 5:
+                                    battle.SetAnimation("draw_res_moji_masani");
+                                    break;
+                                case 6:
+                                    battle.SetAnimation("draw_res_moji_mecho");
+                                    break;
+                                case 7:
+                                    battle.SetAnimation("draw_res_moji_natu");
+                                    break;
+                                case 8:
+                                    battle.SetAnimation("draw_res_moji_okinawa");
+                                    break;
+                                case 9:
+                                    battle.SetAnimation("draw_res_moji_outa");
+                                    break;
+                                case 10:
+                                    battle.SetAnimation("draw_res_moji_hokkaidou");
+                                    break;
+                                case 11:
+                                    battle.SetAnimation("draw_res_moji_migiatamashita");
+                                    break;
+                                case 12:
+                                    battle.SetAnimation("draw_res_nihon_1");
+                                    break;
+                                case 13:
+                                    battle.SetAnimation("draw_res_nihon_2");
+                                    break;
+                                case 14:
+                                    battle.SetAnimation("draw_res_nihon_3");
+                                    break;
+                            }
+                            break;
+                        case "chary":
+                            switch (Lottery.LotteryBase.DefaultLottery(new int[] {
+                                GetLotStringValue(  45,   25,   25,   25) ,
+                                GetLotStringValue(   5,  100,   90,   40) , // 1 ありがとう
+                                GetLotStringValue(  10,   90,   80,   80) , //   天才
+                                GetLotStringValue(  15,  120,  120,  120) , //   良
+                                GetLotStringValue(  20,   50,   50,   80) , //   自分
+                                GetLotStringValue(  25,   50,   80,   50) , //   まさに
+                                GetLotStringValue(   5,  200,  200,  200) , // 6 めちょ
+                                GetLotStringValue(  10,   10,   10,   10) , //
+                                GetLotStringValue(  10,   10,   10,   10) , //
+                                GetLotStringValue(  10,   10,   10,   10) , //
+                                GetLotStringValue(  10,   10,   10,   10) , //
+                                GetLotStringValue(  10,   10,   10,   10) , // 10
+                                GetLotStringValue(  15,    5,    5,    5) , //
+                                GetLotStringValue(  10,   10,   10,   10) , //
+                                GetLotStringValue(   5,   15,   15,   15)   // 14
+                            }))
+                            {
+                                default:
+                                    battle.SetAnimation("draw_res_gake_aka");
+                                    break;
+                                case 1: // 「ありがとう」赤文字なので、かなり熱い演出
+                                    battle.SetAnimation("draw_res_moji_arigatougozaimasu");
+                                    break;
+                                case 2:
+                                    battle.SetAnimation("draw_res_moji_tensai");
+                                    break;
+                                case 3:
+                                    battle.SetAnimation("draw_res_moji_yoi");
+                                    break;
+                                case 4:
+                                    battle.SetAnimation("draw_res_moji_jibun");
+                                    break;
+                                case 5:
+                                    battle.SetAnimation("draw_res_moji_masani");
+                                    break;
+                                case 6:
+                                    battle.SetAnimation("draw_res_moji_mecho");
+                                    break;
+                                case 7:
+                                    battle.SetAnimation("draw_res_moji_natu");
+                                    break;
+                                case 8:
+                                    battle.SetAnimation("draw_res_moji_okinawa");
+                                    break;
+                                case 9:
+                                    battle.SetAnimation("draw_res_moji_outa");
+                                    break;
+                                case 10:
+                                    battle.SetAnimation("draw_res_moji_hokkaidou");
+                                    break;
+                                case 11:
+                                    battle.SetAnimation("draw_res_moji_migiatamashita");
+                                    break;
+                                case 12:
+                                    battle.SetAnimation("draw_res_nihon_1");
+                                    break;
+                                case 13:
+                                    battle.SetAnimation("draw_res_nihon_2");
+                                    break;
+                                case 14:
+                                    battle.SetAnimation("draw_res_nihon_3");
+                                    break;
+                            }
+                            break;
+                    }
                 }
             });
             directions.Add(dir);
@@ -2202,7 +2643,7 @@ public class StageEffect : MonoBehaviour
                     var v = Lottery.LotteryBase.DefaultLottery(new int[] {
                         GetLotStringValue( 100,   10,   20,   30) , // 0
                         GetLotStringValue(  20,   50,   40,   30) ,
-                        GetLotStringValue(   5,   40,   30,   20) ,
+                        GetLotStringValue(   5,   40,   15,    3) ,
                     });
 
                     switch(v)

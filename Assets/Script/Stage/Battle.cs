@@ -31,6 +31,188 @@ public class Battle : MonoBehaviour
         animationImage = new AnimationImageCore(gameObject, GetImageByKey);
 
         {
+            var animation = new AnimationImageDataSet() { Key = "draw_in_shiro", IsLoop = false };
+            animation.ImageDatas.Add(new AnimationImageData() { Key = "draw_in_shiro", Time = 1.0f });
+
+            animationImage.DataSets.Add(animation);
+        }
+
+        {
+            var animation = new AnimationImageDataSet() { Key = "draw_in_ao", IsLoop = false };
+            animation.ImageDatas.Add(new AnimationImageData() { Key = "draw_in_ao", Time = 1.0f });
+
+            animationImage.DataSets.Add(animation);
+        }
+
+        {
+            var animation = new AnimationImageDataSet() { Key = "draw_in_ki", IsLoop = false };
+            animation.ImageDatas.Add(new AnimationImageData() { Key = "draw_in_ki", Time = 1.0f });
+
+            animationImage.DataSets.Add(animation);
+        }
+
+        {
+            var animation = new AnimationImageDataSet() { Key = "draw_in_midori", IsLoop = false };
+            animation.ImageDatas.Add(new AnimationImageData() { Key = "draw_in_midori", Time = 1.0f });
+
+            animationImage.DataSets.Add(animation);
+        }
+
+        {
+            var animation = new AnimationImageDataSet() { Key = "draw_in_aka", IsLoop = false };
+            animation.ImageDatas.Add(new AnimationImageData() { Key = "draw_in_aka", Time = 1.0f });
+
+            animationImage.DataSets.Add(animation);
+        }
+
+        {
+            var animation = new AnimationImageDataSet() { Key = "draw_in_sp", IsLoop = false };
+            animation.ImageDatas.Add(new AnimationImageData() { Key = "draw_in_sp", Time = 1.0f });
+
+            animationImage.DataSets.Add(animation);
+        }
+
+        {
+            var animation = new AnimationImageDataSet() { Key = "draw_res_gake_normal", IsLoop = false };
+            animation.ImageDatas.Add(new AnimationImageData() { Key = "draw_res_gake_normal", Time = 1.0f });
+
+            animationImage.DataSets.Add(animation);
+        }
+
+        {
+            var animation = new AnimationImageDataSet() { Key = "draw_res_gake_ao", IsLoop = false };
+            animation.ImageDatas.Add(new AnimationImageData() { Key = "draw_res_gake_ao", Time = 1.0f });
+
+            animationImage.DataSets.Add(animation);
+        }
+
+        {
+            var animation = new AnimationImageDataSet() { Key = "draw_res_gake_ki", IsLoop = false };
+            animation.ImageDatas.Add(new AnimationImageData() { Key = "draw_res_gake_ki", Time = 1.0f });
+
+            animationImage.DataSets.Add(animation);
+        }
+
+        {
+            var animation = new AnimationImageDataSet() { Key = "draw_res_gake_midori", IsLoop = false };
+            animation.ImageDatas.Add(new AnimationImageData() { Key = "draw_res_gake_midori", Time = 1.0f });
+
+            animationImage.DataSets.Add(animation);
+        }
+
+        {
+            var animation = new AnimationImageDataSet() { Key = "draw_res_gake_aka", IsLoop = false };
+            animation.ImageDatas.Add(new AnimationImageData() { Key = "draw_res_gake_aka", Time = 1.0f });
+
+            animationImage.DataSets.Add(animation);
+        }
+
+        {
+            var animation = new AnimationImageDataSet() { Key = "draw_res_gake_normal", IsLoop = false };
+            animation.ImageDatas.Add(new AnimationImageData() { Key = "draw_res_gake_normal", Time = 1.0f });
+
+            animationImage.DataSets.Add(animation);
+        }
+
+        {
+            var animation = new AnimationImageDataSet() { Key = "draw_res_moji_arigatougozaimasu", IsLoop = false };
+            animation.ImageDatas.Add(new AnimationImageData() { Key = "draw_res_moji_arigatougozaimasu", Time = 1.0f });
+
+            animationImage.DataSets.Add(animation);
+        }
+
+        {
+            var animation = new AnimationImageDataSet() { Key = "draw_res_moji_tensai", IsLoop = false };
+            animation.ImageDatas.Add(new AnimationImageData() { Key = "draw_res_moji_tensai", Time = 1.0f });
+
+            animationImage.DataSets.Add(animation);
+        }
+
+        {
+            var animation = new AnimationImageDataSet() { Key = "draw_res_moji_yoi", IsLoop = false };
+            animation.ImageDatas.Add(new AnimationImageData() { Key = "draw_res_moji_yoi", Time = 1.0f });
+
+            animationImage.DataSets.Add(animation);
+        }
+
+        {
+            var animation = new AnimationImageDataSet() { Key = "draw_res_moji_jibun", IsLoop = false };
+            animation.ImageDatas.Add(new AnimationImageData() { Key = "draw_res_moji_jibun", Time = 1.0f });
+
+            animationImage.DataSets.Add(animation);
+        }
+
+        {
+            var animation = new AnimationImageDataSet() { Key = "draw_res_moji_masani", IsLoop = false };
+            animation.ImageDatas.Add(new AnimationImageData() { Key = "draw_res_moji_masani", Time = 1.0f });
+
+            animationImage.DataSets.Add(animation);
+        }
+
+        {
+            var animation = new AnimationImageDataSet() { Key = "draw_res_moji_mecho", IsLoop = false };
+            animation.ImageDatas.Add(new AnimationImageData() { Key = "draw_res_moji_mecho", Time = 1.0f });
+
+            animationImage.DataSets.Add(animation);
+        }
+
+        {
+            var animation = new AnimationImageDataSet() { Key = "draw_res_moji_natu", IsLoop = false };
+            animation.ImageDatas.Add(new AnimationImageData() { Key = "draw_res_moji_natu", Time = 1.0f });
+
+            animationImage.DataSets.Add(animation);
+        }
+
+        {
+            var animation = new AnimationImageDataSet() { Key = "draw_res_moji_okinawa", IsLoop = false };
+            animation.ImageDatas.Add(new AnimationImageData() { Key = "draw_res_moji_okinawa", Time = 1.0f });
+
+            animationImage.DataSets.Add(animation);
+        }
+
+        {
+            var animation = new AnimationImageDataSet() { Key = "draw_res_moji_outa", IsLoop = false };
+            animation.ImageDatas.Add(new AnimationImageData() { Key = "draw_res_moji_outa", Time = 1.0f });
+
+            animationImage.DataSets.Add(animation);
+        }
+
+        {
+            var animation = new AnimationImageDataSet() { Key = "draw_res_moji_hokkaidou", IsLoop = false };
+            animation.ImageDatas.Add(new AnimationImageData() { Key = "draw_res_moji_hokkaidou", Time = 1.0f });
+
+            animationImage.DataSets.Add(animation);
+        }
+
+        {
+            var animation = new AnimationImageDataSet() { Key = "draw_res_moji_migiatamashita", IsLoop = false };
+            animation.ImageDatas.Add(new AnimationImageData() { Key = "draw_res_moji_migiatamashita", Time = 1.0f });
+
+            animationImage.DataSets.Add(animation);
+        }
+
+        {
+            var animation = new AnimationImageDataSet() { Key = "draw_res_nihon_1", IsLoop = false };
+            animation.ImageDatas.Add(new AnimationImageData() { Key = "draw_res_nihon_1", Time = 1.0f });
+
+            animationImage.DataSets.Add(animation);
+        }
+
+        {
+            var animation = new AnimationImageDataSet() { Key = "draw_res_nihon_2", IsLoop = false };
+            animation.ImageDatas.Add(new AnimationImageData() { Key = "draw_res_nihon_2", Time = 1.0f });
+
+            animationImage.DataSets.Add(animation);
+        }
+
+        {
+            var animation = new AnimationImageDataSet() { Key = "draw_res_nihon_3", IsLoop = false };
+            animation.ImageDatas.Add(new AnimationImageData() { Key = "draw_res_nihon_3", Time = 1.0f });
+
+            animationImage.DataSets.Add(animation);
+        }
+
+        {
             var animation = new AnimationImageDataSet() { Key = "battle_01", IsLoop = false };
             animation.ImageDatas.Add(new AnimationImageData() { Key = "battle_01", Time = 1.0f });
 
@@ -142,13 +324,6 @@ public class Battle : MonoBehaviour
             animationImage.DataSets.Add(animation);
         }
 
-        //{
-        //    var animation = new AnimationImageDataSet() { Key = "bonus_game", IsLoop = false };
-        //    animation.ImageDatas.Add(new AnimationImageData() { Key = "bonus_game", Time = 1.0f });
-
-        //    animationImage.DataSets.Add(animation);
-        //}
-
         {
             var animation = new AnimationImageDataSet() { Key = "", IsLoop = false };
             animation.ImageDatas.Add(new AnimationImageData() { Key = "", Time = 1.0f });
@@ -191,6 +366,7 @@ public class Battle : MonoBehaviour
 
     public void SetAnimation(string key)
     {
+        Debug.Log($"SetAnimation {key}");
         animationImage.SetAnimation(key);
 
         if ( key=="" )

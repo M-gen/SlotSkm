@@ -2559,35 +2559,35 @@ public class LineScript : MonoBehaviour
 
                 if ("Reg" != bonus)
                 {
-                    if ((tmp[0] == "r7") && (zugaraStatusPackReelL1.FixZugara[0] == "r7") && (zugaraStatusPackReelL2.FixZugara[0] == "bar"))
+                    if ((tmp[0] == "bar") && (zugaraStatusPackReelL1.FixZugara[0] == "r7") && (zugaraStatusPackReelL2.FixZugara[0] == "r7"))
                     {
                         // key key key
                         // --- --- ---
                         // --- --- ---
                         return true;
                     }
-                    else if ((tmp[2] == "r7") && (zugaraStatusPackReelL1.FixZugara[0] == "r7") && (zugaraStatusPackReelL2.FixZugara[1] == "bar"))
+                    else if ((tmp[2] == "bar") && (zugaraStatusPackReelL1.FixZugara[0] == "r7") && (zugaraStatusPackReelL2.FixZugara[1] == "r7"))
                     {
                         // key --- ---
                         // --- key ---
                         // --- --- key
                         return true;
                     }
-                    else if ((tmp[1] == "r7") && (zugaraStatusPackReelL1.FixZugara[1] == "r7") && (zugaraStatusPackReelL2.FixZugara[1] == "bar"))
+                    else if ((tmp[1] == "bar") && (zugaraStatusPackReelL1.FixZugara[1] == "r7") && (zugaraStatusPackReelL2.FixZugara[1] == "r7"))
                     {
                         // --- --- ---
                         // key key key
                         // --- --- ---
                         return true;
                     }
-                    else if ((tmp[0] == "r7") && (zugaraStatusPackReelL1.FixZugara[2] == "r7") && (zugaraStatusPackReelL2.FixZugara[1] == "bar"))
+                    else if ((tmp[0] == "bar") && (zugaraStatusPackReelL1.FixZugara[2] == "r7") && (zugaraStatusPackReelL2.FixZugara[1] == "r7"))
                     {
                         // --- --- key
                         // --- key ---
                         // key --- ---
                         return true;
                     }
-                    else if ((tmp[2] == "r7") && (zugaraStatusPackReelL1.FixZugara[2] == "r7") && (zugaraStatusPackReelL2.FixZugara[2] == "bar"))
+                    else if ((tmp[2] == "bar") && (zugaraStatusPackReelL1.FixZugara[2] == "r7") && (zugaraStatusPackReelL2.FixZugara[2] == "r7"))
                     {
                         // --- --- ---
                         // --- --- ---

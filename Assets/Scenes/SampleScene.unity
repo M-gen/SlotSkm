@@ -2816,6 +2816,58 @@ MonoBehaviour:
     Sprite: {fileID: 21300000, guid: 4d4d66774a054384794a173470cfea95, type: 3}
   - Key: bonus_in_r7
     Sprite: {fileID: 21300000, guid: 148c5246348730d4993cdfcb631f0bef, type: 3}
+  - Key: draw_in_shiro
+    Sprite: {fileID: 21300000, guid: dfd77ad0bfba1a64d880256059987197, type: 3}
+  - Key: draw_in_ao
+    Sprite: {fileID: 21300000, guid: 92b461b987a526c44a98ddb4834b1b33, type: 3}
+  - Key: draw_in_ki
+    Sprite: {fileID: 21300000, guid: 813808a27814c61499c338688cc048c2, type: 3}
+  - Key: draw_in_midori
+    Sprite: {fileID: 21300000, guid: c68cd11ef98f0114d8f7c3e131293474, type: 3}
+  - Key: draw_in_aka
+    Sprite: {fileID: 21300000, guid: 417948188938f854e8d908be9c0fdbd9, type: 3}
+  - Key: draw_in_sp
+    Sprite: {fileID: 21300000, guid: 053558c50d61aaa4d96b2e2e51252b69, type: 3}
+  - Key: draw_res_gake_normal
+    Sprite: {fileID: 21300000, guid: 80ec0260d0a9ec44bb3b20721707f7f4, type: 3}
+  - Key: draw_res_gake_ao
+    Sprite: {fileID: 21300000, guid: a47781959c4a7ab449990c6c53a25f17, type: 3}
+  - Key: draw_res_gake_ki
+    Sprite: {fileID: 21300000, guid: 9ff4a5891763202409b67c24cfab11a7, type: 3}
+  - Key: draw_res_gake_midori
+    Sprite: {fileID: 21300000, guid: a432aa4781d5e274b911c95431375541, type: 3}
+  - Key: draw_res_gake_aka
+    Sprite: {fileID: 21300000, guid: 885cecc5033cd4d45b12e2f3032bf843, type: 3}
+  - Key: draw_res_moji_arigatougozaimasu
+    Sprite: {fileID: 21300000, guid: e374078783b8f454aa62971334957537, type: 3}
+  - Key: draw_res_moji_hokkaidou
+    Sprite: {fileID: 21300000, guid: 658db34caff833b4db6b7af476b4a328, type: 3}
+  - Key: draw_res_moji_jibun
+    Sprite: {fileID: 21300000, guid: e03cae39503de3748871151125e22398, type: 3}
+  - Key: draw_res_moji_masani
+    Sprite: {fileID: 21300000, guid: 5e331cfbfcdb2be49baae6b983c62570, type: 3}
+  - Key: draw_res_moji_mecho
+    Sprite: {fileID: 21300000, guid: 3c7e2b47f8bb3724b9e20915b1a176cf, type: 3}
+  - Key: draw_res_moji_migiatamashita
+    Sprite: {fileID: 21300000, guid: 87d6823bdbebb294b8cf88093e1dbc07, type: 3}
+  - Key: draw_res_moji_natu
+    Sprite: {fileID: 21300000, guid: 1a08c589dc47671409b8a74fc2c98808, type: 3}
+  - Key: draw_res_moji_okinawa
+    Sprite: {fileID: 21300000, guid: c80fcb7903ebe0e4db78decd14b4fde6, type: 3}
+  - Key: draw_res_moji_outa
+    Sprite: {fileID: 21300000, guid: 65ee2591649820845a3d842e2aae56fe, type: 3}
+  - Key: draw_res_moji_sakamata
+    Sprite: {fileID: 21300000, guid: 0ec252da6fb3b8746bc618d998ab0c5d, type: 3}
+  - Key: draw_res_moji_tensai
+    Sprite: {fileID: 21300000, guid: a9605efbf3f544944a5cc782c8de876d, type: 3}
+  - Key: draw_res_moji_yoi
+    Sprite: {fileID: 21300000, guid: 17bc1154453112b4fb51e727c37f3cdc, type: 3}
+  - Key: draw_res_nihon_1
+    Sprite: {fileID: 21300000, guid: 130567757c80a1f4384dfaad469ba3c7, type: 3}
+  - Key: draw_res_nihon_2
+    Sprite: {fileID: 21300000, guid: 133d30e466ad16640b31c99e83040c78, type: 3}
+  - Key: draw_res_nihon_3
+    Sprite: {fileID: 21300000, guid: fd162206cd53a0c4ebc50252095760e8, type: 3}
   background: {fileID: 734845853}
   gonusGetCoinCounter1: {fileID: 2089226049}
   gonusGetCoinCounter2: {fileID: 734444376}
@@ -6043,6 +6095,10 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: 1cfc521af41bfdb4eacd49163789a099, type: 3}
   - Key: bonus_end
     Clip: {fileID: 8300000, guid: 2af4fc9c88076d347a3cc6e291fa8e8f, type: 3}
+  - Key: normal_event_draw_bgm
+    Clip: {fileID: 8300000, guid: 00c59652c543d464da93ef89076eec8c, type: 3}
+  - Key: normal_event_draw_res
+    Clip: {fileID: 8300000, guid: a2210fcabadd35f47bfbb1a35ec50ca3, type: 3}
   status: 
   bonusOutCoin: 0
 --- !u!1 &2089226049

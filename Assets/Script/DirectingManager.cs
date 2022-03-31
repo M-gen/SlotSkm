@@ -177,7 +177,8 @@ public class DirectingManager : MonoBehaviour
             default:
                 switch (Lottery.LotteryBase.DefaultLottery(new int[] {
                                             GetLotStringValue( 100, 100, 100, 100) ,
-                                            GetLotStringValue(   3,  10,  10,  10) 
+                                            GetLotStringValue(   3,  10,  10,  10) ,
+                                            GetLotStringValue(  30,  30,  30,  30)   // ペンタブ演出
                                         }))
                 {
                     default:
@@ -185,7 +186,7 @@ public class DirectingManager : MonoBehaviour
                             switch (Lottery.LotteryBase.DefaultLottery(new int[] {
                                             GetLotStringValue( 100, 1, 1, 1) , //
                                             GetLotStringValue(   7, 1, 1, 1) , // 幕ガセ 閉まらない
-                                            GetLotStringValue(   3, 1, 1, 1) 　// 幕ガセ 閉まる
+                                            GetLotStringValue(   3, 1, 1, 1) , // 幕ガセ 閉まる
                                         }))
                             {
                                 default: directionName = "normal_1"; break;
@@ -195,6 +196,7 @@ public class DirectingManager : MonoBehaviour
                         }
                         break;
                     case 1: directionName = "normal_image_hatena_3"; break;
+                    case 2: directionName = "draw_0_2"; break;
                 }
                 break;
             case "rep":
@@ -202,7 +204,8 @@ public class DirectingManager : MonoBehaviour
                                             GetLotStringValue(  50, 100, 100, 100) ,
                                             GetLotStringValue( 100,  10,  10,  10) ,
                                             GetLotStringValue( 100,  10,  10,  10) ,
-                                            GetLotStringValue( 100,  10,  10,  10)
+                                            GetLotStringValue( 100,  10,  10,  10) ,
+                                            GetLotStringValue(  30,  30,  30,  30)   // ペンタブ演出
                                         }))
                 {
                     default:
@@ -222,6 +225,7 @@ public class DirectingManager : MonoBehaviour
                     case 1: directionName = "normal_image_makura_ao_3"; break;
                     case 2: directionName = "normal_image_makura_ao_2"; break;
                     case 3: directionName = "normal_image_hatena_3";    break;
+                    case 4: directionName = "draw_0_2"; break;
                 }
                 break;
             case "bell":
@@ -229,7 +233,8 @@ public class DirectingManager : MonoBehaviour
                                             GetLotStringValue(  50, 100, 100, 100) ,
                                             GetLotStringValue( 100,  10,  10,  10) ,
                                             GetLotStringValue( 100,  10,  10,  10) ,
-                                            GetLotStringValue( 100,  10,  10,  10)
+                                            GetLotStringValue( 100,  10,  10,  10) ,
+                                            GetLotStringValue(  30,  30,  30,  30)   // ペンタブ演出
                                         }))
                 {
                     default:
@@ -249,6 +254,7 @@ public class DirectingManager : MonoBehaviour
                     case 1: directionName = "normal_image_makura_ki_3"; break;
                     case 2: directionName = "normal_image_makura_ki_2"; break;
                     case 3: directionName = "normal_image_hatena_3"; break;
+                    case 4: directionName = "draw_0_2"; break;
                 }
                 break;
             case "suika":
@@ -256,7 +262,8 @@ public class DirectingManager : MonoBehaviour
                                             GetLotStringValue(  30, 100, 100, 100) ,
                                             GetLotStringValue( 100,  10,  10,  10) ,
                                             GetLotStringValue( 100,  10,  10,  10) ,
-                                            GetLotStringValue(  40,  10,  10,  10)
+                                            GetLotStringValue(  40,  10,  10,  10) ,
+                                            GetLotStringValue(  50,  50,  50,  50)   // ペンタブ演出
                                         }))
                 {
                     default:
@@ -276,6 +283,7 @@ public class DirectingManager : MonoBehaviour
                     case 1: directionName = "normal_image_makura_midori_3"; break;
                     case 2: directionName = "normal_image_makura_midori_2"; break;
                     case 3: directionName = "normal_image_hatena_3"; break;
+                    case 4: directionName = "draw_0_2"; break;
                 }
                 break;
             case "chery":
@@ -283,7 +291,8 @@ public class DirectingManager : MonoBehaviour
                                             GetLotStringValue(  20, 100, 100, 100) ,
                                             GetLotStringValue( 100,  10,  10,  10) ,
                                             GetLotStringValue( 100,  10,  10,  10) ,
-                                            GetLotStringValue(  20,  10,  10,  10)
+                                            GetLotStringValue(  20,  10,  10,  10) ,
+                                            GetLotStringValue(  60,  60,  60,  60)   // ペンタブ演出
                                         }))
                 {
                     default:
@@ -303,6 +312,7 @@ public class DirectingManager : MonoBehaviour
                     case 1: directionName = "normal_image_makura_pink_3"; break;
                     case 2: directionName = "normal_image_makura_pink_2"; break;
                     case 3: directionName = "normal_image_hatena_3"; break;
+                    case 4: directionName = "draw_0_2"; break;
                 }
                 break;
         }

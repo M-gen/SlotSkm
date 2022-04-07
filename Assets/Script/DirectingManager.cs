@@ -205,7 +205,9 @@ public class DirectingManager : MonoBehaviour
                                             GetLotStringValue( 100,  10,  10,  10) ,
                                             GetLotStringValue( 100,  10,  10,  10) ,
                                             GetLotStringValue( 100,  10,  10,  10) ,
-                                            GetLotStringValue(  30,  30,  30,  30)   // ペンタブ演出
+                                            GetLotStringValue(  30,  30,  30,  30) , // ペンタブ演出
+                                            GetLotStringValue(  10,  10,  10,  10) , // 実験演出 0_2
+                                            GetLotStringValue(  20,  20,  20,  20) , // 実験演出 0_3
                                         }))
                 {
                     default:
@@ -226,6 +228,8 @@ public class DirectingManager : MonoBehaviour
                     case 2: directionName = "normal_image_makura_ao_2"; break;
                     case 3: directionName = "normal_image_hatena_3";    break;
                     case 4: directionName = "draw_0_2"; break;
+                    case 5: directionName = "jikken_0_2"; break;
+                    case 6: directionName = "jikken_0_3"; break;
                 }
                 break;
             case "bell":
@@ -234,7 +238,9 @@ public class DirectingManager : MonoBehaviour
                                             GetLotStringValue( 100,  10,  10,  10) ,
                                             GetLotStringValue( 100,  10,  10,  10) ,
                                             GetLotStringValue( 100,  10,  10,  10) ,
-                                            GetLotStringValue(  30,  30,  30,  30)   // ペンタブ演出
+                                            GetLotStringValue(  30,  30,  30,  30) , // ペンタブ演出
+                                            GetLotStringValue(  10,  10,  10,  10) , // 実験演出 0_2
+                                            GetLotStringValue(  20,  20,  20,  20) , // 実験演出 0_3
                                         }))
                 {
                     default:
@@ -255,6 +261,8 @@ public class DirectingManager : MonoBehaviour
                     case 2: directionName = "normal_image_makura_ki_2"; break;
                     case 3: directionName = "normal_image_hatena_3"; break;
                     case 4: directionName = "draw_0_2"; break;
+                    case 5: directionName = "jikken_0_2"; break;
+                    case 6: directionName = "jikken_0_3"; break;
                 }
                 break;
             case "suika":
@@ -263,7 +271,9 @@ public class DirectingManager : MonoBehaviour
                                             GetLotStringValue( 100,  10,  10,  10) ,
                                             GetLotStringValue( 100,  10,  10,  10) ,
                                             GetLotStringValue(  40,  10,  10,  10) ,
-                                            GetLotStringValue(  50,  50,  50,  50)   // ペンタブ演出
+                                            GetLotStringValue(  50,  50,  50,  50) , // ペンタブ演出
+                                            GetLotStringValue(  10,  10,  10,  10) , // 実験演出 0_2
+                                            GetLotStringValue(  20,  20,  20,  20) , // 実験演出 0_3
                                         }))
                 {
                     default:
@@ -284,6 +294,8 @@ public class DirectingManager : MonoBehaviour
                     case 2: directionName = "normal_image_makura_midori_2"; break;
                     case 3: directionName = "normal_image_hatena_3"; break;
                     case 4: directionName = "draw_0_2"; break;
+                    case 5: directionName = "jikken_0_2"; break;
+                    case 6: directionName = "jikken_0_3"; break;
                 }
                 break;
             case "chery":
@@ -292,7 +304,9 @@ public class DirectingManager : MonoBehaviour
                                             GetLotStringValue( 100,  10,  10,  10) ,
                                             GetLotStringValue( 100,  10,  10,  10) ,
                                             GetLotStringValue(  20,  10,  10,  10) ,
-                                            GetLotStringValue(  60,  60,  60,  60)   // ペンタブ演出
+                                            GetLotStringValue(  60,  60,  60,  60) , // ペンタブ演出
+                                            GetLotStringValue(  10,  10,  10,  10) , // 実験演出 0_2
+                                            GetLotStringValue(  20,  20,  20,  20) , // 実験演出 0_3
                                         }))
                 {
                     default:
@@ -313,6 +327,8 @@ public class DirectingManager : MonoBehaviour
                     case 2: directionName = "normal_image_makura_pink_2"; break;
                     case 3: directionName = "normal_image_hatena_3"; break;
                     case 4: directionName = "draw_0_2"; break;
+                    case 5: directionName = "jikken_0_2"; break;
+                    case 6: directionName = "jikken_0_3"; break;
                 }
                 break;
         }
@@ -558,6 +574,16 @@ public class DirectingManager : MonoBehaviour
         {
             case 0:
                 {
+                    switch (Lottery.LotteryBase.DefaultLottery(new int[] {
+                            GetLotStringValue( 50,  50, 50, 50) ,
+                            GetLotStringValue( 50,  50, 50, 50) ,
+                        }))
+                    {
+                        case 1:
+                            comboDirectionName.Add("jikken_0_3");
+                            break;
+                    }
+
                     comboDirectionName.Add("group_in");
 
                     var num = getGameCount_group_1();
@@ -569,6 +595,16 @@ public class DirectingManager : MonoBehaviour
                 break;
             case 1:
                 {
+                    switch (Lottery.LotteryBase.DefaultLottery(new int[] {
+                            GetLotStringValue( 50,  50, 50, 50) ,
+                            GetLotStringValue( 50,  50, 50, 50) ,
+                        }))
+                    {
+                        case 1:
+                            comboDirectionName.Add("jikken_0_3");
+                            break;
+                    }
+
                     comboDirectionName.Add("group_in");
 
                     var num = getGameCount_group_1();
@@ -584,6 +620,16 @@ public class DirectingManager : MonoBehaviour
                 break;
             case 2:
                 {
+                    switch (Lottery.LotteryBase.DefaultLottery(new int[] {
+                            GetLotStringValue( 50,  50, 50, 50) ,
+                            GetLotStringValue( 50,  50, 50, 50) ,
+                        }))
+                    {
+                        case 1:
+                            comboDirectionName.Add("jikken_0_3");
+                            break;
+                    }
+
                     comboDirectionName.Add("group_in");
 
                     var num = getGameCount_group_1();
@@ -603,6 +649,16 @@ public class DirectingManager : MonoBehaviour
                 break;
             case 3:
                 {
+                    switch (Lottery.LotteryBase.DefaultLottery(new int[] {
+                            GetLotStringValue( 50,  50, 50, 50) ,
+                            GetLotStringValue( 50,  50, 50, 50) ,
+                        }))
+                    {
+                        case 1:
+                            comboDirectionName.Add("jikken_0_3");
+                            break;
+                    }
+
                     comboDirectionName.Add("group_in");
 
                     var num = getGameCount_group_1();
@@ -626,6 +682,16 @@ public class DirectingManager : MonoBehaviour
                 break;
             case 4:
                 {
+                    switch (Lottery.LotteryBase.DefaultLottery(new int[] {
+                            GetLotStringValue( 50,  50, 50, 50) ,
+                            GetLotStringValue( 50,  50, 50, 50) ,
+                        }))
+                    {
+                        case 1:
+                            comboDirectionName.Add("jikken_0_3");
+                            break;
+                    }
+
                     comboDirectionName.Add("group_in");
 
                     var num = getGameCount_group_1();

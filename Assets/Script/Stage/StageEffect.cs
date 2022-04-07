@@ -967,6 +967,202 @@ public class StageEffect : MonoBehaviour
         }
 
         {
+            var dir = new Direction() { Name = "jikken_0_2" };
+            dir.Dirs.Add(new DirectionOne()
+            {
+                directionStep = DirectionStep.LeberOn,
+                Action = () =>
+                {
+                    SetBackGround("");
+                    maku.SetAnimation("");
+                    maku.IsLogoShow(false);
+                    cutin.SetAnimation("");
+                    PlayAudio("normal_event_jikken_bgm", new string[] { "BGM" }, volume: 0.35f);
+
+                    battle.SetAnimation("jikken_step1");
+                }
+            });
+            dir.Dirs.Add(new DirectionOne()
+            {
+                directionStep = DirectionStep.Stop1,
+                Action = () =>
+                {
+                    battle.SetAnimation("jikken_step2");
+                }
+            });
+            dir.Dirs.Add(new DirectionOne()
+            {
+                directionStep = DirectionStep.Stop2,
+                Action = () =>
+                {
+                    audioManager.DeleteAudios("BGM");
+                    PlayAudio("normal_event_jikken_res", new string[] { "SE" }, volume: 0.5f);
+                    switch (slotCore.oneGame.flagRole)
+                    {
+                        default:
+                            battle.SetAnimation("jikken_step3_shiro");
+                            break;
+                        case "rep":
+                            switch (Lottery.LotteryBase.DefaultLottery(new int[] {
+                                GetLotStringValue(  45,   25,   25,   25) ,
+                                GetLotStringValue(   5,  100,   90,   40) ,
+                            }))
+                            {
+                                default:
+                                    battle.SetAnimation("jikken_step3_ao");
+                                    break;
+                                case 1:
+                                    battle.SetAnimation("jikken_step3_shiro");
+                                    break;
+                            }
+                            break;
+                        case "bell":
+                            switch (Lottery.LotteryBase.DefaultLottery(new int[] {
+                                GetLotStringValue(  45,   25,   25,   25) ,
+                                GetLotStringValue(   5,  100,   90,   40) ,
+                            }))
+                            {
+                                default:
+                                    battle.SetAnimation("jikken_step3_ki");
+                                    break;
+                                case 1:
+                                    battle.SetAnimation("jikken_step3_shiro");
+                                    break;
+                            }
+                            break;
+                        case "suika":
+                            switch (Lottery.LotteryBase.DefaultLottery(new int[] {
+                                GetLotStringValue(  45,   25,   25,   25) ,
+                                GetLotStringValue(   5,  100,   90,   40) ,
+                            }))
+                            {
+                                default:
+                                    battle.SetAnimation("jikken_step3_midori");
+                                    break;
+                                case 1:
+                                    battle.SetAnimation("jikken_step3_shiro");
+                                    break;
+                            }
+                            break;
+                        case "chary":
+                            switch (Lottery.LotteryBase.DefaultLottery(new int[] {
+                                GetLotStringValue(  45,   25,   25,   25) ,
+                                GetLotStringValue(   5,  100,   90,   40) ,
+                            }))
+                            {
+                                default:
+                                    battle.SetAnimation("jikken_step3_aka");
+                                    break;
+                                case 1:
+                                    battle.SetAnimation("jikken_step3_shiro");
+                                    break;
+                            }
+                            break;
+                    }
+                }
+            });
+            directions.Add(dir);
+        }
+
+        {
+            var dir = new Direction() { Name = "jikken_0_3" };
+            dir.Dirs.Add(new DirectionOne()
+            {
+                directionStep = DirectionStep.LeberOn,
+                Action = () =>
+                {
+                    SetBackGround("");
+                    maku.SetAnimation("");
+                    maku.IsLogoShow(false);
+                    cutin.SetAnimation("");
+                    PlayAudio("normal_event_jikken_bgm", new string[] { "BGM" }, volume: 0.35f);
+
+                    battle.SetAnimation("jikken_step1");
+                }
+            });
+            dir.Dirs.Add(new DirectionOne()
+            {
+                directionStep = DirectionStep.Stop1,
+                Action = () =>
+                {
+                    battle.SetAnimation("jikken_step2");
+                }
+            });
+            dir.Dirs.Add(new DirectionOne()
+            {
+                directionStep = DirectionStep.Stop3,
+                Action = () =>
+                {
+                    audioManager.DeleteAudios("BGM");
+                    PlayAudio("normal_event_jikken_res", new string[] { "SE" }, volume: 0.5f);
+                    switch (slotCore.oneGame.flagRole)
+                    {
+                        default:
+                            battle.SetAnimation("jikken_step3_shiro");
+                            break;
+                        case "rep":
+                            switch (Lottery.LotteryBase.DefaultLottery(new int[] {
+                                GetLotStringValue(  45,   25,   25,   25) ,
+                                GetLotStringValue(   5,  100,   90,   40) ,
+                            }))
+                            {
+                                default:
+                                    battle.SetAnimation("jikken_step3_ao");
+                                    break;
+                                case 1:
+                                    battle.SetAnimation("jikken_step3_shiro");
+                                    break;
+                            }
+                            break;
+                        case "bell":
+                            switch (Lottery.LotteryBase.DefaultLottery(new int[] {
+                                GetLotStringValue(  45,   25,   25,   25) ,
+                                GetLotStringValue(   5,  100,   90,   40) ,
+                            }))
+                            {
+                                default:
+                                    battle.SetAnimation("jikken_step3_ki");
+                                    break;
+                                case 1:
+                                    battle.SetAnimation("jikken_step3_shiro");
+                                    break;
+                            }
+                            break;
+                        case "suika":
+                            switch (Lottery.LotteryBase.DefaultLottery(new int[] {
+                                GetLotStringValue(  45,   25,   25,   25) ,
+                                GetLotStringValue(   5,  100,   90,   40) ,
+                            }))
+                            {
+                                default:
+                                    battle.SetAnimation("jikken_step3_midori");
+                                    break;
+                                case 1:
+                                    battle.SetAnimation("jikken_step3_shiro");
+                                    break;
+                            }
+                            break;
+                        case "chary":
+                            switch (Lottery.LotteryBase.DefaultLottery(new int[] {
+                                GetLotStringValue(  45,   25,   25,   25) ,
+                                GetLotStringValue(   5,  100,   90,   40) ,
+                            }))
+                            {
+                                default:
+                                    battle.SetAnimation("jikken_step3_aka");
+                                    break;
+                                case 1:
+                                    battle.SetAnimation("jikken_step3_shiro");
+                                    break;
+                            }
+                            break;
+                    }
+                }
+            });
+            directions.Add(dir);
+        }
+
+        {
             var dir = new Direction() { Name = "group_in" };
             dir.Dirs.Add(new DirectionOne()
             {

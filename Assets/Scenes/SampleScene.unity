@@ -2868,6 +2868,20 @@ MonoBehaviour:
     Sprite: {fileID: 21300000, guid: 133d30e466ad16640b31c99e83040c78, type: 3}
   - Key: draw_res_nihon_3
     Sprite: {fileID: 21300000, guid: fd162206cd53a0c4ebc50252095760e8, type: 3}
+  - Key: jikken_step1
+    Sprite: {fileID: 21300000, guid: 2c9b551f8ec74d54d88f6cbedb487938, type: 3}
+  - Key: jikken_step2
+    Sprite: {fileID: 21300000, guid: 63554ce56e1039147b6e150cbcc29751, type: 3}
+  - Key: jikken_step3_shiro
+    Sprite: {fileID: 21300000, guid: 7dae88af949371844adf08c538bcdfef, type: 3}
+  - Key: jikken_step3_ao
+    Sprite: {fileID: 21300000, guid: 29961069595097a419c2079fd3600020, type: 3}
+  - Key: jikken_step3_ki
+    Sprite: {fileID: 21300000, guid: 1d512285d71585947a898f4ab8906684, type: 3}
+  - Key: jikken_step3_midori
+    Sprite: {fileID: 21300000, guid: e60547b1372206f4c9585c59a5e648c6, type: 3}
+  - Key: jikken_step3_aka
+    Sprite: {fileID: 21300000, guid: cf193c6f739ad474582974e26b30a95e, type: 3}
   background: {fileID: 734845853}
   gonusGetCoinCounter1: {fileID: 2089226049}
   gonusGetCoinCounter2: {fileID: 734444376}
@@ -6099,6 +6113,10 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: 00c59652c543d464da93ef89076eec8c, type: 3}
   - Key: normal_event_draw_res
     Clip: {fileID: 8300000, guid: a2210fcabadd35f47bfbb1a35ec50ca3, type: 3}
+  - Key: normal_event_jikken_bgm
+    Clip: {fileID: 8300000, guid: c59ae32768787d04bbc5b05f2eaf3c00, type: 3}
+  - Key: normal_event_jikken_res
+    Clip: {fileID: 8300000, guid: dff6e2fe954d24940826d052f3842cd6, type: 3}
   status: 
   bonusOutCoin: 0
 --- !u!1 &2089226049

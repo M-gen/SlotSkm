@@ -206,6 +206,55 @@ public class Battle : MonoBehaviour
         }
 
         {
+            var animation = new AnimationImageDataSet() { Key = "jikken_step1", IsLoop = false };
+            animation.ImageDatas.Add(new AnimationImageData() { Key = "jikken_step1", Time = 1.0f });
+
+            animationImage.DataSets.Add(animation);
+        }
+
+        {
+            var animation = new AnimationImageDataSet() { Key = "jikken_step2", IsLoop = false };
+            animation.ImageDatas.Add(new AnimationImageData() { Key = "jikken_step2", Time = 1.0f });
+
+            animationImage.DataSets.Add(animation);
+        }
+
+        {
+            var animation = new AnimationImageDataSet() { Key = "jikken_step3_ao", IsLoop = false };
+            animation.ImageDatas.Add(new AnimationImageData() { Key = "jikken_step3_ao", Time = 1.0f });
+
+            animationImage.DataSets.Add(animation);
+        }
+
+        {
+            var animation = new AnimationImageDataSet() { Key = "jikken_step3_ki", IsLoop = false };
+            animation.ImageDatas.Add(new AnimationImageData() { Key = "jikken_step3_ki", Time = 1.0f });
+
+            animationImage.DataSets.Add(animation);
+        }
+
+        {
+            var animation = new AnimationImageDataSet() { Key = "jikken_step3_midori", IsLoop = false };
+            animation.ImageDatas.Add(new AnimationImageData() { Key = "jikken_step3_midori", Time = 1.0f });
+
+            animationImage.DataSets.Add(animation);
+        }
+
+        {
+            var animation = new AnimationImageDataSet() { Key = "jikken_step3_aka", IsLoop = false };
+            animation.ImageDatas.Add(new AnimationImageData() { Key = "jikken_step3_aka", Time = 1.0f });
+
+            animationImage.DataSets.Add(animation);
+        }
+
+        {
+            var animation = new AnimationImageDataSet() { Key = "jikken_step3_shiro", IsLoop = false };
+            animation.ImageDatas.Add(new AnimationImageData() { Key = "jikken_step3_shiro", Time = 1.0f });
+
+            animationImage.DataSets.Add(animation);
+        }
+
+        {
             var animation = new AnimationImageDataSet() { Key = "draw_res_nihon_3", IsLoop = false };
             animation.ImageDatas.Add(new AnimationImageData() { Key = "draw_res_nihon_3", Time = 1.0f });
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class StageBackGround : MonoBehaviour
 {
     [SerializeField]
-    GameObject[] BackGroundGameObject;
+    GameObject[] backGroundGameObject;
 
     float speed = 0.5f;
     float backGroundRange = 0;
@@ -17,8 +17,8 @@ public class StageBackGround : MonoBehaviour
 
     void Start()
     {
-        backGroundRange = BackGroundGameObject[1].transform.position.x - BackGroundGameObject[0].transform.position.x;
-        backGroundRepeatX = BackGroundGameObject[1].transform.position.x;
+        backGroundRange = backGroundGameObject[1].transform.position.x - backGroundGameObject[0].transform.position.x;
+        backGroundRepeatX = backGroundGameObject[1].transform.position.x;
     }
 
     // Update is called once per frame
@@ -26,7 +26,7 @@ public class StageBackGround : MonoBehaviour
     {
         if (IsMove)
         {
-            foreach (var i in BackGroundGameObject)
+            foreach (var i in backGroundGameObject)
             {
                 i.transform.position += new Vector3(Time.deltaTime * speed, 0);
                 if (backGroundRepeatX <= i.transform.position.x)

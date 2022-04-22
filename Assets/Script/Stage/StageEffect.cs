@@ -20,6 +20,9 @@ public class StageEffect : MonoBehaviour
     CharaSDSakamata charaSDSakamata;
 
     [SerializeField]
+    CharaSDKazama charaSDKazama;
+
+    [SerializeField]
     Maku maku;
 
     [SerializeField]
@@ -91,6 +94,7 @@ public class StageEffect : MonoBehaviour
                     maku.IsLogoShow(false);
                     cutin.SetAnimation("");
                     charaSDSakamata.SetAnimation("walk");
+                    charaSDKazama.SetAnimation("");
                     battle.SetAnimation("");
                 }
             });
@@ -110,6 +114,7 @@ public class StageEffect : MonoBehaviour
                     maku.IsLogoShow(false);
                     cutin.SetAnimation("");
                     charaSDSakamata.SetAnimation("walk");
+                    charaSDKazama.SetAnimation("");
                     battle.SetAnimation("");
                 }
             });
@@ -143,6 +148,7 @@ public class StageEffect : MonoBehaviour
                     maku.IsLogoShow(false);
                     cutin.SetAnimation("");
                     charaSDSakamata.SetAnimation("walk");
+                    charaSDKazama.SetAnimation("");
                     battle.SetAnimation("");
                 }
             });
@@ -164,6 +170,56 @@ public class StageEffect : MonoBehaviour
             directions.Add(dir);
         }
 
+
+        {
+            var dir = new Direction() { Name = "normal_kazama" };
+            dir.Dirs.Add(new DirectionOne()
+            {
+                directionStep = DirectionStep.LeberOn,
+                Action = () =>
+                {
+                    SetBackGround("default");
+                    maku.SetAnimation("");
+                    maku.IsLogoShow(false);
+                    cutin.SetAnimation("");
+                    charaSDSakamata.SetAnimation("walk");
+
+                    switch( Lottery.LotteryBase.DefaultLottery(new int[] {
+                        GetLotStringValue( 15,    5,    8,   10) , // 0
+                        GetLotStringValue( 50,   50,   50,   50) ,
+                    }))
+                    {
+                        default:
+                            charaSDKazama.SetAnimation("shiro");
+                            break;
+                        case 1:
+                            switch (slotCore.oneGame.flagRole)
+                            {
+                                default:
+                                    charaSDKazama.SetAnimation("shiro");
+                                    break;
+                                case "rep":
+                                    charaSDKazama.SetAnimation("ao");
+                                    break;
+                                case "bell":
+                                    charaSDKazama.SetAnimation("ki");
+                                    break;
+                                case "suika":
+                                    charaSDKazama.SetAnimation("midori");
+                                    break;
+                                case "chery":
+                                    charaSDKazama.SetAnimation("aka");
+                                    break;
+                            }
+                            break;
+                    }
+
+                    battle.SetAnimation("");
+                }
+            });
+            directions.Add(dir);
+        }
+
         {
             var dir = new Direction() { Name = "normal_image_makura_ao_3" };
             dir.Dirs.Add(new DirectionOne()
@@ -176,6 +232,7 @@ public class StageEffect : MonoBehaviour
                     maku.IsLogoShow(false);
                     cutin.SetAnimation("");
                     charaSDSakamata.SetAnimation("stop_!?");
+                    charaSDKazama.SetAnimation("");
                     battle.SetAnimation("");
                 }
             });
@@ -212,6 +269,7 @@ public class StageEffect : MonoBehaviour
                     maku.IsLogoShow(false);
                     cutin.SetAnimation("");
                     charaSDSakamata.SetAnimation("stop_!?");
+                    charaSDKazama.SetAnimation("");
                     battle.SetAnimation("");
                 }
             });
@@ -248,6 +306,7 @@ public class StageEffect : MonoBehaviour
                     maku.IsLogoShow(false);
                     cutin.SetAnimation("");
                     charaSDSakamata.SetAnimation("stop_!?");
+                    charaSDKazama.SetAnimation("");
                     battle.SetAnimation("");
                 }
             });
@@ -284,6 +343,7 @@ public class StageEffect : MonoBehaviour
                     maku.IsLogoShow(false);
                     cutin.SetAnimation("");
                     charaSDSakamata.SetAnimation("stop_!?");
+                    charaSDKazama.SetAnimation("");
                     battle.SetAnimation("");
                 }
             });
@@ -320,6 +380,7 @@ public class StageEffect : MonoBehaviour
                     maku.IsLogoShow(false);
                     cutin.SetAnimation("");
                     charaSDSakamata.SetAnimation("stop_!?");
+                    charaSDKazama.SetAnimation("");
                     battle.SetAnimation("");
                 }
             });
@@ -356,6 +417,7 @@ public class StageEffect : MonoBehaviour
                     maku.IsLogoShow(false);
                     cutin.SetAnimation("");
                     charaSDSakamata.SetAnimation("stop_!?");
+                    charaSDKazama.SetAnimation("");
                     battle.SetAnimation("");
                 }
             });
@@ -392,6 +454,7 @@ public class StageEffect : MonoBehaviour
                     maku.IsLogoShow(false);
                     cutin.SetAnimation("");
                     charaSDSakamata.SetAnimation("stop_!?");
+                    charaSDKazama.SetAnimation("");
                     battle.SetAnimation("");
                 }
             });
@@ -428,6 +491,7 @@ public class StageEffect : MonoBehaviour
                     maku.IsLogoShow(false);
                     cutin.SetAnimation("");
                     charaSDSakamata.SetAnimation("stop_!?");
+                    charaSDKazama.SetAnimation("");
                     battle.SetAnimation("");
                 }
             });
@@ -464,6 +528,7 @@ public class StageEffect : MonoBehaviour
                     maku.IsLogoShow(false);
                     cutin.SetAnimation("");
                     charaSDSakamata.SetAnimation("stop_!?");
+                    charaSDKazama.SetAnimation("");
                     battle.SetAnimation("");
                 }
             });
@@ -500,6 +565,7 @@ public class StageEffect : MonoBehaviour
                     maku.IsLogoShow(false);
                     cutin.SetAnimation("");
                     charaSDSakamata.SetAnimation("stop_!?");
+                    charaSDKazama.SetAnimation("");
                     battle.SetAnimation("");
                 }
             });
@@ -1174,6 +1240,8 @@ public class StageEffect : MonoBehaviour
                     maku.IsLogoShow(false);
                     cutin.SetAnimation("");
                     battle.SetAnimation("");
+                    charaSDSakamata.SetAnimation("walk");
+                    charaSDKazama.SetAnimation("");
                     DeleteAudios("BGM");
                 }
             });

@@ -178,7 +178,8 @@ public class DirectingManager : MonoBehaviour
                 switch (Lottery.LotteryBase.DefaultLottery(new int[] {
                                             GetLotStringValue( 100, 100, 100, 100) ,
                                             GetLotStringValue(   3,  10,  10,  10) ,
-                                            GetLotStringValue(  30,  30,  30,  30)   // ペンタブ演出
+                                            GetLotStringValue(  30,  30,  30,  30) , // ペンタブ演出
+                                            GetLotStringValue(   5,   5,   5,   5)   // ミニキャラランニング演出
                                         }))
                 {
                     default:
@@ -197,6 +198,7 @@ public class DirectingManager : MonoBehaviour
                         break;
                     case 1: directionName = "normal_image_hatena_3"; break;
                     case 2: directionName = "draw_0_2"; break;
+                    case 3: directionName = "normal_kazama"; break;
                 }
                 break;
             case "rep":
@@ -208,6 +210,7 @@ public class DirectingManager : MonoBehaviour
                                             GetLotStringValue(  30,  30,  30,  30) , // ペンタブ演出
                                             GetLotStringValue(  10,  10,  10,  10) , // 実験演出 0_2
                                             GetLotStringValue(  20,  20,  20,  20) , // 実験演出 0_3
+                                            GetLotStringValue( 100, 100, 100, 100) , // ミニキャラランニング演出
                                         }))
                 {
                     default:
@@ -230,6 +233,7 @@ public class DirectingManager : MonoBehaviour
                     case 4: directionName = "draw_0_2"; break;
                     case 5: directionName = "jikken_0_2"; break;
                     case 6: directionName = "jikken_0_3"; break;
+                    case 7: directionName = "normal_kazama"; break;
                 }
                 break;
             case "bell":
@@ -241,6 +245,7 @@ public class DirectingManager : MonoBehaviour
                                             GetLotStringValue(  30,  30,  30,  30) , // ペンタブ演出
                                             GetLotStringValue(  10,  10,  10,  10) , // 実験演出 0_2
                                             GetLotStringValue(  20,  20,  20,  20) , // 実験演出 0_3
+                                            GetLotStringValue(  80,  80,  80,  80) , // ミニキャラランニング演出
                                         }))
                 {
                     default:
@@ -263,6 +268,7 @@ public class DirectingManager : MonoBehaviour
                     case 4: directionName = "draw_0_2"; break;
                     case 5: directionName = "jikken_0_2"; break;
                     case 6: directionName = "jikken_0_3"; break;
+                    case 7: directionName = "normal_kazama"; break;
                 }
                 break;
             case "suika":
@@ -274,6 +280,7 @@ public class DirectingManager : MonoBehaviour
                                             GetLotStringValue(  50,  50,  50,  50) , // ペンタブ演出
                                             GetLotStringValue(  10,  10,  10,  10) , // 実験演出 0_2
                                             GetLotStringValue(  20,  20,  20,  20) , // 実験演出 0_3
+                                            GetLotStringValue(  50,  50,  50,  50) , // ミニキャラランニング演出
                                         }))
                 {
                     default:
@@ -296,6 +303,7 @@ public class DirectingManager : MonoBehaviour
                     case 4: directionName = "draw_0_2"; break;
                     case 5: directionName = "jikken_0_2"; break;
                     case 6: directionName = "jikken_0_3"; break;
+                    case 7: directionName = "normal_kazama"; break;
                 }
                 break;
             case "chery":
@@ -307,6 +315,7 @@ public class DirectingManager : MonoBehaviour
                                             GetLotStringValue(  60,  60,  60,  60) , // ペンタブ演出
                                             GetLotStringValue(  10,  10,  10,  10) , // 実験演出 0_2
                                             GetLotStringValue(  20,  20,  20,  20) , // 実験演出 0_3
+                                            GetLotStringValue(  40,  40,  40,  40) , // ミニキャラランニング演出
                                         }))
                 {
                     default:
@@ -329,6 +338,7 @@ public class DirectingManager : MonoBehaviour
                     case 4: directionName = "draw_0_2"; break;
                     case 5: directionName = "jikken_0_2"; break;
                     case 6: directionName = "jikken_0_3"; break;
+                    case 7: directionName = "normal_kazama"; break;
                 }
                 break;
         }
